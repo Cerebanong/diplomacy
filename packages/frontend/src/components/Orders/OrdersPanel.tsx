@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { GameState, Order, PowerId } from '@diplomacy/shared';
+import type { GameState, Order } from '@diplomacy/shared';
 import { Play, Trash2, Plus } from 'lucide-react';
 
 interface OrdersPanelProps {

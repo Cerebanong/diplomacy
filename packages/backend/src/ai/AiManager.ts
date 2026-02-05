@@ -54,13 +54,12 @@ export class AiManager {
   async generateResponse(
     agent: AiAgent,
     gameState: GameState,
-    incomingMessage: Message,
+    _incomingMessage: Message,
     conversationHistory: Message[],
     model: 'haiku' | 'sonnet'
   ): Promise<AiResponse> {
     const client = this.getClient();
     const powerName = CLASSIC_POWERS[agent.power].name;
-    const senderName = CLASSIC_POWERS[incomingMessage.from].name;
 
     const systemPrompt = this.buildAgentSystemPrompt(agent, gameState);
 
@@ -225,7 +224,7 @@ Provide your orders in JSON format:
     agent: AiAgent,
     otherPowers: PowerId[],
     gameState: GameState,
-    negotiations: NegotiationState,
+    _negotiations: NegotiationState,
     model: 'haiku' | 'sonnet'
   ): Promise<{
     messages: { to: PowerId; content: string }[];

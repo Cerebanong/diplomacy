@@ -146,7 +146,7 @@ export class GameManager {
     const playerPower = session.state.playerPower;
     const channels: Record<string, { power: PowerId; messages: Message[] }> = {};
 
-    for (const [channelId, channel] of Object.entries(session.negotiations.channels)) {
+    for (const [_channelId, channel] of Object.entries(session.negotiations.channels)) {
       if (channel.participants.includes(playerPower)) {
         const otherPower = channel.participants.find(p => p !== playerPower)!;
         channels[otherPower] = {
@@ -311,7 +311,7 @@ export class GameManager {
     };
   }
 
-  private updateTrustScores(session: GameSession, result: TurnResult) {
+  private updateTrustScores(_session: GameSession, _result: TurnResult) {
     // TODO: Analyze orders and update trust scores based on
     // whether AI agents followed through on agreements
   }

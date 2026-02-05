@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { GameManager } from '../game/GameManager.js';
-import type { PowerId } from '@diplomacy/shared';
+import type { Order } from '@diplomacy/shared';
 
 export const gameRouter = Router();
 
@@ -98,7 +98,8 @@ gameRouter.get('/:id/status', (req, res) => {
 gameRouter.post('/:id/orders', async (req, res) => {
   try {
     const { orders } = submitOrdersSchema.parse({ ...req.body, gameId: req.params.id });
-    const result = await gameManager.submitOrders(req.params.id, orders);
+    // Cast orders - the power field will be added in GameManager
+    const result = await gameManager.submitOrders(req.params.id, orders as unknown as Order[]);
     res.json(result);
   } catch (error) {
     if (error instanceof z.ZodError) {
