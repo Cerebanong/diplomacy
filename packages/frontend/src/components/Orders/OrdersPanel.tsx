@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { GameState, Order } from '@diplomacy/shared';
 import { Play, Trash2, Plus } from 'lucide-react';
+import { apiUrl } from '../../config';
 
 interface OrdersPanelProps {
   gameState: GameState;
@@ -85,7 +86,7 @@ export function OrdersPanel({
         };
       });
 
-      const response = await fetch(`/api/game/${gameId}/orders`, {
+      const response = await fetch(apiUrl(`/api/game/${gameId}/orders`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orders: finalOrders }),

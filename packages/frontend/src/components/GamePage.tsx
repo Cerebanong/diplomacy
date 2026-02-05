@@ -5,6 +5,7 @@ import { GameMap } from './Map/GameMap';
 import { NegotiationPanel } from './Chat/NegotiationPanel';
 import { OrdersPanel } from './Orders/OrdersPanel';
 import { GameHeader } from './GameHeader';
+import { apiUrl } from '../config';
 
 export function GamePage() {
   const { gameId } = useParams<{ gameId: string }>();
@@ -18,7 +19,7 @@ export function GamePage() {
 
     const fetchGame = async () => {
       try {
-        const response = await fetch(`/api/game/${gameId}/status`);
+        const response = await fetch(apiUrl(`/api/game/${gameId}/status`));
         if (!response.ok) throw new Error('Failed to fetch game');
         const data = await response.json();
         setGameState(data.state);
@@ -34,7 +35,7 @@ export function GamePage() {
     // Poll for AI negotiation status
     const interval = setInterval(async () => {
       try {
-        const response = await fetch(`/api/negotiation/${gameId}/ai-status`);
+        const response = await fetch(apiUrl(`/api/negotiation/${gameId}/ai-status`));
         if (response.ok) {
           const status = await response.json();
           setAiNegotiationsInProgress(status.inProgress);

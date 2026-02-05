@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { PowerId } from '@diplomacy/shared';
 import { Crown, Swords, Users, Coins } from 'lucide-react';
+import { apiUrl } from '../config';
 
 const POWERS: { id: PowerId; name: string; color: string; description: string }[] = [
   { id: 'england', name: 'England', color: 'bg-england', description: 'Island nation with strong naval position' },
@@ -37,7 +38,7 @@ export function HomePage() {
 
     setIsCreating(true);
     try {
-      const response = await fetch('/api/game/create', {
+      const response = await fetch(apiUrl('/api/game/create'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

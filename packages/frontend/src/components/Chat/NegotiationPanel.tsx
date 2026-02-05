@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { GameState, PowerId, Message } from '@diplomacy/shared';
 import { Send } from 'lucide-react';
+import { apiUrl } from '../../config';
 
 interface NegotiationPanelProps {
   gameState: GameState;
@@ -35,7 +36,7 @@ export function NegotiationPanel({
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`/api/negotiation/${gameId}/channel/${selectedPower}`);
+        const response = await fetch(apiUrl(`/api/negotiation/${gameId}/channel/${selectedPower}`));
         if (response.ok) {
           const data = await response.json();
           setMessages(data);
@@ -59,7 +60,7 @@ export function NegotiationPanel({
 
     setIsSending(true);
     try {
-      const response = await fetch(`/api/negotiation/${gameId}/send`, {
+      const response = await fetch(apiUrl(`/api/negotiation/${gameId}/send`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
