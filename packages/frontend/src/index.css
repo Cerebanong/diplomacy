@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Georgia, Cambria, 'Times New Roman', serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1a1a1a;
+  background-color: #f5f0e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8dcc4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b7355;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d5a45;
+}
+
+/* Map territory hover effects */
+.territory {
+  transition: opacity 0.2s ease;
+}
+
+.territory:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.territory.selected {
+  stroke: #fbbf24;
+  stroke-width: 3;
+}
+
+/* Unit markers */
+.unit-marker {
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Chat messages */
+.chat-message {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Vintage paper texture effect */
+.paper-texture {
+  background-color: #f5f0e8;
+  background-image:
+    radial-gradient(ellipse at 50% 50%, rgba(139, 115, 85, 0.03) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}

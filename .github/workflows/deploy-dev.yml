@@ -1,0 +1,90 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared
+        run: npm run build:shared
+
+      - name: Build backend
+        run: npm run build:backend
+
+      - name: Prepare deployment package
+        run: |
+          cd packages/backend
+          cp -r ../../node_modules ./node_modules
+          rm -rf ./node_modules/@diplomacy/shared
+          cp -r ../shared ./node_modules/@diplomacy/shared
+          zip -r ../../backend.zip dist node_modules package.json
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: diplomacy-api-dev
+          package: backend.zip
+
+      - name: Configure App Settings
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: diplomacy-api-dev
+          app-settings-json: |
+            [
+              { "name": "ANTHROPIC_API_KEY", "value": "${{ secrets.ANTHROPIC_API_KEY }}", "slotSetting": false },
+              { "name": "CORS_ORIGINS", "value": "https://devdiplomacy.kevinandpauline.com", "slotSetting": false },
+              { "name": "NODE_ENV", "value": "development", "slotSetting": false }
+            ]
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared
+        run: npm run build:shared
+
+      - name: Build frontend
+        run: npm run build:frontend
+        env:
+          VITE_API_URL: https://diplomacy-api-dev.azurewebsites.net
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DEV }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: packages/frontend
+          output_location: dist
+          skip_app_build: true

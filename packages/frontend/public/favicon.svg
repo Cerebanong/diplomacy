@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#374151"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M50 5 L90 20 L90 50 Q90 80 50 95 Q10 80 10 50 L10 20 Z"
+        fill="url(#shield)"
+        stroke="#fbbf24"
+        stroke-width="3"/>
+  <!-- Crown -->
+  <path d="M30 35 L35 50 L42 40 L50 55 L58 40 L65 50 L70 35 L72 55 L28 55 Z"
+        fill="#fbbf24"/>
+  <!-- Crossed swords -->
+  <line x1="35" y1="60" x2="65" y2="80" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+  <line x1="65" y1="60" x2="35" y2="80" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+</svg>
