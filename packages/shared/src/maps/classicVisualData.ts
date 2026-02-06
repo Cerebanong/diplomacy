@@ -100,11 +100,11 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.sea,
   },
   'bel': {
-    svgPath: 'm 205,311 1,-5 -12,-3 -3,-4 7,-10 7,-13 v 3 h 2 l 4,-5 15,1 1,5 -2,12 -5,6 -5,-1 -2,5 -3,11 -2,2 z',
+    svgPath: 'm 169,311 4,-10 18,-2 3,4 12,3 -1,5 3,4 2,11 -5,5 -13,-8 -8,-8 z',
     transform: TRANSFORM,
-    center: { x: 328, y: 635 },
-    labelPosition: { x: 328, y: 635 },
-    supplyCenterPosition: { x: 328, y: 655 },
+    center: { x: 355, y: 640 },
+    labelPosition: { x: 355, y: 640 },
+    supplyCenterPosition: { x: 355, y: 660 },
     defaultFill: NEUTRAL_COLORS.land,
   },
   'ber': {
@@ -272,9 +272,9 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
   'hol': {
     svgPath: 'm 205,311 1,-5 -12,-3 -3,-4 7,-10 7,-13 v 3 h 2 l 4,-5 15,1 1,5 -2,12 -5,6 -5,-1 -2,5 -3,11 -2,2 z',
     transform: TRANSFORM,
-    center: { x: 366, y: 612 },
-    labelPosition: { x: 366, y: 612 },
-    supplyCenterPosition: { x: 366, y: 632 },
+    center: { x: 385, y: 600 },
+    labelPosition: { x: 385, y: 600 },
+    supplyCenterPosition: { x: 385, y: 620 },
     defaultFill: NEUTRAL_COLORS.land,
   },
   'ion': {
@@ -441,10 +441,9 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.land,
   },
   'ruh': {
-    svgPath: 'm 169,311 4,-10 18,-2 3,4 12,3 -1,5 3,4 2,11 -5,5 -13,-8 -8,-8 z',
-    transform: TRANSFORM,
-    center: { x: 417, y: 678 },
-    labelPosition: { x: 417, y: 678 },
+    svgPath: 'm 399.42295,701.58689 15.1082,-3.77705 33.99344,-41.54754 h 11.33115 L 456.07869,644.93115 439.08197,629.82295 403.2,618.4918 l -5.66557,20.77377 -3.77705,3.77705 3.77705,20.77377 -9.44263,9.44263 -1.88852,13.21967 z',
+    center: { x: 415, y: 660 },
+    labelPosition: { x: 415, y: 660 },
     defaultFill: NEUTRAL_COLORS.land,
   },
   'rum': {
