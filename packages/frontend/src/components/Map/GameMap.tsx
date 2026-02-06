@@ -138,6 +138,12 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
               <stop offset="0%" stopColor={NEUTRAL_COLORS.sea} />
               <stop offset="100%" stopColor="#9CC4DC" />
             </linearGradient>
+
+            {/* Hatching pattern for impassable territories */}
+            <pattern id="impassableHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <rect width="6" height="6" fill={NEUTRAL_COLORS.land} />
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#B8A88C" strokeWidth="2" />
+            </pattern>
           </defs>
 
           {/* Background */}
@@ -145,8 +151,9 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
 
           {/* Impassable territories (Switzerland) - rendered before interactive territories */}
           <path
-            d="m 425.86293,731.80346 -5.66602,5.66602 -24.55078,-3.77734 -1.88867,7.55468 -26.43946,28.32813 5.66602,5.66406 11.33008,-11.33008 7.55469,13.21875 11.33203,1.88868 15.10742,-3.77735 11.33203,9.44336 3.77539,-9.44336 26.43945,5.66602 3.77735,-7.55469 -7.55274,-11.33008 -13.2207,-7.55469 v -15.10742 l -3.77734,-5.66601 z"
-            fill="#C8B898"
+            d="m 225,362 -3,3 -13,-2 -1,4 -14,15 3,3 6,-6 4,7 6,1 8,-2 6,5 2,-5 14,3 2,-4 -4,-6 -7,-4 v -8 l -2,-3 z"
+            transform="matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)"
+            fill="url(#impassableHatch)"
             stroke="#999"
             strokeWidth={0.8}
             pointerEvents="none"

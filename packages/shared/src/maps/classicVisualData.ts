@@ -346,9 +346,10 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.land,
   },
   'mun': {
-    svgPath: 'm 537.28525,641.1541 7.55409,-16.99672 -47.21311,9.44262 -37.77049,22.6623 h -11.33115 l -33.99344,41.54754 -15.1082,3.77705 3.77705,11.33114 -7.5541,20.77377 24.55082,3.77705 5.66557,-5.66557 13.21968,1.88852 69.87631,-1.88852 h 11.33114 l 11.33115,-11.33115 -9.44262,-18.88524 -15.1082,-5.66558 -7.5541,-26.43934 3.77705,-7.5541 22.6623,1.88852 18.88524,-9.44262 z',
-    center: { x: 470, y: 700 },
-    labelPosition: { x: 470, y: 700 },
+    svgPath: 'm 284,314 4,-9 -25,5 -20,12 h -6 l -18,22 -8,2 2,6 -4,11 13,2 3,-3 7,1 2,3 9,4 3,-1 4,2 17,-3 4,2 -2,-8 h 6 l 6,-6 -5,-10 -8,-3 -4,-14 2,-4 12,1 10,-5 z',
+    transform: TRANSFORM,
+    center: { x: 478, y: 710 },
+    labelPosition: { x: 478, y: 710 },
     supplyCenterPosition: { x: 470, y: 720 },
     defaultFill: NEUTRAL_COLORS.land,
   },
@@ -375,7 +376,7 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.land,
   },
   'nth': {
-    svgPath: 'm 374.83858,338.99008 c -28.16113,-2e-5 -50.99024,22.8291 -50.9902,50.99023 v 30.2168 l -1.8887,9.4414 -9.4414,15.10938 -13.2207,7.55469 -13.2188,1.88671 11.3301,1.88868 7.5547,3.77734 3.7773,15.10938 v 24.55078 l 9.4415,13.21875 3.7773,11.33203 -1.8887,24.55078 -5.664,7.55273 3.7754,1.88867 5.666,-3.77734 11.332,3.77734 1.8887,7.55469 -3.7774,16.9961 -20.7734,18.88671 13.2187,1.88672 -7.5546,3.77735 9.4433,9.44336 33.9942,-3.77735 13.2187,-18.88476 13.2207,-24.55078 v 5.66601 h 3.7774 l 7.5527,-9.44336 v -69.875 h 64.2109 l 5.6641,-24.55078 h -20.48226 v -34.16558 l -11.62124,-9.27192 -3.7774,-16.99609 7.5547,-11.33008 -3.7773,-11.33203 3.7773,-24.55078 7.5527,-13.21875 -1.8886,-11.33203 z',
+    svgPath: 'm 374.83858,338.99008 c -28.16113,-2e-5 -50.99024,22.8291 -50.9902,50.99023 v 30.2168 l -1.8887,9.4414 -9.4414,15.10938 -13.2207,7.55469 -13.2188,1.88671 11.3301,1.88868 7.5547,3.77734 3.7773,15.10938 v 24.55078 l 9.4415,13.21875 3.7773,11.33203 -1.8887,24.55078 -5.664,7.55273 3.7754,1.88867 5.666,-3.77734 11.332,3.77734 1.8887,7.55469 -3.7774,16.9961 -20.7734,18.88671 13.2187,1.88672 -7.5546,3.77735 9.4433,9.44336 33.9942,-3.77735 13.2187,-18.88476 13.2207,-24.55078 v 5.66601 h 3.7774 l 7.5527,-9.44336 l -3.5454,-4.5551 c 42.77228,-17.28713 57.55297,-62.56553 57.55297,-62.56553 l 10.2033,-2.7544 l 5.6641,-24.55078 h -20.48226 v -34.16558 l -11.62124,-9.27192 -3.7774,-16.99609 7.5547,-11.33008 -3.7773,-11.33203 3.7773,-24.55078 7.5527,-13.21875 -1.8886,-11.33203 z',
     center: { x: 358, y: 498 },
     labelPosition: { x: 358, y: 498 },
     defaultFill: NEUTRAL_COLORS.sea,
@@ -441,7 +442,8 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.land,
   },
   'ruh': {
-    svgPath: 'm 399.42295,701.58689 15.1082,-3.77705 33.99344,-41.54754 h 11.33115 L 456.07869,644.93115 439.08197,629.82295 403.2,618.4918 l -5.66557,20.77377 -3.77705,3.77705 3.77705,20.77377 -9.44263,9.44263 -1.88852,13.21967 z',
+    svgPath: 'm 211,346 8,-2 18,-22 h 6 l -2,-6 -9,-8 -19,-6 -3,11 -2,2 2,11 -5,5 -1,7 z',
+    transform: TRANSFORM,
     center: { x: 415, y: 660 },
     labelPosition: { x: 415, y: 660 },
     defaultFill: NEUTRAL_COLORS.land,
@@ -476,13 +478,12 @@ export const CLASSIC_TERRITORY_VISUALS: Record<string, TerritoryVisualData> = {
     defaultFill: NEUTRAL_COLORS.land,
   },
   'ska': {
-    // Skagerrak: sea zone between Norway's south coast, Sweden's west coast, and Denmark's north coast
-    // Extends generously under land territories (NWY, SWE, DEN) to avoid gaps
-    // Renders on top of BAL and NTH (which are larger sea zones)
-    // South boundary uses SKA/BAL curve (path2289): ~(453,468) to ~(520,456)
-    svgPath: 'm 365,330 0,138 c 0,0 31.37,-20.32 67.01,-12.12 l 88,-20 50,-30 0,-46 -30,-30 -80,0 z',
-    center: { x: 455, y: 410 },
-    labelPosition: { x: 455, y: 410 },
+    // Skagerrak: narrow strait between NWY south coast, SWE west coast, DEN north coast
+    // Extends ~10-15 units under adjacent land to prevent gaps; land renders on top
+    svgPath: 'm 222,190 13,10 11,6 24,-10 10,4 2,30 -34,0 -26,-5 z',
+    transform: TRANSFORM,
+    center: { x: 477, y: 455 },
+    labelPosition: { x: 477, y: 455 },
     defaultFill: NEUTRAL_COLORS.sea,
   },
   'smy': {
