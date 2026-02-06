@@ -1,0 +1,586 @@
+{
+  "nao": {
+    "svgX": 82,
+    "svgY": 365,
+    "screenX": 155,
+    "screenY": 737,
+    "name": "North Atlantic",
+    "pathId": "path2492"
+  },
+  "wes": {
+    "svgX": 181,
+    "svgY": 994,
+    "screenX": 342,
+    "screenY": 1926,
+    "name": "Western Mediterranean",
+    "pathId": "path2507"
+  },
+  "ion": {
+    "svgX": 557,
+    "svgY": 1048,
+    "screenX": 1052,
+    "screenY": 2028,
+    "name": "Ionian Sea",
+    "pathId": "path2522"
+  },
+  "tys": {
+    "svgX": 430,
+    "svgY": 936,
+    "screenX": 814,
+    "screenY": 1816,
+    "name": "Tyrrhenian Sea",
+    "pathId": "path2512"
+  },
+  "adr": {
+    "svgX": 530,
+    "svgY": 867,
+    "screenX": 1001,
+    "screenY": 1686,
+    "name": "Adriatic Sea",
+    "pathId": "path2517"
+  },
+  "aeg": {
+    "svgX": 716,
+    "svgY": 973,
+    "screenX": 1353,
+    "screenY": 1886,
+    "name": "Aegean Sea",
+    "pathId": "path2527"
+  },
+  "eas": {
+    "svgX": 822,
+    "svgY": 1075,
+    "screenX": 1553,
+    "screenY": 2079,
+    "name": "Eastern Mediterranean",
+    "pathId": "path2532"
+  },
+  "bla": {
+    "svgX": 871,
+    "svgY": 840,
+    "screenX": 1646,
+    "screenY": 1634,
+    "name": "Black Sea",
+    "pathId": "path2537"
+  },
+  "eng": {
+    "svgX": 195,
+    "svgY": 641,
+    "screenX": 369,
+    "screenY": 1259,
+    "name": "English Channel",
+    "pathId": "path2542"
+  },
+  "iri": {
+    "svgX": 153,
+    "svgY": 590,
+    "screenX": 290,
+    "screenY": 1161,
+    "name": "Irish Sea",
+    "pathId": "path2547"
+  },
+  "nth": {
+    "svgX": 358,
+    "svgY": 498,
+    "screenX": 676,
+    "screenY": 988,
+    "name": "North Sea",
+    "pathId": "path2362"
+  },
+  "nwg": {
+    "svgX": 416,
+    "svgY": 225,
+    "screenX": 786,
+    "screenY": 474,
+    "name": "Norwegian Sea",
+    "pathId": "path2357"
+  },
+  "bar": {
+    "svgX": 804,
+    "svgY": 100,
+    "screenX": 1519,
+    "screenY": 238,
+    "name": "Barents Sea",
+    "pathId": "path2352"
+  },
+  "bot": {
+    "svgX": 613,
+    "svgY": 383,
+    "screenX": 1159,
+    "screenY": 771,
+    "name": "Gulf of Bothnia",
+    "pathId": "path2269"
+  },
+  "bal": {
+    "svgX": 574,
+    "svgY": 537,
+    "screenX": 1085,
+    "screenY": 1063,
+    "name": "Baltic Sea",
+    "pathId": "path2347"
+  },
+  "ska": {
+    "svgX": 453,
+    "svgY": 468,
+    "screenX": 856,
+    "screenY": 932,
+    "name": "Skagerrak",
+    "pathId": "path2289"
+  },
+  "hel": {
+    "svgX": 396,
+    "svgY": 561,
+    "screenX": 749,
+    "screenY": 1108,
+    "name": "Helgoland",
+    "pathId": "path2294"
+  },
+  "den": {
+    "svgX": 464,
+    "svgY": 530,
+    "screenX": 877,
+    "screenY": 1050,
+    "name": "Denmark",
+    "pathId": "path2339"
+  },
+  "edi": {
+    "svgX": 305,
+    "svgY": 466,
+    "screenX": 577,
+    "screenY": 927,
+    "name": "Edinburgh",
+    "pathId": "path2367"
+  },
+  "cly": {
+    "svgX": 255,
+    "svgY": 440,
+    "screenX": 482,
+    "screenY": 878,
+    "name": "Clyde",
+    "pathId": "path2389"
+  },
+  "lvp": {
+    "svgX": 278,
+    "svgY": 527,
+    "screenX": 525,
+    "screenY": 1043,
+    "name": "Liverpool",
+    "pathId": "path2400"
+  },
+  "hol": {
+    "svgX": 366,
+    "svgY": 612,
+    "screenX": 692,
+    "screenY": 1204,
+    "name": "Holland",
+    "pathId": "path2468"
+  },
+  "bel": {
+    "svgX": 328,
+    "svgY": 635,
+    "screenX": 621,
+    "screenY": 1248,
+    "name": "Belgium",
+    "pathId": "path2472"
+  },
+  "pic": {
+    "svgX": 294,
+    "svgY": 667,
+    "screenX": 557,
+    "screenY": 1308,
+    "name": "Picardy",
+    "pathId": "path2476"
+  },
+  "wal": {
+    "svgX": 234,
+    "svgY": 556,
+    "screenX": 443,
+    "screenY": 1098,
+    "name": "Wales",
+    "pathId": "path2484"
+  },
+  "yor": {
+    "svgX": 297,
+    "svgY": 558,
+    "screenX": 561,
+    "screenY": 1103,
+    "name": "Yorkshire",
+    "pathId": "path2480"
+  },
+  "lon": {
+    "svgX": 281,
+    "svgY": 600,
+    "screenX": 531,
+    "screenY": 1181,
+    "name": "London",
+    "pathId": "path2486"
+  },
+  "tus": {
+    "svgX": 442,
+    "svgY": 833,
+    "screenX": 837,
+    "screenY": 1621,
+    "name": "Tuscany",
+    "pathId": "path1147"
+  },
+  "par": {
+    "svgX": 291,
+    "svgY": 700,
+    "screenX": 551,
+    "screenY": 1370,
+    "name": "Paris",
+    "pathId": "path1123"
+  },
+  "bre": {
+    "svgX": 205,
+    "svgY": 664,
+    "screenX": 388,
+    "screenY": 1302,
+    "name": "Brest",
+    "pathId": "path1135"
+  },
+  "bur": {
+    "svgX": 334,
+    "svgY": 757,
+    "screenX": 632,
+    "screenY": 1478,
+    "name": "Burgundy",
+    "pathId": "path1141"
+  },
+  "gas": {
+    "svgX": 240,
+    "svgY": 800,
+    "screenX": 454,
+    "screenY": 1558,
+    "name": "Gascony",
+    "pathId": "path1139"
+  },
+  "mar": {
+    "svgX": 296,
+    "svgY": 820,
+    "screenX": 559,
+    "screenY": 1596,
+    "name": "Marseilles",
+    "pathId": "path1155"
+  },
+  "pie": {
+    "svgX": 394,
+    "svgY": 819,
+    "screenX": 744,
+    "screenY": 1594,
+    "name": "Piedmont",
+    "pathId": "path1161"
+  },
+  "ven": {
+    "svgX": 457,
+    "svgY": 830,
+    "screenX": 864,
+    "screenY": 1616,
+    "name": "Venice",
+    "pathId": "path1167"
+  },
+  "nap": {
+    "svgX": 499,
+    "svgY": 917,
+    "screenX": 944,
+    "screenY": 1780,
+    "name": "Naples",
+    "pathId": "path1171"
+  },
+  "rom": {
+    "svgX": 476,
+    "svgY": 894,
+    "screenX": 899,
+    "screenY": 1737,
+    "name": "Rome",
+    "pathId": "path1179"
+  },
+  "apu": {
+    "svgX": 534,
+    "svgY": 908,
+    "screenX": 1010,
+    "screenY": 1763,
+    "name": "Apulia",
+    "pathId": "path1183"
+  },
+  "spa": {
+    "svgX": 127,
+    "svgY": 853,
+    "screenX": 241,
+    "screenY": 1658,
+    "name": "Spain",
+    "pathId": "path1139-3"
+  },
+  "por": {
+    "svgX": 50,
+    "svgY": 898,
+    "screenX": 96,
+    "screenY": 1744,
+    "name": "Portugal",
+    "pathId": "path1139-3-8"
+  },
+  "naf": {
+    "svgX": 198,
+    "svgY": 1051,
+    "screenX": 375,
+    "screenY": 2033,
+    "name": "North Africa",
+    "pathId": "path1139-3-1"
+  },
+  "tun": {
+    "svgX": 383,
+    "svgY": 1079,
+    "screenX": 725,
+    "screenY": 2086,
+    "name": "Tunis",
+    "pathId": "path1139-3-6"
+  },
+  "alb": {
+    "svgX": 628,
+    "svgY": 898,
+    "screenX": 1186,
+    "screenY": 1743,
+    "name": "Albania",
+    "pathId": "path3334"
+  },
+  "gre": {
+    "svgX": 639,
+    "svgY": 975,
+    "screenX": 1208,
+    "screenY": 1889,
+    "name": "Greece",
+    "pathId": "path3334-3"
+  },
+  "bul": {
+    "svgX": 720,
+    "svgY": 913,
+    "screenX": 1360,
+    "screenY": 1772,
+    "name": "Bulgaria",
+    "pathId": "path3379"
+  },
+  "smy": {
+    "svgX": 802,
+    "svgY": 1007,
+    "screenX": 1515,
+    "screenY": 1950,
+    "name": "Smyrna",
+    "pathId": "path3471"
+  },
+  "ank": {
+    "svgX": 903,
+    "svgY": 934,
+    "screenX": 1707,
+    "screenY": 1812,
+    "name": "Ankara",
+    "pathId": "path3479"
+  },
+  "arm": {
+    "svgX": 1066,
+    "svgY": 916,
+    "screenX": 2014,
+    "screenY": 1777,
+    "name": "Armenia",
+    "pathId": "path3487"
+  },
+  "syr": {
+    "svgX": 1047,
+    "svgY": 1015,
+    "screenX": 1978,
+    "screenY": 1965,
+    "name": "Syria",
+    "pathId": "path3495"
+  },
+  "rum": {
+    "svgX": 757,
+    "svgY": 769,
+    "screenX": 1430,
+    "screenY": 1501,
+    "name": "Rumania",
+    "pathId": "path3520"
+  },
+  "ser": {
+    "svgX": 636,
+    "svgY": 875,
+    "screenX": 1202,
+    "screenY": 1701,
+    "name": "Serbia",
+    "pathId": "path3528"
+  },
+  "bud": {
+    "svgX": 622,
+    "svgY": 762,
+    "screenX": 1176,
+    "screenY": 1488,
+    "name": "Budapest",
+    "pathId": "path3536"
+  },
+  "tri": {
+    "svgX": 539,
+    "svgY": 802,
+    "screenX": 1019,
+    "screenY": 1562,
+    "name": "Trieste",
+    "pathId": "path3544"
+  },
+  "vie": {
+    "svgX": 563,
+    "svgY": 733,
+    "screenX": 1064,
+    "screenY": 1432,
+    "name": "Vienna",
+    "pathId": "path3552"
+  },
+  "tyr": {
+    "svgX": 480,
+    "svgY": 772,
+    "screenX": 908,
+    "screenY": 1506,
+    "name": "Tyrolia",
+    "pathId": "path3560"
+  },
+  "boh": {
+    "svgX": 521,
+    "svgY": 689,
+    "screenX": 984,
+    "screenY": 1349,
+    "name": "Bohemia",
+    "pathId": "path3568"
+  },
+  "gal": {
+    "svgX": 663,
+    "svgY": 694,
+    "screenX": 1252,
+    "screenY": 1359,
+    "name": "Galicia",
+    "pathId": "path3576"
+  },
+  "mun": {
+    "svgX": 427,
+    "svgY": 718,
+    "screenX": 807,
+    "screenY": 1405,
+    "name": "Munich",
+    "pathId": "path1222"
+  },
+  "ber": {
+    "svgX": 499,
+    "svgY": 615,
+    "screenX": 944,
+    "screenY": 1210,
+    "name": "Berlin",
+    "pathId": "path1230"
+  },
+  "kie": {
+    "svgX": 455,
+    "svgY": 599,
+    "screenX": 860,
+    "screenY": 1179,
+    "name": "Kiel",
+    "pathId": "path1238"
+  },
+  "ruh": {
+    "svgX": 417,
+    "svgY": 678,
+    "screenX": 788,
+    "screenY": 1329,
+    "name": "Ruhr",
+    "pathId": "path1246"
+  },
+  "sil": {
+    "svgX": 544,
+    "svgY": 639,
+    "screenX": 1028,
+    "screenY": 1254,
+    "name": "Silesia",
+    "pathId": "path1254"
+  },
+  "pru": {
+    "svgX": 603,
+    "svgY": 598,
+    "screenX": 1140,
+    "screenY": 1177,
+    "name": "Prussia",
+    "pathId": "path1262"
+  },
+  "war": {
+    "svgX": 656,
+    "svgY": 634,
+    "screenX": 1239,
+    "screenY": 1245,
+    "name": "Warsaw",
+    "pathId": "path1270"
+  },
+  "ukr": {
+    "svgX": 778,
+    "svgY": 672,
+    "screenX": 1470,
+    "screenY": 1317,
+    "name": "Ukraine",
+    "pathId": "path1278"
+  },
+  "sev": {
+    "svgX": 916,
+    "svgY": 816,
+    "screenX": 1732,
+    "screenY": 1589,
+    "name": "Sevastopol",
+    "pathId": "path1286"
+  },
+  "con": {
+    "svgX": 809,
+    "svgY": 902,
+    "screenX": 1529,
+    "screenY": 1751,
+    "name": "Constantinople",
+    "pathId": "path1300"
+  },
+  "mos": {
+    "svgX": 922,
+    "svgY": 486,
+    "screenX": 1742,
+    "screenY": 966,
+    "name": "Moscow",
+    "pathId": "path1308"
+  },
+  "lvn": {
+    "svgX": 704,
+    "svgY": 524,
+    "screenX": 1330,
+    "screenY": 1038,
+    "name": "Livonia",
+    "pathId": "path1316"
+  },
+  "stp": {
+    "svgX": 768,
+    "svgY": 437,
+    "screenX": 1451,
+    "screenY": 874,
+    "name": "Saint Petersburg",
+    "pathId": "path1324"
+  },
+  "fin": {
+    "svgX": 694,
+    "svgY": 340,
+    "screenX": 1311,
+    "screenY": 690,
+    "name": "Finland",
+    "pathId": "path1336"
+  },
+  "nwy": {
+    "svgX": 476,
+    "svgY": 378,
+    "screenX": 899,
+    "screenY": 763,
+    "name": "Norway",
+    "pathId": "path1344"
+  },
+  "swe": {
+    "svgX": 572,
+    "svgY": 355,
+    "screenX": 1081,
+    "screenY": 718,
+    "name": "Sweden",
+    "pathId": "path1352"
+  }
+}

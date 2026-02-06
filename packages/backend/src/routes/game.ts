@@ -10,6 +10,7 @@ const gameManager = new GameManager();
 // Schema for creating a new game
 const createGameSchema = z.object({
   variant: z.string().default('classic'),
+  mapStyle: z.string().default('classic'),
   playerPower: z.enum(['england', 'france', 'germany', 'italy', 'austria', 'russia', 'turkey']),
   victoryCondition: z.number().min(1).max(34).default(18),
   aiModel: z.enum(['haiku', 'sonnet']).default('haiku'),

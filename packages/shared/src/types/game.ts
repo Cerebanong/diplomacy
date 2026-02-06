@@ -67,6 +67,7 @@ export interface GameState {
 
 export interface GameConfig {
   variant: string;
+  mapStyle: string;
   playerPower: PowerId;
   victoryCondition: number;
   aiModel: 'haiku' | 'sonnet';

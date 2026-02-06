@@ -1,0 +1,3299 @@
+{
+  "viewBox": "0 0 1152 1152",
+  "paths": [
+    {
+      "id": "path2352",
+      "d": "m 803.57908,100.38888 c 46.87129,-19.960405 82.51486,0 82.51486,0",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 803.57908,
+        "minY": 100.38888,
+        "maxX": 886.09394,
+        "maxY": 100.38888,
+        "centerX": 844.83651,
+        "centerY": 100.38888,
+        "width": 82.51486,
+        "height": 0
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2357",
+      "d": "m 415.74933,225.22682 c 30.0274,-47.79299 88.89412,-52.76356 88.89412,-52.76356",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 415.74933,
+        "minY": 172.46326,
+        "maxX": 504.64345,
+        "maxY": 225.22682,
+        "centerX": 460.19638999999995,
+        "centerY": 198.84503999999998,
+        "width": 88.89411999999999,
+        "height": 52.76356000000001
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2492",
+      "d": "M 81.750463,364.78314 C 107.50059,314.55621 165.71058,304.4768 165.71058,304.4768",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 81.750463,
+        "minY": 304.4768,
+        "maxX": 165.71058,
+        "maxY": 364.78314,
+        "centerX": 123.7305215,
+        "centerY": 334.62997,
+        "width": 83.960117,
+        "height": 60.30633999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1344",
+      "d": "m 475.51782,378.46868 c 39.52683,-19.03129 49.30304,-43.14426 49.30304,-43.14426",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 475.51782,
+        "minY": 335.32442000000003,
+        "maxX": 524.8208599999999,
+        "maxY": 378.46868,
+        "centerX": 500.1693399999999,
+        "centerY": 356.89655000000005,
+        "width": 49.30303999999995,
+        "height": 43.144259999999974
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1352",
+      "d": "m 571.67099,354.88138 c 17.98403,-31.73636 47.46709,-45.15631 47.46709,-45.15631",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 571.67099,
+        "minY": 309.72506999999996,
+        "maxX": 619.13808,
+        "maxY": 354.88138,
+        "centerX": 595.4045349999999,
+        "centerY": 332.303225,
+        "width": 47.467089999999985,
+        "height": 45.15631000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1336",
+      "d": "m 693.83446,339.79592 c 42.71386,-10.00433 57.48771,-31.42261 57.48771,-31.42261",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 693.83446,
+        "minY": 308.37331,
+        "maxX": 751.32217,
+        "maxY": 339.79592,
+        "centerX": 722.578315,
+        "centerY": 324.084615,
+        "width": 57.48770999999999,
+        "height": 31.42261000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2389",
+      "d": "m 254.78349,439.6657 c 16.53935,-10.60133 28.43713,-28.86252 28.43713,-28.86252",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 254.78349,
+        "minY": 410.80318,
+        "maxX": 283.22062,
+        "maxY": 439.6657,
+        "centerX": 269.002055,
+        "centerY": 425.23444,
+        "width": 28.437129999999996,
+        "height": 28.862520000000018
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2367",
+      "d": "M 305.23643,465.51326 C 347.79558,439.05054 349.14841,405.128 349.14841,405.128",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 305.23643,
+        "minY": 405.128,
+        "maxX": 349.14841,
+        "maxY": 465.51326,
+        "centerX": 327.19241999999997,
+        "centerY": 435.32063,
+        "width": 43.91198000000003,
+        "height": 60.38526000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1324",
+      "d": "m 767.98834,437.14585 c 63.47365,-5.59656 109.51759,-53.3316 109.51759,-53.3316",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 767.98834,
+        "minY": 383.81425,
+        "maxX": 877.50593,
+        "maxY": 437.14585,
+        "centerX": 822.7471350000001,
+        "centerY": 410.48005,
+        "width": 109.51759000000004,
+        "height": 53.33159999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2400",
+      "d": "m 277.64391,526.99208 c 12.38072,-31.14243 0.85663,-63.78586 0.85663,-63.78586",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 277.64391,
+        "minY": 463.20622,
+        "maxX": 278.50054,
+        "maxY": 526.99208,
+        "centerX": 278.072225,
+        "centerY": 495.09915,
+        "width": 0.8566299999999956,
+        "height": 63.785860000000014
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2362",
+      "d": "m 357.59836,497.58477 c 16.73286,-37.8937 51.46231,-49.46305 51.46231,-49.46305",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 357.59836,
+        "minY": 448.12172,
+        "maxX": 409.06067,
+        "maxY": 497.58477,
+        "centerX": 383.329515,
+        "centerY": 472.853245,
+        "width": 51.46231,
+        "height": 49.46305000000001
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2289",
+      "d": "m 452.85148,468.17821 c 0,0 31.36634,-20.31682 67.00991,-12.1188",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 452.85148,
+        "minY": 456.05940999999996,
+        "maxX": 519.86139,
+        "maxY": 468.17821,
+        "centerX": 486.35643500000003,
+        "centerY": 462.11880999999994,
+        "width": 67.00991000000005,
+        "height": 12.118800000000022
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2269",
+      "d": "m 613.06837,382.83055 c 56.46778,36.0238 76.29186,85.68602 76.29186,85.68602",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 613.06837,
+        "minY": 382.83055,
+        "maxX": 689.36023,
+        "maxY": 468.51657,
+        "centerX": 651.2143,
+        "centerY": 425.67356,
+        "width": 76.29186000000004,
+        "height": 85.68601999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2547",
+      "d": "m 153.25181,589.50041 c 56.119,-28.26994 68.393,-69.77988 68.393,-69.77988",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 153.25181,
+        "minY": 519.7205299999999,
+        "maxX": 221.64481,
+        "maxY": 589.50041,
+        "centerX": 187.44831,
+        "centerY": 554.61047,
+        "width": 68.393,
+        "height": 69.77988000000005
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2480",
+      "d": "m 296.67278,558.37083 c 12.38072,-31.14243 5.14128,-64.0379 5.14128,-64.0379",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 296.67278,
+        "minY": 494.33293,
+        "maxX": 301.81406,
+        "maxY": 558.37083,
+        "centerX": 299.24342,
+        "centerY": 526.3518799999999,
+        "width": 5.141279999999995,
+        "height": 64.03789999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1128",
+      "d": "M 256.14976,688.71987 C 384.68918,614.1166 539.78007,512.61707 492.90099,376.01244",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 256.14976,
+        "minY": 376.01244,
+        "maxX": 492.90099,
+        "maxY": 688.71987,
+        "centerX": 374.525375,
+        "centerY": 532.366155,
+        "width": 236.75122999999996,
+        "height": 312.70743
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2294",
+      "d": "m 395.84402,561.05801 c 42.77228,-17.28713 57.55297,-62.56553 57.55297,-62.56553",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 395.84402,
+        "minY": 498.49247999999994,
+        "maxX": 453.39699,
+        "maxY": 561.05801,
+        "centerX": 424.620505,
+        "centerY": 529.7752449999999,
+        "width": 57.552970000000016,
+        "height": 62.565530000000024
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2326",
+      "d": "m 427.72654,563.41629 c 22.50414,-9.09542 30.28082,-32.91813 30.28082,-32.91813",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 427.72654,
+        "minY": 530.49816,
+        "maxX": 458.00736,
+        "maxY": 563.41629,
+        "centerX": 442.86695,
+        "centerY": 546.957225,
+        "width": 30.280820000000006,
+        "height": 32.91813000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2339",
+      "d": "m 463.66508,530.3805 c 30.83169,-25.48515 35.07916,-59.03668 35.07916,-59.03668",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 463.66508,
+        "minY": 471.34382,
+        "maxX": 498.74424,
+        "maxY": 530.3805,
+        "centerX": 481.20466,
+        "centerY": 500.86216,
+        "width": 35.07916,
+        "height": 59.03667999999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2347",
+      "d": "m 573.94031,537.38838 c 39.25817,-7.59017 65.05992,-31.25546 65.05992,-31.25546",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 573.94031,
+        "minY": 506.13292,
+        "maxX": 639.00023,
+        "maxY": 537.38838,
+        "centerX": 606.47027,
+        "centerY": 521.7606499999999,
+        "width": 65.05992000000003,
+        "height": 31.25545999999997
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2484",
+      "d": "m 234.04132,555.72443 c 23.97447,7.41939 33.24352,37.15538 33.24352,37.15538",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 234.04132,
+        "minY": 555.72443,
+        "maxX": 267.28484000000003,
+        "maxY": 592.87981,
+        "centerX": 250.66308000000004,
+        "centerY": 574.3021200000001,
+        "width": 33.24352000000002,
+        "height": 37.15538000000004
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1130",
+      "d": "m 370.96308,639.32908 c 0,0 -142.69466,-72.36614 -72.62808,-206.45039",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 298.335,
+        "minY": 432.87869,
+        "maxX": 370.96308,
+        "maxY": 639.32908,
+        "centerX": 334.64904,
+        "centerY": 536.103885,
+        "width": 72.62808000000001,
+        "height": 206.45038999999997
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1132",
+      "d": "m 492.90099,376.01244 c 145.17392,12.6019 174.66876,255.78159 174.66876,255.78159",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 492.90099,
+        "minY": 376.01244,
+        "maxX": 667.56975,
+        "maxY": 631.79403,
+        "centerX": 580.23537,
+        "centerY": 503.903235,
+        "width": 174.66876000000002,
+        "height": 255.78159
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1316",
+      "d": "m 703.52397,524.22012 c 30.55965,-9.3056 45.1867,-32.46343 45.1867,-32.46343",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 703.52397,
+        "minY": 491.75668999999994,
+        "maxX": 748.7106699999999,
+        "maxY": 524.22012,
+        "centerX": 726.11732,
+        "centerY": 507.98840499999994,
+        "width": 45.18669999999997,
+        "height": 32.46343000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1308",
+      "d": "m 922.07886,486.06578 c 31.16632,-20.95502 55.68297,-16.55243 55.68297,-16.55243",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 922.07886,
+        "minY": 469.51335,
+        "maxX": 977.7618299999999,
+        "maxY": 486.06578,
+        "centerX": 949.920345,
+        "centerY": 477.78956500000004,
+        "width": 55.682969999999955,
+        "height": 16.552430000000015
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2542",
+      "d": "m 194.97566,641.17308 c 56.119,-28.26994 119.54152,-9.36404 119.54152,-9.36404",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 194.97566,
+        "minY": 631.80904,
+        "maxX": 314.51718,
+        "maxY": 641.17308,
+        "centerX": 254.74642,
+        "centerY": 636.4910600000001,
+        "width": 119.54151999999999,
+        "height": 9.364040000000045
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2486",
+      "d": "m 280.92039,600.08313 c 18.80769,-27.73992 46.22349,-26.73627 46.22349,-26.73627",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 280.92039,
+        "minY": 573.34686,
+        "maxX": 327.14387999999997,
+        "maxY": 600.08313,
+        "centerX": 304.032135,
+        "centerY": 586.714995,
+        "width": 46.22348999999997,
+        "height": 26.73626999999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1238",
+      "d": "m 454.9409,598.54619 c 14.19905,-15.57692 37.52427,-8.74575 37.52427,-8.74575",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 454.9409,
+        "minY": 589.80044,
+        "maxX": 492.46517,
+        "maxY": 598.54619,
+        "centerX": 473.703035,
+        "centerY": 594.173315,
+        "width": 37.52427,
+        "height": 8.745750000000044
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1230",
+      "d": "m 499.2996,615.43274 c 24.78465,-17.59322 55.16693,-7.23352 55.16693,-7.23352",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 499.2996,
+        "minY": 608.19922,
+        "maxX": 554.46653,
+        "maxY": 615.43274,
+        "centerX": 526.883065,
+        "centerY": 611.81598,
+        "width": 55.166930000000036,
+        "height": 7.233519999999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1262",
+      "d": "m 603.08213,597.79473 c 18.13343,-22.28588 52.77176,-17.63108 52.77176,-17.63108",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 603.08213,
+        "minY": 580.16365,
+        "maxX": 655.85389,
+        "maxY": 597.79473,
+        "centerX": 629.46801,
+        "centerY": 588.97919,
+        "width": 52.77175999999997,
+        "height": 17.631079999999997
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2497",
+      "d": "M 43.818456,668.21725 C 100.19377,670.9811 133.36547,719.865 133.36547,719.865",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 43.818456,
+        "minY": 668.21725,
+        "maxX": 133.36547,
+        "maxY": 719.865,
+        "centerX": 88.59196299999999,
+        "centerY": 694.041125,
+        "width": 89.54701399999999,
+        "height": 51.647749999999974
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1135",
+      "d": "m 204.69146,663.86295 c 30.58479,6.34523 40.10324,30.64296 40.10324,30.64296",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 204.69146,
+        "minY": 663.86295,
+        "maxX": 244.7947,
+        "maxY": 694.50591,
+        "centerX": 224.74308000000002,
+        "centerY": 679.18443,
+        "width": 40.10324,
+        "height": 30.642960000000016
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2472",
+      "d": "m 328.21816,635.44266 c 38.89838,1.22346 54.70731,29.48181 54.70731,29.48181",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 328.21816,
+        "minY": 635.44266,
+        "maxX": 382.92547,
+        "maxY": 664.92447,
+        "centerX": 355.571815,
+        "centerY": 650.183565,
+        "width": 54.70731000000001,
+        "height": 29.481809999999996
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2468",
+      "d": "m 365.92658,611.97435 c 36.18677,-0.48826 61.4683,-19.23851 61.4683,-19.23851",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 365.92658,
+        "minY": 592.7358399999999,
+        "maxX": 427.39488,
+        "maxY": 611.97435,
+        "centerX": 396.66073,
+        "centerY": 602.3550949999999,
+        "width": 61.4683,
+        "height": 19.23851000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1123",
+      "d": "m 291.13324,700.09136 c 18.8787,-6.53481 36.89629,0.55674 36.89629,0.55674",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 291.13324,
+        "minY": 700.09136,
+        "maxX": 328.02953,
+        "maxY": 700.6481,
+        "centerX": 309.581385,
+        "centerY": 700.36973,
+        "width": 36.89629000000002,
+        "height": 0.5567399999999907
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2476",
+      "d": "m 294.30654,667.06477 c 33.71963,-11.6778 59.79815,1.99545 59.79815,1.99545",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 294.30654,
+        "minY": 667.06477,
+        "maxX": 354.10469,
+        "maxY": 669.06022,
+        "centerX": 324.20561499999997,
+        "centerY": 668.0624949999999,
+        "width": 59.79815000000002,
+        "height": 1.9954500000000053
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1246",
+      "d": "m 416.59896,678.06147 c 4.78279,-20.5275 26.91929,-30.19441 26.91929,-30.19441",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 416.59896,
+        "minY": 647.86706,
+        "maxX": 443.51824999999997,
+        "maxY": 678.06147,
+        "centerX": 430.05860499999994,
+        "centerY": 662.9642650000001,
+        "width": 26.91928999999999,
+        "height": 30.194409999999948
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1126",
+      "d": "m 308.24589,702.44315 c 0,0 108.29395,-182.04994 359.32386,-70.64912",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 308.24589,
+        "minY": 631.7940299999999,
+        "maxX": 667.56975,
+        "maxY": 702.44315,
+        "centerX": 487.90782,
+        "centerY": 667.1185899999999,
+        "width": 359.32386,
+        "height": 70.64912000000004
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1254",
+      "d": "m 543.75875,638.74934 c 30.05414,-4.53311 52.50541,18.40914 52.50541,18.40914",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 543.75875,
+        "minY": 638.74934,
+        "maxX": 596.26416,
+        "maxY": 657.1584799999999,
+        "centerX": 570.011455,
+        "centerY": 647.95391,
+        "width": 52.50540999999998,
+        "height": 18.40913999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1270",
+      "d": "m 655.5351,633.71695 c 31.7091,3.87553 54.46521,-11.36898 54.46521,-11.36898",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 655.5351,
+        "minY": 622.34797,
+        "maxX": 710.00031,
+        "maxY": 633.71695,
+        "centerX": 682.767705,
+        "centerY": 628.03246,
+        "width": 54.465209999999956,
+        "height": 11.368979999999965
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1116",
+      "d": "M 677.50913,968.21948 C 840.04378,857.01156 906.5236,322.16624 906.5236,322.16624 c 0,0 159.3902,320.36258 15.39024,683.21406",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 677.50913,
+        "minY": 322.16624,
+        "maxX": 921.9138399999999,
+        "maxY": 1005.3803,
+        "centerX": 799.711485,
+        "centerY": 663.77327,
+        "width": 244.4047099999999,
+        "height": 683.21406
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1141",
+      "d": "M 334.01301,757.29707 C 369.4423,733.71941 376.84858,702.6385 376.84858,702.6385",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 334.01301,
+        "minY": 702.6385,
+        "maxX": 376.84858,
+        "maxY": 757.29707,
+        "centerX": 355.430795,
+        "centerY": 729.967785,
+        "width": 42.83557000000002,
+        "height": 54.65856999999994
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1222",
+      "d": "m 427.0318,718.30047 c 28.53146,-10.4764 55.13273,7.48965 55.13273,7.48965",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 427.0318,
+        "minY": 718.30047,
+        "maxX": 482.16452999999996,
+        "maxY": 725.79012,
+        "centerX": 454.598165,
+        "centerY": 722.045295,
+        "width": 55.13272999999998,
+        "height": 7.489649999999983
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3568",
+      "d": "m 520.65705,688.67546 c 28.17283,-11.40577 55.34857,5.67888 55.34857,5.67888",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 520.65705,
+        "minY": 688.67546,
+        "maxX": 576.00562,
+        "maxY": 694.3543400000001,
+        "centerX": 548.3313350000001,
+        "centerY": 691.5149000000001,
+        "width": 55.348569999999995,
+        "height": 5.678880000000049
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3552",
+      "d": "m 562.79501,732.65012 c 31.09896,-18.83722 55.3897,-5.26255 55.3897,-5.26255",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 562.79501,
+        "minY": 727.38757,
+        "maxX": 618.18471,
+        "maxY": 732.65012,
+        "centerX": 590.48986,
+        "centerY": 730.018845,
+        "width": 55.38969999999995,
+        "height": 5.262550000000033
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3576",
+      "d": "m 662.65162,694.07309 c 36.87603,-3.58697 55.01149,18.66324 55.01149,18.66324",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 662.65162,
+        "minY": 694.07309,
+        "maxX": 717.66311,
+        "maxY": 712.73633,
+        "centerX": 690.157365,
+        "centerY": 703.40471,
+        "width": 55.01148999999998,
+        "height": 18.663239999999973
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1278",
+      "d": "m 778.068,671.6386 c 35.61097,-11.92945 58.07923,-1.17642 58.07923,-1.17642",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 778.068,
+        "minY": 670.46218,
+        "maxX": 836.14723,
+        "maxY": 671.6386,
+        "centerX": 807.107615,
+        "centerY": 671.05039,
+        "width": 58.07923000000005,
+        "height": 1.1764200000000073
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1139",
+      "d": "m 239.73083,799.72902 c 22.19837,-15.0118 48.74632,-13.07887 48.74632,-13.07887",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 239.73083,
+        "minY": 786.6501499999999,
+        "maxX": 288.47715,
+        "maxY": 799.72902,
+        "centerX": 264.10399,
+        "centerY": 793.189585,
+        "width": 48.74632,
+        "height": 13.078870000000052
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1120",
+      "d": "M 569.10878,981.86033 C 422.2573,897.02865 462.13706,600.36582 462.13706,600.36582",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 462.13706,
+        "minY": 600.36582,
+        "maxX": 569.10878,
+        "maxY": 981.86033,
+        "centerX": 515.62292,
+        "centerY": 791.113075,
+        "width": 106.97172,
+        "height": 381.49451
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1139-3",
+      "d": "m 127.02155,852.6487 c 0,0 27.61609,-13.14049 56.09639,-0.28655",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 127.02155,
+        "minY": 852.3621499999999,
+        "maxX": 183.11794,
+        "maxY": 852.6487,
+        "centerX": 155.069745,
+        "centerY": 852.505425,
+        "width": 56.09639,
+        "height": 0.28655000000003383
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1155",
+      "d": "m 295.50619,819.78116 c 46.14455,-16.96337 80.73124,12.64949 80.73124,12.64949",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 295.50619,
+        "minY": 819.78116,
+        "maxX": 376.23743,
+        "maxY": 832.43065,
+        "centerX": 335.87181,
+        "centerY": 826.105905,
+        "width": 80.73124000000001,
+        "height": 12.649490000000014
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1161",
+      "d": "m 393.69651,818.6112 c 40.46532,-4.12995 61.45517,-25.69231 61.45517,-25.69231",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 393.69651,
+        "minY": 792.91889,
+        "maxX": 455.15168,
+        "maxY": 818.6112,
+        "centerX": 424.42409499999997,
+        "centerY": 805.7650450000001,
+        "width": 61.45517000000001,
+        "height": 25.69231000000002
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3544",
+      "d": "m 539.32868,801.69509 c 36.10033,-4.33039 52.62788,18.05604 52.62788,18.05604",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 539.32868,
+        "minY": 801.69509,
+        "maxX": 591.95656,
+        "maxY": 819.7511300000001,
+        "centerX": 565.64262,
+        "centerY": 810.7231100000001,
+        "width": 52.627880000000005,
+        "height": 18.056040000000053
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1122",
+      "d": "m 308.24589,702.44315 c 114.92936,-39.31794 406.63536,41.11036 643.55114,213.50439",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 308.24589,
+        "minY": 702.44315,
+        "maxX": 951.79703,
+        "maxY": 915.9475399999999,
+        "centerX": 630.0214599999999,
+        "centerY": 809.1953449999999,
+        "width": 643.55114,
+        "height": 213.50438999999994
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1286",
+      "d": "m 916.46942,815.68877 c 42.66069,-21.9256 82.95925,-6.41263 82.95925,-6.41263",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 916.46942,
+        "minY": 809.2761399999999,
+        "maxX": 999.42867,
+        "maxY": 815.68877,
+        "centerX": 957.9490450000001,
+        "centerY": 812.482455,
+        "width": 82.95925,
+        "height": 6.412630000000036
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1139-3-8",
+      "d": "M 50.102875,897.72788 C 49.483459,857.6807 79.940422,836.97576 79.940422,836.97576",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 50.102875,
+        "minY": 836.97576,
+        "maxX": 79.940422,
+        "maxY": 897.72788,
+        "centerX": 65.0216485,
+        "centerY": 867.3518200000001,
+        "width": 29.837547,
+        "height": 60.75211999999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2502",
+      "d": "m 303.24162,869.13871 c 37.8437,27.221 88.83734,18.96635 88.83734,18.96635",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 303.24162,
+        "minY": 869.13871,
+        "maxX": 392.07896,
+        "maxY": 888.10506,
+        "centerX": 347.66029000000003,
+        "centerY": 878.621885,
+        "width": 88.83733999999998,
+        "height": 18.966350000000034
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1147",
+      "d": "m 442.44552,832.79583 c 18.03394,36.70021 48.22317,34.29274 48.22317,34.29274",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 442.44552,
+        "minY": 832.79583,
+        "maxX": 490.66868999999997,
+        "maxY": 867.08857,
+        "centerX": 466.557105,
+        "centerY": 849.9422,
+        "width": 48.22316999999998,
+        "height": 34.29273999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1167",
+      "d": "m 457.06373,830.40146 c 11.60697,-21.52057 33.47894,-21.28164 33.47894,-21.28164",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 457.06373,
+        "minY": 809.11982,
+        "maxX": 490.54267000000004,
+        "maxY": 830.40146,
+        "centerX": 473.80320000000006,
+        "centerY": 819.76064,
+        "width": 33.47894000000002,
+        "height": 21.28164000000004
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3560",
+      "d": "m 480.47022,772.19602 c 30.0693,-17.56729 55.55692,-3.02374 55.55692,-3.02374",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 480.47022,
+        "minY": 769.17228,
+        "maxX": 536.02714,
+        "maxY": 772.19602,
+        "centerX": 508.24868000000004,
+        "centerY": 770.68415,
+        "width": 55.55692000000005,
+        "height": 3.0237399999999752
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3536",
+      "d": "m 622.44724,762.47237 c 37.22212,-7.14905 67.7269,17.26698 67.7269,17.26698",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 622.44724,
+        "minY": 762.47237,
+        "maxX": 690.17414,
+        "maxY": 779.73935,
+        "centerX": 656.31069,
+        "centerY": 771.1058599999999,
+        "width": 67.7269,
+        "height": 17.26697999999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3520",
+      "d": "m 756.73313,769.07521 c 39.84136,26.70828 45.7825,69.47894 45.7825,69.47894",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 756.73313,
+        "minY": 769.07521,
+        "maxX": 802.51563,
+        "maxY": 838.5541499999999,
+        "centerX": 779.62438,
+        "centerY": 803.81468,
+        "width": 45.78250000000003,
+        "height": 69.47893999999997
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2537",
+      "d": "m 871.08028,839.88139 c 51.32356,17.87775 92.15047,-5.18394 92.15047,-5.18394",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 871.08028,
+        "minY": 834.69745,
+        "maxX": 963.2307500000001,
+        "maxY": 839.88139,
+        "centerX": 917.155515,
+        "centerY": 837.2894200000001,
+        "width": 92.15047000000004,
+        "height": 5.183940000000007
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1179",
+      "d": "m 475.67411,894.19359 c 27.61138,-0.4754 45.45075,21.94288 45.45075,21.94288",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 475.67411,
+        "minY": 894.19359,
+        "maxX": 521.12486,
+        "maxY": 916.1364699999999,
+        "centerX": 498.399485,
+        "centerY": 905.1650299999999,
+        "width": 45.45075000000003,
+        "height": 21.942879999999946
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3528",
+      "d": "m 635.7903,875.32753 c 29.58355,-9.42655 50.43869,2.54551 50.43869,2.54551",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 635.7903,
+        "minY": 875.32753,
+        "maxX": 686.22899,
+        "maxY": 877.8730400000001,
+        "centerX": 661.009645,
+        "centerY": 876.600285,
+        "width": 50.43868999999995,
+        "height": 2.5455100000000357
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1171",
+      "d": "m 499.20134,916.81161 c 1.90859,33.02864 31.18751,53.95595 31.18751,53.95595",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 499.20134,
+        "minY": 916.81161,
+        "maxX": 530.38885,
+        "maxY": 970.76756,
+        "centerX": 514.7950950000001,
+        "centerY": 943.789585,
+        "width": 31.18751000000003,
+        "height": 53.95595000000003
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1114",
+      "d": "M 153.98116,871.20898 C 545.81575,680.82168 921.91384,1005.3803 921.91384,1005.3803",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 153.98116,
+        "minY": 871.20898,
+        "maxX": 921.91384,
+        "maxY": 1005.3803,
+        "centerX": 537.9475,
+        "centerY": 938.2946400000001,
+        "width": 767.9326800000001,
+        "height": 134.17132000000004
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1183",
+      "d": "m 534.32134,908.10815 c 15.63957,30.52528 41.7962,45.76048 41.7962,45.76048",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 534.32134,
+        "minY": 908.10815,
+        "maxX": 576.11754,
+        "maxY": 953.86863,
+        "centerX": 555.21944,
+        "centerY": 930.98839,
+        "width": 41.7962,
+        "height": 45.76048000000003
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2517",
+      "d": "m 529.69967,867.05715 c 49.90375,15.56748 67.89501,58.39497 67.89501,58.39497",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 529.69967,
+        "minY": 867.05715,
+        "maxX": 597.5946799999999,
+        "maxY": 925.4521199999999,
+        "centerX": 563.647175,
+        "centerY": 896.254635,
+        "width": 67.89500999999996,
+        "height": 58.394969999999944
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3334",
+      "d": "m 627.68399,897.62879 c 6.0341,33.76357 26.59521,55.97891 26.59521,55.97891",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 627.68399,
+        "minY": 897.62879,
+        "maxX": 654.2792,
+        "maxY": 953.6077,
+        "centerX": 640.981595,
+        "centerY": 925.618245,
+        "width": 26.595209999999952,
+        "height": 55.97891000000004
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3379",
+      "d": "m 719.61582,912.90221 c 27.96037,-31.04629 62.62954,-23.2876 62.62954,-23.2876",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 719.61582,
+        "minY": 889.61461,
+        "maxX": 782.24536,
+        "maxY": 912.90221,
+        "centerX": 750.9305899999999,
+        "centerY": 901.2584099999999,
+        "width": 62.62954000000002,
+        "height": 23.287599999999998
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1300",
+      "d": "m 809.06817,901.74171 c 43.7798,24.75192 95.11061,-24.90983 95.11061,-24.90983",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 809.06817,
+        "minY": 876.83188,
+        "maxX": 904.17878,
+        "maxY": 901.74171,
+        "centerX": 856.623475,
+        "centerY": 889.286795,
+        "width": 95.11060999999995,
+        "height": 24.909830000000056
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3479",
+      "d": "m 903.33779,933.81732 c 27.96463,-26.01734 62.56339,-23.48181 62.56339,-23.48181",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 903.33779,
+        "minY": 910.33551,
+        "maxX": 965.9011800000001,
+        "maxY": 933.81732,
+        "centerX": 934.619485,
+        "centerY": 922.076415,
+        "width": 62.56339000000003,
+        "height": 23.481809999999996
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3487",
+      "d": "m 1066.0985,915.62657 c 37.9986,-3.87678 64.0611,19.01974 64.0611,19.01974",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 1066.0985,
+        "minY": 915.62657,
+        "maxX": 1130.1596,
+        "maxY": 934.64631,
+        "centerX": 1098.12905,
+        "centerY": 925.13644,
+        "width": 64.0610999999999,
+        "height": 19.019739999999956
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2507",
+      "d": "m 180.63871,994.44605 c 80.78402,-17.3829 162.38791,10.80685 162.38791,10.80685",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 180.63871,
+        "minY": 994.44605,
+        "maxX": 343.02662,
+        "maxY": 1005.2529000000001,
+        "centerX": 261.832665,
+        "centerY": 999.849475,
+        "width": 162.38790999999998,
+        "height": 10.806850000000054
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2512",
+      "d": "m 430.26544,935.89532 c 30.33031,52.11045 79.98894,67.20918 79.98894,67.20918",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 430.26544,
+        "minY": 935.89532,
+        "maxX": 510.25438,
+        "maxY": 1003.1044999999999,
+        "centerX": 470.25991,
+        "centerY": 969.49991,
+        "width": 79.98894000000001,
+        "height": 67.20917999999995
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1118",
+      "d": "m 677.50913,968.21948 c 0,0 -140.1213,-11.96859 -273.07179,102.09082",
+      "strokeColor": "#000000",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 404.43734,
+        "minY": 968.21948,
+        "maxX": 677.50913,
+        "maxY": 1070.3102999999999,
+        "centerX": 540.973235,
+        "centerY": 1019.2648899999999,
+        "width": 273.07179,
+        "height": 102.0908199999999
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3334-3",
+      "d": "m 639.27145,974.98224 c 36.83248,-8.92911 60.72743,12.37427 60.72743,12.37427",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 639.27145,
+        "minY": 974.98224,
+        "maxX": 699.99888,
+        "maxY": 987.3565100000001,
+        "centerX": 669.6351649999999,
+        "centerY": 981.1693750000001,
+        "width": 60.72743000000003,
+        "height": 12.374270000000024
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1139-3-1",
+      "d": "m 197.82551,1051.0627 c 48.90263,-14.6084 96.42912,3.2113 96.42912,3.2113",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 197.82551,
+        "minY": 1051.0627,
+        "maxX": 294.25463,
+        "maxY": 1054.274,
+        "centerX": 246.04007000000001,
+        "centerY": 1052.66835,
+        "width": 96.42912000000001,
+        "height": 3.2112999999999374
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2522",
+      "d": "m 556.7307,1048.3007 c 49.90375,15.5675 94.35901,-0.8339 94.35901,-0.8339",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 556.7307,
+        "minY": 1047.4668,
+        "maxX": 651.08971,
+        "maxY": 1048.3007,
+        "centerX": 603.9102049999999,
+        "centerY": 1047.88375,
+        "width": 94.35901000000001,
+        "height": 0.8339000000000851
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2527",
+      "d": "m 715.76231,972.9432 c 50.08197,19.84473 66.91347,77.7602 66.91347,77.7602",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 715.76231,
+        "minY": 972.9432,
+        "maxX": 782.6757799999999,
+        "maxY": 1050.7034,
+        "centerX": 749.2190449999999,
+        "centerY": 1011.8233,
+        "width": 66.91346999999996,
+        "height": 77.76020000000005
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3471",
+      "d": "m 801.71144,1007.2225 c 36.93614,-9.72856 66.23706,8.8445 66.23706,8.8445",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 801.71144,
+        "minY": 1007.2225,
+        "maxX": 867.9485000000001,
+        "maxY": 1016.067,
+        "centerX": 834.82997,
+        "centerY": 1011.6447499999999,
+        "width": 66.23706000000004,
+        "height": 8.844500000000039
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path3495",
+      "d": "m 1046.8282,1015.1892 c 23.9838,-23.17914 52.2481,-13.5315 52.2481,-13.5315",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 1046.8282,
+        "minY": 1001.6577,
+        "maxX": 1099.0763,
+        "maxY": 1015.1892,
+        "centerX": 1072.9522499999998,
+        "centerY": 1008.42345,
+        "width": 52.24810000000002,
+        "height": 13.531500000000051
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path1139-3-6",
+      "d": "m 383.4824,1079.2177 c 24.59185,-11.7517 46.08438,0.046 46.08438,0.046",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 383.4824,
+        "minY": 1079.2177,
+        "maxX": 429.56678,
+        "maxY": 1079.2637,
+        "centerX": 406.52459,
+        "centerY": 1079.2406999999998,
+        "width": 46.08438000000001,
+        "height": 0.04600000000004911
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "path2532",
+      "d": "m 821.65929,1075.3296 c 74.42276,17.0287 159.52681,3.5516 159.52681,3.5516",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 821.65929,
+        "minY": 1075.3296,
+        "maxX": 981.1861000000001,
+        "maxY": 1078.8812,
+        "centerX": 901.4226950000001,
+        "centerY": 1077.1054,
+        "width": 159.52681000000007,
+        "height": 3.5516000000000076
+      },
+      "layer": "Curves"
+    },
+    {
+      "id": "rect8353",
+      "d": "m 191.68602,448.52349 -7.55469,7.55469 h -5.66601 l 1.88867,3.77734 -1.88867,3.77735 h -9.44141 l -13.2207,-5.66602 -7.55274,1.88867 3.77539,13.21875 -11.33008,5.66602 13.21875,11.33008 -18.88476,20.77539 -7.55469,-5.66602 -5.66406,15.10742 11.33008,20.77344 32.10547,-7.55273 20.77343,3.77734 20.77344,-24.55078 1.88867,-26.43945 18.88477,-9.44336 -1.88867,-18.88477 -16.9961,-9.44336 z",
+      "strokeColor": "#fffffe",
+      "fillColor": "url(#Checkerboardwhite)",
+      "transform": null,
+      "boundingBox": {
+        "minX": 121.81102000000001,
+        "minY": 448.52349,
+        "maxX": 227.56688,
+        "maxY": 541.0606,
+        "centerX": 174.68895,
+        "centerY": 494.79204500000003,
+        "width": 105.75585999999998,
+        "height": 92.53711000000004
+      },
+      "layer": "Impassable"
+    },
+    {
+      "id": "rect8476",
+      "d": "m 425.86293,731.80346 -5.66602,5.66602 -24.55078,-3.77734 -1.88867,7.55468 -26.43946,28.32813 5.66602,5.66406 11.33008,-11.33008 7.55469,13.21875 11.33203,1.88868 15.10742,-3.77735 11.33203,9.44336 3.77539,-9.44336 26.43945,5.66602 3.77735,-7.55469 -7.55274,-11.33008 -13.2207,-7.55469 v -15.10742 l -3.77734,-5.66601 z",
+      "strokeColor": "#fffffe",
+      "fillColor": "url(#Checkerboardwhite)",
+      "transform": null,
+      "boundingBox": {
+        "minX": 367.31800000000004,
+        "minY": 731.80346,
+        "maxX": 463.63246000000004,
+        "maxY": 784.68237,
+        "centerX": 415.47523,
+        "centerY": 758.242915,
+        "width": 96.31446,
+        "height": 52.87891000000002
+      },
+      "layer": "Impassable"
+    },
+    {
+      "id": "rect8380",
+      "d": "m 423.97447,862.1107 -5.66601,5.66602 -18.88477,3.77734 3.77539,28.32813 9.44336,5.66601 9.44336,-7.55468 3.77735,-11.33204 v -15.10742 z m -11.33203,50.99024 -7.55469,5.66601 -15.10742,1.88868 -1.88867,7.55468 1.88867,18.88477 -3.77734,16.99609 7.55469,13.22071 h 7.55468 l 9.44141,-5.66602 1.88867,1.88867 h 3.77735 l 7.55468,-41.54687 -3.77734,-18.88672 z m -132.19726,9.44336 -11.33008,11.33203 15.10742,3.77539 7.55469,-9.44141 z",
+      "strokeColor": "#fffffe",
+      "fillColor": "url(#Checkerboardwhite)",
+      "transform": null,
+      "boundingBox": {
+        "minX": 278.5584700000001,
+        "minY": 862.1107,
+        "maxX": 425.8631500000001,
+        "maxY": 986.75524,
+        "centerX": 352.2108100000001,
+        "centerY": 924.43297,
+        "width": 147.30467999999996,
+        "height": 124.64454
+      },
+      "layer": "Impassable"
+    },
+    {
+      "id": "rect8406",
+      "d": "m 486.29531,1005.6392 -9.44336,1.8887 -9.44141,9.4414 20.77344,11.332 28.32813,22.6622 15.10742,1.8886 1.88867,-20.7734 5.66601,-15.1094 v -3.7773 -5.6641 l -16.99804,3.7774 h -24.55078 z",
+      "strokeColor": "#fffffe",
+      "fillColor": "url(#Checkerboardwhite)",
+      "transform": null,
+      "boundingBox": {
+        "minX": 467.41053999999997,
+        "minY": 1005.6392,
+        "maxX": 539.1742100000001,
+        "maxY": 1052.8521,
+        "centerX": 503.29237500000005,
+        "centerY": 1029.24565,
+        "width": 71.76367000000016,
+        "height": 47.212900000000104
+      },
+      "layer": "Impassable"
+    },
+    {
+      "id": "rect8431",
+      "d": "m 724.25059,1075.5133 -5.66602,5.666 5.66602,5.666 32.10351,7.5547 26.43946,-3.7773 3.77734,-5.6661 -7.55273,-3.7773 -47.21485,-1.8887 z",
+      "strokeColor": "#fffffe",
+      "fillColor": "url(#Checkerboardwhite)",
+      "transform": null,
+      "boundingBox": {
+        "minX": 718.58457,
+        "minY": 1075.5133,
+        "maxX": 786.5709,
+        "maxY": 1094.3999999999999,
+        "centerX": 752.5777350000001,
+        "centerY": 1084.95665,
+        "width": 67.98633000000007,
+        "height": 18.88669999999979
+      },
+      "layer": "Impassable"
+    },
+    {
+      "id": "polygon332",
+      "d": "m 301,132 -1,-6 9,-11 -1,-11 3,-3 13,-30 8,3 -2,-10 11,1 1,-4 4,-7 9,8 14,-1 1,-12 9,-1 9,6 -2,4 2,3 9,-13 -6,-1 4,-6 -1,-3 -10,-5 -2,7 -2,-7 -3,-2 -3,7 -3,-5 -5,9 v -9 h -4 l -5,6 -14,5 -19,10 -4,10 -10,11 -1,9 -6,2 -11,25 -15,21 -8,2 -5,8 -6,-1 -22,13 1,6 -4,7 -2,13 2,6 -4,6 2,9 10,8 5,1 20,-9 4,-8 5,10 4,1 8,-27 -2,-7 5,-6 2,-31 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 229,
+        "minY": 31,
+        "maxX": 397,
+        "maxY": 210,
+        "centerX": 313,
+        "centerY": 120.5,
+        "width": 168,
+        "height": 179
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon260",
+      "d": "m 138,214 6,-1 1,4 10,11 v 11 l -4,9 -1,16 -7,-2 h -15 l -2,-6 -5,1 11,-7 h 3 l 4,-10 -3,-11 -6,-2 v -4 l 8,-6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 121,
+        "minY": 213,
+        "maxX": 155,
+        "maxY": 264,
+        "centerX": 138,
+        "centerY": 238.5,
+        "width": 34,
+        "height": 51
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon140",
+      "d": "m 146,200 -2,13 -6,1 -8,-6 -1,-11 10,-8 1,-7 8,-5 14,4 -1,4 -7,3 -2,6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 129,
+        "minY": 177,
+        "maxX": 162,
+        "maxY": 214,
+        "centerX": 145.5,
+        "centerY": 195.5,
+        "width": 33,
+        "height": 37
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon456",
+      "d": "m 275,203 2,15 -1,6 6,12 -3,4 v 3 l 3,10 7,1 5,-9 11,-1 7,-15 -1,-9 3,-11 8,-3 6,-3 3,-10 -5,-10 -6,-1 1,-21 9,-15 13,-8 8,-10 -4,-7 2,-9 6,-8 7,3 -6,-36 -14,-10 -1,4 -11,-1 2,10 -8,-3 -13,30 -3,3 1,11 -9,11 1,6 -9,1 -2,31 -5,6 2,7 -8,27 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 275,
+        "minY": 61,
+        "maxX": 362,
+        "maxY": 254,
+        "centerX": 318.5,
+        "centerY": 157.5,
+        "width": 87,
+        "height": 193
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon172",
+      "d": "m 165,210 -7,4 -7,1 6,1 4,2 2,8 -8,2 -10,-11 -1,-4 2,-13 6,-6 6,-1 13,4 -1,5 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 144,
+        "minY": 193,
+        "maxX": 171,
+        "maxY": 228,
+        "centerX": 157.5,
+        "centerY": 210.5,
+        "width": 27,
+        "height": 35
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3423",
+      "d": "m 1020.7475,48.157374 10.5826,18.000829 c -1.4219,2.560547 -2.8438,5.121094 -4.2656,7.681641 -3.9382,7.957598 -14.0786,9.789 -22.0508,8.107422 -6.1359,4.602974 -12.89378,11.303788 -10.61526,19.761714 -0.32761,13.94573 -6.41162,30.9268 -21.4043,34.64063 -7.03383,1.22664 -14.20884,-2.57399 -18.19531,-8.28906 -3.8832,6.04548 -7.34279,13.85396 -2.5918,20.47461 4.39712,11.58788 -3.11059,25.17486 -15.08008,28.02343 -4.72799,1.56208 -9.73943,2.09555 -14.70117,2.05079 2.23426,12.88188 -7.84473,28.37982 -21.99805,26.69921 -2.41221,0.0749 -6.09965,-3.02263 -6.33799,1.30071 -0.94553,2.99073 -6.60813,7.00375 -4.68573,9.46143 10.11882,6.4283 18.48679,19.15321 13.33622,31.28865 -3.81054,11.95234 -14.20804,22.49255 -27.04492,23.85937 2.11128,16.85322 -17.86345,30.46245 -33.0664,23.48047 -11.09024,-4.35902 -24.73509,-2.72596 -33.88868,-11.53125 -8.35965,-7.54128 -11.80547,-18.65157 -17.11132,-28.27149 -2.4739,-5.65264 -4.19861,-11.73958 -4.4375,-17.90429 -14.46288,-4.98825 -28.63727,-19.37376 -24.94141,-35.79102 3.02435,-11.96686 17.17319,-17.0116 28.29297,-14.33984 19.1413,0.29971 38.82719,4.97756 57.10742,-2.20117 2.71626,-2.93983 0.32553,-5.86957 -3.02642,-6.38856 -18.57561,-8.25499 -38.24808,-14.29863 -56.98335,-22.21105 -9.09299,-0.56677 -18.38012,4.23218 -27.26367,1.00781 -9.46734,-8.48425 -9.68842,-18.26181 -9.68842,-18.26181",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 750.6885299999998,
+        "minY": 48.157374,
+        "maxX": 1031.3301,
+        "maxY": 294.69921999999997,
+        "centerX": 891.0093149999998,
+        "centerY": 171.428297,
+        "width": 280.6415700000001,
+        "height": 246.54184599999996
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline444",
+      "d": "m 1009.4164,357.87541 56.6557,-9.44262 16.9968,-30.2164 47.2131,-20.77377 20.7737,-28.32787 V 48.157374 h -130.3082 l -9.4426,16.996721 -9.4426,-5.665573 -24.55082,24.550819 -1.88853,26.439349 -5.66557,9.44262 V 91.59344 l -11.33115,-5.665574 -3.77705,11.331148 -11.33115,13.219676 -13.21967,28.32786 5.66558,18.88525 -13.21968,3.77705 -16.99672,-5.66557 -3.77705,-3.77705 7.5541,-9.44263 -15.10819,-13.21967 -13.21968,3.77705 11.33115,32.10492 11.33115,7.5541 v 15.10819 l -11.33115,-3.77704 -7.5541,3.77704 L 864,220.01311 l 22.6623,16.99672 -3.77705,11.33115 -9.44263,5.66558 -33.99344,-15.1082 -3.77705,16.99672 9.44263,9.44262 13.21967,7.5541 -3.77705,5.66558 -33.99344,-7.5541 -15.1082,-28.32787 v -16.99672 l -22.6623,-11.33115 -3.77705,-9.44262 62.32132,1.88852 L 864,197.35082 867.77705,172.8 l -11.33115,-9.44263 -67.98688,-26.43934 -22.6623,3.77705 -7.5541,-7.5541 -7.55409,5.66557 -16.99673,24.55082 -1.88852,13.21968 11.33115,9.44262 -1.88853,35.88197 16.99672,33.99344 1.88853,15.1082 15.1082,22.66229 7.55409,32.10492",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 731.8032800000002,
+        "minY": 48.157374,
+        "maxX": 1151.0556999999997,
+        "maxY": 357.87541,
+        "centerX": 941.42949,
+        "centerY": 203.016392,
+        "width": 419.25241999999946,
+        "height": 309.718036
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon526",
+      "d": "m 128,262 h 15 l 7,2 3,7 -3,6 -5,4 2,14 -13,-1 -10,-3 -4,4 -10,-3 -10,-1 12,-4 10,-6 8,1 -3,-6 -8,-4 h -3 l -1,-7 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 100,
+        "minY": 262,
+        "maxX": 153,
+        "maxY": 295,
+        "centerX": 126.5,
+        "centerY": 278.5,
+        "width": 53,
+        "height": 33
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon546",
+      "d": "m 168,246 2,6 -1,13 -3,4 -13,2 -3,-7 1,-16 4,-9 v -11 l 8,-2 v 13 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 150,
+        "minY": 226,
+        "maxX": 170,
+        "maxY": 271,
+        "centerX": 160,
+        "centerY": 248.5,
+        "width": 20,
+        "height": 45
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon274",
+      "d": "m 178,274 -2,9 -11,10 7,1 -4,2 -8,2 -13,-3 -2,-14 5,-4 3,-6 13,-2 2,1 3,-2 6,2 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 145,
+        "minY": 268,
+        "maxX": 178,
+        "maxY": 298,
+        "centerX": 161.5,
+        "centerY": 283,
+        "width": 33,
+        "height": 30
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon106",
+      "d": "m 100,322 3,6 6,1 14,15 -1,6 1,7 5,6 18,2 v -28 l 2,-8 2,-10 -6,-1 -2,-6 -6,-2 v 16 l -12,-3 -2,-5 -20,-1 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 100,
+        "minY": 310,
+        "maxX": 150,
+        "maxY": 365,
+        "centerX": 125,
+        "centerY": 337.5,
+        "width": 50,
+        "height": 55
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon348",
+      "d": "m 169,311 -16,4 2,5 -5,-1 -2,10 11,2 h 6 l 7,-3 16,4 4,-9 -8,-8 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 148,
+        "minY": 311,
+        "maxX": 192,
+        "maxY": 332,
+        "centerX": 170,
+        "centerY": 321.5,
+        "width": 44,
+        "height": 21
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon134",
+      "d": "m 208,367 -14,15 -16,-1 v 9 l -5,6 -5,-1 -5,-8 2,-4 -7,-3 -2,-6 9,-9 20,-21 3,-12 4,-9 13,8 -1,7 7,8 2,6 -4,11 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 156,
+        "minY": 323,
+        "maxX": 213,
+        "maxY": 396,
+        "centerX": 184.5,
+        "centerY": 359.5,
+        "width": 57,
+        "height": 73
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon78",
+      "d": "m 169,311 4,-10 18,-2 3,4 12,3 -1,5 3,4 2,11 -5,5 -13,-8 -8,-8 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 169,
+        "minY": 299,
+        "maxX": 210,
+        "maxY": 331,
+        "centerX": 189.5,
+        "centerY": 315,
+        "width": 41,
+        "height": 32
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon230",
+      "d": "m 205,311 1,-5 -12,-3 -3,-4 7,-10 7,-13 v 3 h 2 l 4,-5 15,1 1,5 -2,12 -5,6 -5,-1 -2,5 -3,11 -2,2 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 191,
+        "minY": 274,
+        "maxX": 227,
+        "maxY": 315,
+        "centerX": 209,
+        "centerY": 294.5,
+        "width": 36,
+        "height": 41
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon186",
+      "d": "m 660.03934,395.6459 15.1082,3.77705 15.1082,9.44262 35.88197,-11.33115 33.99344,-15.10819 18.88524,-30.2164 -3.77704,-16.99672 7.55409,-9.44262 -7.55409,-32.10492 -15.1082,-22.66229 -1.88853,-15.1082 -16.99672,-33.99344 1.88853,-35.88197 -11.33115,-9.44262 1.88852,-13.21968 -3.77705,-5.66557 3.77705,-7.5541 -16.99672,-11.33115 -16.99672,1.88853 -1.88852,22.66229 -26.43935,1.88853 -16.99672,-15.1082 -7.5541,13.21967 26.43935,18.88525 11.33114,67.98689 11.33115,1.88852 7.5541,22.6623 -11.33115,1.88852 -13.21967,28.32787 -26.43934,28.32787 3.77705,16.99672 5.66557,9.44262 -3.77705,24.55082 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 646.8196700000001,
+        "minY": 138.80655,
+        "maxX": 782.7934399999999,
+        "maxY": 408.86556999999993,
+        "centerX": 714.806555,
+        "centerY": 273.83606,
+        "width": 135.97376999999983,
+        "height": 270.0590199999999
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon198",
+      "d": "m 142,417 7,-14 8,-6 11,-2 -5,-8 2,-4 -7,-3 -2,-6 -7,-2 -3,-7 -18,-2 -7,19 1,2 -10,15 1,8 10,5 11,5 1,-3 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 112,
+        "minY": 363,
+        "maxX": 168,
+        "maxY": 417,
+        "centerX": 140,
+        "centerY": 390,
+        "width": 56,
+        "height": 54
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon340",
+      "d": "m 146,365 3,7 7,2 9,-9 20,-21 3,-12 -16,-4 -7,3 h -6 l -11,-2 -2,8 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 146,
+        "minY": 328,
+        "maxX": 188,
+        "maxY": 374,
+        "centerX": 167,
+        "centerY": 351,
+        "width": 42,
+        "height": 46
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon100",
+      "d": "m 316,348 -13,-2 -8,3 -3,8 -11,-1 -5,-10 -8,-3 -4,-14 2,-4 12,1 10,-5 9,1 14,12 3,-2 7,7 1,8 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 264,
+        "minY": 321,
+        "maxX": 322,
+        "maxY": 357,
+        "centerX": 293,
+        "centerY": 339,
+        "width": 58,
+        "height": 36
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon360",
+      "d": "m 62,407 -7,-7 -13,-1 1,-4 -11,1 -2,10 -13,21 h -3 l -4,6 3,7 2,1 -3,9 1,4 -5,8 11,7 8,-1 9,-11 -2,-10 6,-6 -3,-10 5,1 10,-20 9,-1 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 8,
+        "minY": 395,
+        "maxX": 62,
+        "maxY": 469,
+        "centerX": 35,
+        "centerY": 432,
+        "width": 54,
+        "height": 74
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline432",
+      "d": "m 134,417 -11,-5 -10,-5 -1,-8 -11,-3 -5,1 -24,-13 -13,-3 -5,-6 -6,-1 -2,4 -7,-3 -6,6 2,3 -3,12 11,-1 -1,4 13,1 7,7 -1,4 -9,1 -10,20 -5,-1 3,10",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 32,
+        "minY": 374,
+        "maxX": 134,
+        "maxY": 441,
+        "centerX": 83,
+        "centerY": 407.5,
+        "width": 102,
+        "height": 67
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon354",
+      "d": "m 233,404 13,-12 -3,-4 -14,-3 -2,5 -6,-5 -8,2 -6,-1 -3,4 3,6 -6,3 3,3 -1,8 8,6 11,-6 11,5 3,-4 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 201,
+        "minY": 385,
+        "maxX": 246,
+        "maxY": 416,
+        "centerX": 223.5,
+        "centerY": 400.5,
+        "width": 45,
+        "height": 31
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline436",
+      "d": "m 40,441 -6,6 2,10 -9,11 6,7 1,9 3,6 10,-2 5,1 8,-3 18,5 5,3 3,-9 4,-2 8,1 9,-10 6,-1 2,-4 -5,-8 14,-17 7,-5 15,-1 11,-6 1,-7 -4,2 -12,-10 -7,-3 -1,3 -11,-5",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 27,
+        "minY": 412,
+        "maxX": 158,
+        "maxY": 494,
+        "centerX": 92.5,
+        "centerY": 453,
+        "width": 131,
+        "height": 82
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon282",
+      "d": "m 169,412 -11,6 v 7 l -4,2 -12,-10 7,-14 8,-6 11,-2 5,1 5,-6 v -9 l 16,1 3,3 6,-6 4,7 -3,4 3,6 -6,3 3,3 -1,8 8,6 -13,5 -10,1 -12,-5 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 142,
+        "minY": 379,
+        "maxX": 211,
+        "maxY": 427,
+        "centerX": 176.5,
+        "centerY": 403,
+        "width": 69,
+        "height": 48
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon518",
+      "d": "m 303,346 13,2 6,-1 7,-1 8,4 -2,4 -13,16 -11,5 -3,8 -9,2 -5,-5 1,-18 -3,-5 3,-8 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 292,
+        "minY": 346,
+        "maxX": 337,
+        "maxY": 385,
+        "centerX": 314.5,
+        "centerY": 365.5,
+        "width": 45,
+        "height": 39
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon192",
+      "d": "m 404,371 -10,5 -10,-11 -6,-2 -1,-3 -9,-7 -8,-2 -10,-4 -13,3 -8,-4 -7,1 -1,-8 1,8 -1,-8 4,1 4,-2 4,-8 h 8 l 3,2 9,-5 3,-4 5,1 6,5 7,-2 5,-3 4,3 2,5 14,6 5,16 -1,6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 321,
+        "minY": 323,
+        "maxX": 404,
+        "maxY": 376,
+        "centerX": 362.5,
+        "centerY": 349.5,
+        "width": 83,
+        "height": 53
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon486",
+      "d": "m 236,411 -3,4 5,16 9,11 3,-4 13,-4 -10,-16 -7,-2 -6,-1 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 233,
+        "minY": 411,
+        "maxX": 263,
+        "maxY": 442,
+        "centerX": 248,
+        "centerY": 426.5,
+        "width": 30,
+        "height": 31
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon510",
+      "d": "m 270,398 6,1 3,-10 -3,-3 -8,-1 -9,3 -4,6 -5,3 -4,-5 -13,12 3,7 4,4 6,1 7,2 10,16 11,13 4,-4 -6,-19 -12,-7 1,-16 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 233,
+        "minY": 385,
+        "maxX": 279,
+        "maxY": 447,
+        "centerX": 256,
+        "centerY": 416,
+        "width": 46,
+        "height": 62
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon492",
+      "d": "m 241,378 -7,-4 v -8 l 9,4 3,-1 4,2 17,-3 4,2 -2,-8 h 6 l 6,-6 11,1 3,5 -1,18 -5,5 -13,1 -8,-1 -9,3 -4,6 -5,3 -4,-5 -3,-4 2,-4 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 234,
+        "minY": 356,
+        "maxX": 295,
+        "maxY": 397,
+        "centerX": 264.5,
+        "centerY": 376.5,
+        "width": 61,
+        "height": 41
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon470",
+      "d": "m 294,380 -5,5 -13,1 3,3 -3,10 -1,4 3,7 4,-9 4,1 3,16 17,18 25,18 -1,-9 7,1 -7,-9 -3,-8 4,-5 -1,-8 2,-6 -9,-2 -2,-10 -10,-4 -3,-11 -9,2 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 275,
+        "minY": 380,
+        "maxX": 337,
+        "maxY": 454,
+        "centerX": 306,
+        "centerY": 417,
+        "width": 62,
+        "height": 74
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon114",
+      "d": "m 311,375 11,-5 13,-16 2,-4 13,-3 10,4 8,2 9,7 1,3 6,2 10,11 1,6 6,3 5,11 -5,6 h -14 l -20,4 -2,6 -5,1 -18,-3 -4,2 -3,-2 h -3 l -9,-2 -2,-10 -10,-4 -3,-11 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 308,
+        "minY": 347,
+        "maxX": 406,
+        "maxY": 413,
+        "centerX": 357,
+        "centerY": 380,
+        "width": 98,
+        "height": 66
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon374",
+      "d": "m 279,458 1,-3 -1,-4 -5,-4 -11,-13 -13,4 -3,4 1,5 8,11 15,6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 247,
+        "minY": 434,
+        "maxX": 280,
+        "maxY": 464,
+        "centerX": 263.5,
+        "centerY": 449,
+        "width": 33,
+        "height": 30
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon312",
+      "d": "m 311,491 -7,-7 -11,-3 -14,-23 -8,6 5,10 14,13 4,15 -5,9 1,3 5,1 13,-15 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 271,
+        "minY": 458,
+        "maxX": 311,
+        "maxY": 515,
+        "centerX": 291,
+        "centerY": 486.5,
+        "width": 40,
+        "height": 57
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon54",
+      "d": "m 318,485 h 4 v -5 l -25,-24 3,-3 h -10 l -12,-10 -4,4 5,4 1,4 -1,3 14,23 11,3 6,-4 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 274,
+        "minY": 443,
+        "maxX": 322,
+        "maxY": 485,
+        "centerX": 298,
+        "centerY": 464,
+        "width": 48,
+        "height": 42
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon40",
+      "d": "m 335,480 4,7 11,-10 v -6 l -4,-5 v -14 l -9,-6 -7,-1 1,9 v 23 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 330,
+        "minY": 445,
+        "maxX": 350,
+        "maxY": 487,
+        "centerX": 340,
+        "centerY": 466,
+        "width": 20,
+        "height": 42
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon396",
+      "d": "m 371,456 -5,-17 5,-1 -3,-5 -3,-8 2,-4 -2,-9 -5,1 -18,-3 -4,2 -3,-2 h -3 l -2,6 1,8 -4,5 3,8 7,9 9,6 v 14 l 4,5 h 6 l 5,-4 8,-3 -4,-3 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 327,
+        "minY": 410,
+        "maxX": 371,
+        "maxY": 471,
+        "centerX": 349,
+        "centerY": 440.5,
+        "width": 44,
+        "height": 61
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline128",
+      "d": "m 371,438 -5,1 5,17 -6,5 4,3 h 7 l 12,-4 4,12 8,-4 8,2 5,-6 -1,-10",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 365,
+        "minY": 438,
+        "maxX": 413,
+        "maxY": 472,
+        "centerX": 389,
+        "centerY": 455,
+        "width": 48,
+        "height": 34
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline122",
+      "d": "m 413,464 -1,-10 8,-3 6,-1 -4,-9 3,-14 4,-1 1,-3 -8,-3 h -12 l -6,2 -6,5 -8,-2 -8,2 -7,-4 -5,2 -3,-4 -2,4 3,8 3,5",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 365,
+        "minY": 420,
+        "maxX": 430,
+        "maxY": 464,
+        "centerX": 397.5,
+        "centerY": 442,
+        "width": 65,
+        "height": 44
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon388",
+      "d": "m 390,425 8,2 6,-5 6,-2 h 12 l 8,3 2,-14 7,-5 -1,-7 -11,2 -5,-17 1,-6 -9,-4 -3,-11 -8,-1 1,11 -10,5 1,6 6,3 5,11 -5,6 h -14 l -20,4 -2,6 2,9 3,4 5,-2 7,4 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 365,
+        "minY": 360,
+        "maxX": 439,
+        "maxY": 427,
+        "centerX": 402,
+        "centerY": 393.5,
+        "width": 74,
+        "height": 67
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3469",
+      "d": "m 760.13115,382.42623 c 0,0 11.38509,-6.57033 23.31612,-3.50826 13.47496,4.06199 21.91572,23.13454 11.54296,34.32812 -5.40852,6.80594 -15.08342,4.4647 -22.01953,7.69727 -2.74725,3.32838 -3.10144,8.38872 -5.94531,11.43164 -8.05486,3.53589 -22.00244,2.92992 -22.00244,2.92992",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 745.02295,
+        "minY": 378.91796999999997,
+        "maxX": 794.99023,
+        "maxY": 435.30492,
+        "centerX": 770.00659,
+        "centerY": 407.111445,
+        "width": 49.96727999999996,
+        "height": 56.38695000000001
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polyline450",
+      "d": "m 782.79344,325.77049 -7.55409,9.44262 3.77704,16.99672 -18.88524,30.2164 1.88852,11.33115 15.1082,1.88852 5.66557,5.66557 H 771.4623 l -15.1082,9.44263 -1.88853,9.44262 -22.66229,-1.88852 -30.21639,3.77704 -3.77705,7.5541 5.66557,5.66558 18.88525,1.88852 22.66229,-1.88852 20.77377,22.66229 7.5541,20.77377 22.6623,1.88853 13.21967,-7.5541 20.77377,-26.43935 15.1082,-3.77704 7.55409,7.55409 11.33115,-5.66557 -1.88852,-5.66557 3.77705,-24.55082 33.99344,-20.77377 24.55082,1.88852 49.10164,-28.32787 35.88197,-9.44262 56.6557,-9.44262",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 697.80984,
+        "minY": 325.77049,
+        "maxX": 1066.0720999999999,
+        "maxY": 480.6295099999999,
+        "centerX": 881.9409699999999,
+        "centerY": 403.19999999999993,
+        "width": 368.26225999999986,
+        "height": 154.85901999999993
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon326",
+      "d": "m 0,520 v 39 h 195 l 2,-32 6,-7 -24,-5 -10,3 -19,-7 -33,-2 -11,2 -7,4 -10,-3 -5,6 -5,2 -11,-4 v -5 l -4,3 -18,-5 -4,-7 -1,-8 -4,1 -4,1 -16,22 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 0,
+        "minY": 494,
+        "maxX": 203,
+        "maxY": 559,
+        "centerX": 101.5,
+        "centerY": 526.5,
+        "width": 203,
+        "height": 65
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon478",
+      "d": "m 203,520 -6,7 -2,32 h 37 l 2,-8 -2,-7 -7,-9 6,-4 5,-7 -3,-1 -9,4 -1,-9 -5,-2 -6,1 -4,4 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 195,
+        "minY": 516,
+        "maxX": 236,
+        "maxY": 559,
+        "centerX": 215.5,
+        "centerY": 537.5,
+        "width": 41,
+        "height": 43
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon204",
+      "d": "m 352,508 15,-1 4,4 -16,-1 -5,4 7,7 2,12 1,-5 7,8 1,-5 8,6 -5,-17 7,1 -1,-8 9,3 -1,-7 -15,-15 1,-3 7,3 -10,-11 3,-6 8,7 3,-1 -1,-6 5,1 -6,-6 h 12 l -4,-12 -12,4 h -7 l -8,3 -5,4 h -6 v 6 l -11,10 7,11 h 4 l -3,2 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 339,
+        "minY": 460,
+        "maxX": 392,
+        "maxY": 537,
+        "centerX": 365.5,
+        "centerY": 498.5,
+        "width": 53,
+        "height": 77
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon250",
+      "d": "m 461.74414,527.8418 -1.88867,5.66601 3.77734,11.33203 -1.88867,13.21875 22.66211,-13.21875 -3.77734,-15.10937 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 459.85547,
+        "minY": 527.8418,
+        "maxX": 484.40625,
+        "maxY": 558.0585900000001,
+        "centerX": 472.13086,
+        "centerY": 542.9501950000001,
+        "width": 24.550779999999975,
+        "height": 30.21679000000006
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon156",
+      "d": "m 503.29102,465.52148 -5.66407,3.77735 -28.32812,1.88867 -5.66602,24.55078 -3.77734,18.88477 1.88867,13.21875 18.88477,1.88867 5.66601,-15.10742 16.9961,-13.22071 1.88867,-11.33007 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 459.85547,
+        "minY": 465.52148,
+        "maxX": 505.17969000000005,
+        "maxY": 529.73047,
+        "centerX": 482.51758000000007,
+        "centerY": 497.625975,
+        "width": 45.324220000000025,
+        "height": 64.20898999999997
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon268",
+      "d": "m 690.25574,578.83279 13.21967,3.77705 13.21967,13.21967 18.88525,-9.44263 5.66557,-13.21967 22.6623,-5.66557 1.88852,-67.98689 7.5541,-20.77377 -7.5541,-20.77377 -20.77377,-22.66229 -22.66229,1.88852 -18.88525,-1.88852 -5.66557,-5.66558 -7.5541,3.77705 5.66557,11.33115 7.5541,5.66557 1.88853,15.1082 7.55409,11.33115 -7.55409,3.77705 -13.21968,-1.88853 -13.21967,-15.10819 -18.88525,16.99672 -3.77704,26.43934 13.21967,15.1082 3.77705,18.88524 11.33114,-1.88852 9.44263,9.44262 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 656.2622999999996,
+        "minY": 429.63934000000006,
+        "maxX": 773.3508199999998,
+        "maxY": 595.82951,
+        "centerX": 714.8065599999998,
+        "centerY": 512.7344250000001,
+        "width": 117.08852000000013,
+        "height": 166.19016999999997
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon296",
+      "d": "m 1009.4164,357.87541 -35.88197,9.44262 -49.10164,28.32787 -24.55082,-1.88852 -33.99344,20.77377 -3.77705,24.55082 1.88852,5.66557 -11.33115,5.66557 -7.55409,-7.55409 -15.1082,3.77704 -20.77377,26.43935 -13.21967,7.5541 -22.6623,-1.88853 -7.5541,20.77377 -1.88852,67.98689 -22.6623,5.66557 -5.66557,13.21967 -18.88525,9.44263 13.21967,35.88197 7.5541,-5.66558 124.64263,-26.43934 22.66229,5.66557 16.99672,-11.33115 32.10492,11.33115 20.77377,-28.32787 20.77377,11.33115 18.88525,1.88852 13.2197,-7.55409 30.2164,1.88852 9.4426,37.77049 18.8852,1.88853 9.4427,30.21639 52.8786,16.99672 h 22.6623 V 269.11475 l -20.7737,28.32787 -47.2131,20.77377 -16.9968,30.2164 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 716.6950800000001,
+        "minY": 269.11475,
+        "maxX": 1151.0557000000001,
+        "maxY": 671.3704899999999,
+        "centerX": 933.8753900000002,
+        "centerY": 470.24262,
+        "width": 434.36062000000004,
+        "height": 402.2557399999999
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path1803",
+      "d": "m 508.95703,507.06836 -1.88867,5.66602 -9.44141,1.88867 5.66407,15.10742 9.44336,9.44336 13.21874,-11.33203 -1.88671,-7.55274 5.66406,-3.77734 -1.88867,-9.44336 -7.55274,-1.88867 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 497.62694999999997,
+        "minY": 505.1796900000001,
+        "maxX": 529.73047,
+        "maxY": 539.1738300000001,
+        "centerX": 513.6787099999999,
+        "centerY": 522.1767600000001,
+        "width": 32.10352,
+        "height": 33.99413999999996
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path1820",
+      "d": "m 484.40625,550.50586 -22.66211,13.21875 -16.99609,7.55469 -1.88867,-5.66602 -7.55469,-1.88867 -7.55469,3.77734 1.88867,9.44141 -3.77734,22.66406 -9.44141,11.33008 -9.44336,-1.88867 -3.77734,9.44336 35.88281,11.33008 16.99609,15.10937 3.77735,11.33008 37.77148,-22.66211 -3.77734,-26.43945 5.66601,-5.66602 -3.77734,-11.33008 7.55274,-7.55468 v -15.10743 l -9.44141,-1.88867 -1.88867,-9.44336 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 403.1992200000001,
+        "minY": 550.50586,
+        "maxX": 503.2910200000001,
+        "maxY": 656.2617199999997,
+        "centerX": 453.2451200000001,
+        "centerY": 603.3837899999999,
+        "width": 100.09180000000003,
+        "height": 105.75585999999976
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon86",
+      "d": "m 556.17049,567.50164 -15.1082,-1.88853 1.88853,-13.21967 -13.21967,-1.88852 -26.43935,16.99672 v 15.1082 l -7.5541,7.55409 3.77705,11.33115 -5.66557,5.66558 3.77705,26.43934 47.21311,-9.44262 15.1082,-9.44263 1.88853,-7.55409 -9.44263,-11.33115 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 493.84917999999993,
+        "minY": 550.5049200000001,
+        "maxX": 561.8360699999998,
+        "maxY": 633.6,
+        "centerX": 527.8426249999999,
+        "centerY": 592.0524600000001,
+        "width": 67.9868899999999,
+        "height": 83.09507999999994
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon368",
+      "d": "m 644.93115,590.16393 7.5541,3.77705 26.43934,-5.66557 11.33115,-9.44262 3.77705,-30.2164 -9.44263,-9.44262 -11.33114,1.88852 -3.77705,-18.88524 -13.21967,-15.1082 v 9.44262 l 1.88852,11.33115 -7.5541,15.1082 -13.21967,3.77705 -5.66557,16.99672 -11.33115,1.88852 -3.77705,-16.99672 -22.6623,1.88853 -13.21967,13.21967 -24.55082,3.77705 -3.77705,28.32787 9.44263,11.33115 -1.88853,7.55409 45.32459,5.66558 7.5541,-7.5541 3.77705,-13.21967 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 552.39344,
+        "minY": 507.06885,
+        "maxX": 694.03279,
+        "maxY": 620.3803299999998,
+        "centerX": 623.213115,
+        "centerY": 563.7245899999999,
+        "width": 141.63934999999992,
+        "height": 113.31147999999985
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon382",
+      "d": "m 399.42295,701.58689 15.1082,-3.77705 33.99344,-41.54754 h 11.33115 L 456.07869,644.93115 439.08197,629.82295 403.2,618.4918 l -5.66557,20.77377 -3.77705,3.77705 3.77705,20.77377 -9.44263,9.44263 -1.88852,13.21967 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 386.20327999999995,
+        "minY": 618.4918,
+        "maxX": 459.85574,
+        "maxY": 701.58689,
+        "centerX": 423.02950999999996,
+        "centerY": 660.039345,
+        "width": 73.65246000000008,
+        "height": 83.09509000000003
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon304",
+      "d": "m 537.28525,641.1541 7.55409,-16.99672 -47.21311,9.44262 -37.77049,22.6623 h -11.33115 l -33.99344,41.54754 -15.1082,3.77705 3.77705,11.33114 -7.5541,20.77377 24.55082,3.77705 5.66557,-5.66557 13.21968,1.88852 3.77705,5.66558 16.99672,7.5541 5.66557,-1.88853 7.5541,3.77705 32.10492,-5.66557 7.5541,3.77705 -3.77705,-15.1082 h 11.33114 l 11.33115,-11.33115 -9.44262,-18.88524 -15.1082,-5.66558 -7.5541,-26.43934 3.77705,-7.5541 22.6623,1.88852 18.88524,-9.44262 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 395.6458999999999,
+        "minY": 624.15738,
+        "maxX": 544.83934,
+        "maxY": 748.8000000000001,
+        "centerX": 470.24262,
+        "centerY": 686.47869,
+        "width": 149.19344000000007,
+        "height": 124.64262000000008
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon412",
+      "d": "m 544.83934,654.37377 16.99673,1.88853 26.43934,22.66229 5.66557,-3.77705 13.21968,13.21967 7.55409,1.88853 7.5541,-3.77705 7.5541,-15.1082 -13.21967,-5.66557 -5.66557,-9.44262 -5.66558,-35.88197 -45.32459,-5.66558 -15.1082,9.44263 -7.55409,16.99672 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 537.2852499999999,
+        "minY": 614.7147499999998,
+        "maxX": 629.8229499999999,
+        "maxY": 690.2557399999998,
+        "centerX": 583.5540999999998,
+        "centerY": 652.4852449999998,
+        "width": 92.53769999999997,
+        "height": 75.54099000000008
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon532",
+      "d": "m 650.59672,675.14754 -5.66557,-3.77705 h -15.1082 l -13.21967,-5.66557 -5.66557,-9.44262 -5.66558,-35.88197 7.5541,-7.5541 3.77705,-13.21967 28.32787,-9.44263 7.5541,3.77705 26.43934,-5.66557 11.33115,-9.44262 13.21967,3.77705 13.21967,13.21967 13.21967,35.88197 -5.66557,33.99344 -7.5541,-5.66558 -9.44262,5.66558 -13.21967,3.77705 -11.33115,-9.44263 -9.44262,-1.88852 -5.66558,7.5541 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 605.2721300000001,
+        "minY": 578.83279,
+        "maxX": 729.9147499999998,
+        "maxY": 675.14754,
+        "centerX": 667.5934399999999,
+        "centerY": 626.990165,
+        "width": 124.64261999999974,
+        "height": 96.31475
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon504",
+      "d": "m 782.79344,750.68853 16.99673,7.55409 16.99672,-7.55409 3.77705,-22.6623 20.77377,-18.88525 28.32787,-9.44262 11.33114,-71.76393 7.5541,-7.5541 -3.77705,-15.1082 -22.66229,-5.66557 -124.64263,26.43934 -7.5541,5.66558 -5.66557,33.99344 3.77705,9.44262 26.43934,11.33115 9.44263,30.21639 -1.88853,11.33115 15.1082,1.88852 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 724.24918,
+        "minY": 599.6065600000001,
+        "maxX": 888.5508199999999,
+        "maxY": 758.24262,
+        "centerX": 806.4,
+        "centerY": 678.9245900000001,
+        "width": 164.3016399999999,
+        "height": 158.63605999999993
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon404",
+      "d": "m 1066.0721,624.15738 -18.8852,-1.88853 -9.4426,-37.77049 -30.2164,-1.88852 -13.2197,7.55409 -18.88525,-1.88852 -20.77377,-11.33115 -20.77377,28.32787 -32.10492,-11.33115 -16.99672,11.33115 3.77705,15.1082 -7.5541,7.5541 -11.33114,71.76393 -28.32787,9.44262 -20.77377,18.88525 -3.77705,22.6623 -16.99672,7.55409 -1.88853,11.33115 9.44262,32.10492 20.77377,-3.77705 15.1082,-35.88197 24.55082,-5.66557 3.77705,3.77705 -3.77705,3.77705 11.33115,7.5541 20.77377,-3.77705 3.77705,3.77705 -11.33115,3.77704 -7.5541,13.21968 16.99672,7.5541 v 9.44262 l 16.99672,5.66557 3.77705,-13.21967 11.33115,-1.88852 5.66558,-7.5541 18.88524,-5.66558 -1.88852,-9.44262 -22.6623,5.66557 -16.99672,-16.99672 33.99344,-26.43934 43.43607,-24.55082 1.88852,5.66557 -24.55082,20.77377 5.66558,11.33115 h 5.66557 l -9.44262,24.55082 -7.5541,-1.88852 -1.88852,5.66557 13.21967,13.21967 20.77377,1.88853 49.10165,22.66229 24.5508,3.77705 11.3312,16.99672 -5.6656,18.88525 35.8819,28.32787 9.4427,-5.66558 16.9967,3.77705 11.3311,-1.88852 V 671.37049 h -22.6623 l -52.8786,-16.99672 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 797.9016400000002,
+        "minY": 576.9442600000001,
+        "maxX": 1151.0557000000003,
+        "maxY": 882.88525,
+        "centerX": 974.4786700000002,
+        "centerY": 729.914755,
+        "width": 353.1540600000002,
+        "height": 305.94098999999994
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3286",
+      "d": "m 212.45901,801.67869 c -9.33415,7.93357 -32.86454,8.68917 -32.86454,8.68917 -14.65881,-2.25548 -25.09897,-14.08097 -38.43627,-19.61981 -10.91053,-5.81213 -23.45491,-7.05662 -34.75195,-11.54493 -3.76177,-1.53731 -6.865944,-5.79611 -9.505859,-7.52148 -4.799522,3.65572 -11.28101,2.81434 -16.794922,1.91992 0.705207,2.60377 1.076172,7.57813 1.076172,7.57813 -3.96873,7.69073 -19.804595,14.83343 -19.804595,14.83343",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 61.377046,
+        "minY": 771.6816399999999,
+        "maxX": 212.45901,
+        "maxY": 810.36786,
+        "centerX": 136.918028,
+        "centerY": 791.0247499999999,
+        "width": 151.081964,
+        "height": 38.68622000000005
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3284",
+      "d": "m 51.934423,931.98689 c 0,0 16.198271,-3.38407 20.331202,-0.43416 6.418204,5.93871 7.802252,15.16887 8.025391,23.48047 9.990045,-0.41495 20.452354,0.85064 29.769534,-3.50195 13.31103,-2.04935 26.35085,4.53086 38.34375,7.85937 4.61823,-10.52976 17.22937,-16.81292 28.29882,-13.30664 7.19621,-0.31077 8.69672,-8.39142 12.76563,-12.49609 2.00365,-2.5903 8.56804,-2.36583 5.43359,-6.4043 -3.9276,-11.87902 3.91047,-23.13879 11.8726,-31.19286 10.81589,-12.51333 20.56478,-27.72198 37.18795,-33.0044 7.96625,-3.34153 16.72714,-2.88336 25.06055,-2.7793 6.14517,-0.0889 22.75361,-5.64965 22.75361,-5.64965",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 51.934423,
+        "minY": 854.55738,
+        "maxX": 291.77705,
+        "maxY": 959.39062,
+        "centerX": 171.85573649999998,
+        "centerY": 906.9739999999999,
+        "width": 239.84262699999996,
+        "height": 104.83324000000005
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3387",
+      "d": "m 805.45574,897.99344 c 0,0 -15.44271,-3.36281 -19.38347,-10.46024 -3.41501,-7.77929 0.66406,-24.0625 0.66406,-24.0625 l 2.04492,-8.74609 c 5.26341,-6.59839 14.3991,-10.1787 24.22859,-7.72133",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 786.07227,
+        "minY": 847.00328,
+        "maxX": 813.00984,
+        "maxY": 897.99344,
+        "centerX": 799.541055,
+        "centerY": 872.49836,
+        "width": 26.93757000000005,
+        "height": 50.990159999999946
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path3421",
+      "d": "m 741.2459,939.54099 c 1.9e-4,3e-5 0.27564,-11.87049 9.58222,-19.55661 5.18439,-1.94768 11.30143,-1.67793 16.375,-1.23438 7.0571,7.62471 4.25977,17.01367 4.25977,17.01367",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 741.2459,
+        "minY": 925.99257,
+        "maxX": 757.08274,
+        "maxY": 943.00624,
+        "centerX": 749.16432,
+        "centerY": 934.499405,
+        "width": 15.836839999999938,
+        "height": 17.013670000000047
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "path1829",
+      "d": "m 805.45508,897.99414 -11.33008,1.88867 -15.10938,5.66407 1.88868,18.88671 -9.44141,11.33008 3.77734,5.66602 7.37891,2.05273 13.39453,-13.38476 26.43945,-7.55274 9.44141,-9.44336 -18.88476,-5.66601 z m 71.76367,13.21875 -41.54687,5.66602 -5.66602,5.66601 16.99805,1.88867 -43.4375,20.77344 -19.96289,1.05078 -8.36329,12.16797 -1.88867,9.44336 15.10742,-1.88867 v 5.66601 l 11.33204,-3.77734 16.99609,11.33008 37.76953,3.77734 26.43945,-7.55273 3.77735,-22.66406 v -33.99219 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 771.46289,
+        "minY": 897.99414,
+        "maxX": 892.32813,
+        "maxY": 992.4179700000001,
+        "centerX": 831.8955100000001,
+        "centerY": 945.2060550000001,
+        "width": 120.86523999999997,
+        "height": 94.42383000000007
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon46",
+      "d": "m 982.97705,880.99672 -11.33115,-5.66557 -5.66557,3.77705 -16.99672,-13.21967 -39.65902,9.44262 -20.77377,16.99672 -11.33115,18.88525 7.5541,7.55409 v 33.99345 l -3.77705,22.66229 h 13.21968 l 32.10491,-20.77377 20.77377,3.77705 13.21968,-3.77705 43.43604,-37.77049 28.3279,3.77705 16.9967,-3.77705 3.7771,-20.77377 -3.7771,-20.77377 -7.5541,-1.88853 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 877.21967,
+        "minY": 865.8885300000001,
+        "maxX": 1052.8525,
+        "maxY": 975.4229500000001,
+        "centerX": 965.036085,
+        "centerY": 920.6557400000002,
+        "width": 175.63283,
+        "height": 109.53442000000007
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon60",
+      "d": "m 1062.2951,937.65246 -11.3312,-7.5541 -1.8885,-13.21967 3.7771,-20.77377 -3.7771,-20.77377 28.3279,-20.77377 35.8819,28.32787 9.4427,-5.66558 16.9967,3.77705 11.3311,-1.88852 V 979.2 l -47.2131,-28.32787 -39.659,1.88853 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 1049.0754,
+        "minY": 854.5573800000001,
+        "maxX": 1151.0557000000001,
+        "maxY": 979.2,
+        "centerX": 1100.06555,
+        "centerY": 916.87869,
+        "width": 101.98030000000017,
+        "height": 124.64261999999997
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon424",
+      "d": "m 799.79017,1011.3049 7.55409,26.4394 15.1082,-1.8886 v 13.2197 l 11.33115,-7.5541 11.33115,3.7771 11.33114,11.3311 20.77377,-5.6656 3.77705,-18.8852 16.99672,-1.8885 18.88525,15.1082 11.33115,3.777 26.43934,-7.5541 11.33115,-22.6623 16.99672,5.6656 13.21967,-16.9967 5.66558,1.8885 11.3311,-28.32787 16.9968,-15.1082 18.8852,-3.77705 15.1082,-9.44262 -1.8885,-15.1082 -11.3312,-7.5541 -1.8885,-13.21967 -16.9967,3.77705 -28.3279,-3.77705 -43.43604,37.77049 -13.21968,3.77705 -20.77377,-3.77705 -32.10491,20.77377 h -13.21968 l -26.43934,7.5541 -37.77049,-3.77705 -16.99672,-11.33115 -11.33115,3.77705 5.66557,11.33115 -5.66557,5.66557 v 16.99668 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 788.4590199999994,
+        "minY": 916.8786900000002,
+        "maxX": 1064.1835999999996,
+        "maxY": 1056.6295000000002,
+        "centerX": 926.3213099999996,
+        "centerY": 986.7540950000002,
+        "width": 275.7245800000002,
+        "height": 139.75081
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon464",
+      "d": "m 1151.0557,979.2 v 124.6426 H 998.08525 l 7.55405,-45.3246 -11.3311,-9.4426 -1.88853,-22.6623 9.44263,-16.9967 11.3311,-28.32787 16.9968,-15.1082 18.8852,-3.77705 15.1082,-9.44262 39.659,-1.88853 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 992.41967,
+        "minY": 950.87213,
+        "maxX": 1151.0557,
+        "maxY": 1103.8426,
+        "centerX": 1071.737685,
+        "centerY": 1027.3573649999998,
+        "width": 158.6360299999999,
+        "height": 152.97046999999998
+      },
+      "layer": "Land"
+    },
+    {
+      "id": "polygon140-3",
+      "d": "m 281.00391,386.39062 -12.28516,7.67774 -1.64844,11.53711 a 3.6584793,3.6584793 0 0 1 -1.33593,2.33984 l -17.35157,13.87696 1.56446,17.19531 13.80859,10.35742 a 3.6584793,3.6584793 0 0 1 1.46289,2.92578 v 5.66602 a 3.6584793,3.6584793 0 0 1 -1.46289,2.92578 l -13.64648,10.23437 v 3.08789 l 8.83007,2.94336 a 3.6584793,3.6584793 0 0 1 2.37305,2.50782 l 5.66602,20.77343 a 3.6584793,3.6584793 0 0 1 -0.13282,2.32227 l -7.55468,18.88476 a 3.6584793,3.6584793 0 0 1 -3.39649,2.29883 h -4.60156 l -9.21875,5.86719 a 3.6584793,3.6584793 0 0 1 0.29492,0.65039 l 3.77539,11.33008 a 3.6584793,3.6584793 0 0 1 -2.64844,4.7207 l -21.27734,4.91016 0.96484,6.7539 h 2.49414 a 3.6584793,3.6584793 0 0 1 1.63477,0.38672 l 15.10938,7.55274 a 3.6584793,3.6584793 0 0 1 1.63671,1.63672 l 5.66407,11.33203 a 3.6584793,3.6584793 0 0 1 -3.72461,5.26367 l -13.85547,-1.73047 -17.80078,10.67969 a 3.6584793,3.6584793 0 0 1 -0.72657,0.33398 l -6.43554,2.14453 1.86523,0.1875 a 3.6584793,3.6584793 0 0 1 0.6875,0.13672 l 16.79297,5.03906 6.00977,-6.00976 a 3.6584793,3.6584793 0 0 1 3.63672,-0.91797 l 18.50781,5.55273 24.1582,1.85938 a 3.6584793,3.6584793 0 0 1 0.54102,0.082 l 23.69336,5.46875 8.5664,-2.14258 a 3.6584793,3.6584793 0 0 1 -1.54883,-6.24609 l 19.91602,-18.10352 3.33789,-15.02343 -1.19336,-4.76563 -7.72851,-2.57617 -4.17774,2.7832 a 3.6584793,3.6584793 0 0 1 -3.66602,0.22852 l -3.77539,-1.88867 a 3.6584793,3.6584793 0 0 1 -1.29101,-5.4668 l 5.02539,-6.70117 1.75195,-22.75391 -3.37109,-10.10937 -9.12109,-12.76954 a 3.6584793,3.6584793 0 0 1 -0.68165,-2.12695 v -24.09961 l -3.25976,-13.03906 -5.55859,-2.7793 -10.78711,-1.79882 a 3.6584793,3.6584793 0 0 1 0.084,-7.22852 l 12.52734,-1.79102 11.81641,-6.75 8.59766,-13.76172 1.10937,-5.54687 -20.56445,-6.32813 -10.47852,1.7461 a 3.6584793,3.6584793 0 0 1 -4.07226,-4.76367 l 3.77734,-11.33008 a 3.6584793,3.6584793 0 0 1 2.0293,-2.20508 l 11.55078,-4.95117 0.5918,-2.36328 z",
+      "strokeColor": "#1c14c9",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 207.17968999999988,
+        "minY": 386.39062,
+        "maxX": 333.3437499999999,
+        "maxY": 607.1757499999999,
+        "centerX": 270.26171999999985,
+        "centerY": 496.78318499999995,
+        "width": 126.16406,
+        "height": 220.78512999999987
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon186-7",
+      "d": "m 1022.9043,51.824219 -8.3945,15.109375 a 3.6676615,3.6676615 0 0 1 -5.0918,1.363281 l -6.9883,-4.191406 -21.55861,21.558593 -1.78906,25.076168 a 3.6676615,3.6676615 0 0 1 -0.51367,1.625 l -5.66602,9.44141 a 3.6676615,3.6676615 0 0 1 -6.8125,-1.88672 V 93.859375 l -5.52343,-2.761719 -2.43946,7.320313 a 3.6676615,3.6676615 0 0 1 -0.69336,1.226562 l -11.0039,12.839849 -12.41797,26.60546 5.26367,17.54688 a 3.6676615,3.6676615 0 0 1 -2.50391,4.58008 l -13.21875,3.77734 a 3.6676615,3.6676615 0 0 1 -2.16796,-0.0469 l -16.99805,-5.66602 a 3.6676615,3.6676615 0 0 1 -1.4336,-0.88477 l -3.77734,-3.77734 a 3.6676615,3.6676615 0 0 1 -0.26953,-4.88476 l 5.36133,-6.70313 -10.96289,-9.59375 -7.55274,2.1582 9.62696,27.27539 10.31445,6.87696 a 3.6676615,3.6676615 0 0 1 1.63281,3.05078 v 15.10937 a 3.6676615,3.6676615 0 0 1 -4.82812,3.47852 l -9.88867,-3.29688 -5.30079,2.65039 -18.37109,28.39063 19.92578,14.94531 a 3.6676615,3.6676615 0 0 1 1.27734,4.09375 L 886.36328,249.5 a 3.6676615,3.6676615 0 0 1 -1.5918,1.98438 l -9.4414,5.66601 a 3.6676615,3.6676615 0 0 1 -3.37696,0.20703 l -29.89648,-13.28711 -2.36719,10.6543 7.67188,7.66992 12.79297,7.3125 a 3.6676615,3.6676615 0 0 1 1.23047,5.21875 l -3.77735,5.66602 a 3.6676615,3.6676615 0 0 1 -3.8457,1.54492 l -33.99219,-7.55469 a 3.6676615,3.6676615 0 0 1 -2.44141,-1.85351 l -15.10937,-28.32813 a 3.6676615,3.6676615 0 0 1 -0.43164,-1.72656 V 227.94336 L 781.15234,217.625 a 3.6676615,3.6676615 0 0 1 -1.76367,-1.91797 l -3.77734,-9.44141 a 3.6676615,3.6676615 0 0 1 3.51562,-5.02734 l 61.53125,1.86524 20.03125,-8.34766 3.14844,-20.4668 -9.2793,-7.73047 -66.49023,-25.85742 -21.66797,3.60938 a 3.6676615,3.6676615 0 0 1 -3.19727,-1.02344 l -5.30468,-5.30469 -4.53516,3.39844 -16.65625,24.06445 a 3.6676615,3.6676615 0 0 1 -6.06641,-0.0527 l -3.77734,-5.66602 a 3.6676615,3.6676615 0 0 1 -0.22851,-3.67578 l 2.32812,-4.6582 -13.18945,-8.79492 -12.66992,1.4082 -1.63868,19.65625 a 3.6676615,3.6676615 0 0 1 -3.39257,3.35351 l -26.43946,1.88672 a 3.6676615,3.6676615 0 0 1 -2.69726,-0.91796 l -13.6211,-12.10547 -3.66601,6.41992 23.74218,16.95898 a 3.6676615,3.6676615 0 0 1 1.48633,2.38086 l 10.90039,65.40235 8.74805,1.45898 a 3.6676615,3.6676615 0 0 1 2.875,2.45703 l 7.55273,22.66211 a 3.6676615,3.6676615 0 0 1 -2.875,4.77734 l -9.42578,1.57227 -12.40625,26.57813 a 3.6676615,3.6676615 0 0 1 -0.64062,0.95117 l -25.12109,26.91601 3.22851,14.5293 5.35938,8.93359 a 3.6676615,3.6676615 0 0 1 0.48046,2.44532 l -3.6875,23.96875 1.39649,8.3789 12.77539,3.19336 a 3.6676615,3.6676615 0 0 1 1.05469,0.44922 l 13.67382,8.54688 34.07032,-10.76172 33.80468,-15.02344 a 3.6676615,3.6676615 0 0 1 5.10743,2.74805 l 1.43945,8.63281 12.39453,1.55078 a 3.6676615,3.6676615 0 0 1 2.13867,1.04492 l 5.66602,5.66602 a 3.6676615,3.6676615 0 0 1 -2.59375,6.26172 h -10.27735 l -12.87695,8.04687 -1.57812,7.88867 a 3.6676615,3.6676615 0 0 1 -3.90039,2.93555 l -22.28125,-1.85742 -27.89063,3.48633 -2.89648,5.79882 a 3.6676615,3.6676615 0 0 1 -1.64063,1.64063 l -4.27539,2.13867 3.63867,7.27539 6.86133,5.14649 a 3.6676615,3.6676615 0 0 1 1.4375,2.47851 l 1.78125,14.24805 7.07422,10.61133 a 3.6676615,3.6676615 0 0 1 -1.41016,5.31445 l -7.55468,3.77734 a 3.6676615,3.6676615 0 0 1 -2.16016,0.35157 L 691.625,482.37109 a 3.6676615,3.6676615 0 0 1 -2.24023,-1.21484 l -10.77149,-12.30859 -15.13281,13.61718 -3.34961,23.45508 12.11133,13.83985 a 3.6676615,3.6676615 0 0 1 0.83593,1.69726 l 3.08204,15.40235 7.82812,-1.30274 a 3.6676615,3.6676615 0 0 1 3.19531,1.02344 l 9.44336,9.4414 a 3.6676615,3.6676615 0 0 1 1.04493,3.04883 l -3.77735,30.2168 a 3.6676615,3.6676615 0 0 1 -1.29101,2.36133 l -11.33204,9.44336 a 3.6676615,3.6676615 0 0 1 -1.58007,0.76953 l -26.43946,5.66406 a 3.6676615,3.6676615 0 0 1 -2.4082,-0.30664 l -6.19336,-3.09766 -25.05273,8.35157 -3.2461,11.36132 a 3.6676615,3.6676615 0 0 1 -0.93164,1.58594 l -6.23437,6.23242 5.26367,33.33399 4.68945,7.8125 11.43555,4.90234 h 14.35742 a 3.6676615,3.6676615 0 0 1 2.03516,0.61719 l 3.80273,2.53711 14.35938,-7.97852 5.19726,-6.92773 a 3.6676615,3.6676615 0 0 1 3.65235,-1.39453 l 9.4414,1.88867 a 3.6676615,3.6676615 0 0 1 1.62891,0.77734 l 9.84179,8.20118 10.88868,-3.11133 9.02929,-5.41602 a 3.6676615,3.6676615 0 0 1 4.08594,0.21094 l 7.55469,5.66406 a 3.6676615,3.6676615 0 0 1 1.20508,1.57227 l 3.21289,8.0332 25.04297,10.73242 a 3.6676615,3.6676615 0 0 1 2.05468,2.27735 l 9.44336,30.21484 a 3.6676615,3.6676615 0 0 1 0.11719,1.69727 l -1.25977,7.56445 11.31641,1.41406 a 3.6676615,3.6676615 0 0 1 3.08203,2.67383 l 5.20899,19.09375 15.4082,6.84765 a 3.6676615,3.6676615 0 0 1 2.12695,3.95508 l -1.75,10.5 8.27344,28.13477 15.57617,-2.83399 14.33985,-34.05078 a 3.6676615,3.6676615 0 0 1 2.55468,-2.15039 l 24.55078,-5.66601 a 3.6676615,3.6676615 0 0 1 3.41797,0.98047 l 3.77735,3.77734 a 3.6676615,3.6676615 0 0 1 0,5.1875 l -0.61524,0.61523 6.375,4.24805 19.31836,-3.51172 a 3.6676615,3.6676615 0 0 1 3.25,1.01563 l 3.77539,3.77734 a 3.6676615,3.6676615 0 0 1 -1.43359,6.07031 l -10.00195,3.33399 -4.84571,8.48242 13.28711,5.9043 a 3.6676615,3.6676615 0 0 1 2.17969,3.35156 v 6.80078 l 10.85742,3.61914 2.72461,-9.53906 a 3.6676615,3.6676615 0 0 1 2.92188,-2.60938 l 9.88086,-1.64648 4.78515,-6.37891 a 3.6676615,3.6676615 0 0 1 1.87891,-1.31054 l 15.68945,-4.70704 -0.48047,-2.40039 -18.93164,4.73438 a 3.6676615,3.6676615 0 0 1 -3.48242,-0.96484 l -16.99609,-16.9961 a 3.6676615,3.6676615 0 0 1 0.34179,-5.48828 l 33.99219,-26.43945 a 3.6676615,3.6676615 0 0 1 0.44727,-0.29883 l 43.4375,-24.55078 a 3.6676615,3.6676615 0 0 1 5.2832,2.0332 l 1.88867,5.66406 a 3.6676615,3.6676615 0 0 1 -1.10937,3.95899 l -22.35157,18.91406 3.36328,6.72461 h 3.39844 a 3.6676615,3.6676615 0 0 1 3.42383,4.98437 l -9.44141,24.55079 a 3.6676615,3.6676615 0 0 1 -4.3125,2.24218 l -4.26171,-1.0664 -0.0977,0.29492 10.67773,10.67773 19.45313,1.76758 a 3.6676615,3.6676615 0 0 1 1.20508,0.32227 l 48.63285,22.44726 24.039,3.69727 a 3.6676615,3.6676615 0 0 1 2.4942,1.59179 l 11.33,16.99805 a 3.6676615,3.6676615 0 0 1 0.461,3.08789 l -4.9492,16.4961 31.9394,25.21484 7.2715,-4.36328 a 3.6676615,3.6676615 0 0 1 2.6816,-0.43555 l 16.3008,3.62305 L 1147.3887,876 V 671.36914 269.11328 51.824219 Z",
+      "strokeColor": "#fdcadd",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 609.18555,
+        "minY": 51.824219,
+        "maxX": 1147.3887,
+        "maxY": 878.4374999999998,
+        "centerX": 878.2871250000001,
+        "centerY": 465.1308594999999,
+        "width": 538.2031499999999,
+        "height": 826.6132809999998
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon86-7",
+      "d": "m 660.05664,516.97266 1.71094,10.26757 a 3.6668739,3.6668739 0 0 1 -0.33789,2.24024 l -7.55274,15.10742 a 3.6668739,3.6668739 0 0 1 -2.27148,1.88672 l -11.36133,3.24609 -5.05469,15.16407 a 3.6668739,3.6668739 0 0 1 -2.875,2.45703 l -11.33007,1.88867 a 3.6668739,3.6668739 0 0 1 -4.1836,-2.82227 l -3.08203,-13.87304 -18.13477,1.51172 -12.26757,12.26953 a 3.6668739,3.6668739 0 0 1 -2.03711,1.03125 l -24.55078,3.77734 a 3.6668739,3.6668739 0 0 1 -1.01172,0.0156 l -15.10938,-1.88867 a 3.6668739,3.6668739 0 0 1 -3.17383,-4.15625 l 1.36914,-9.59179 -8.23632,-1.17774 -25.29102,16.25977 a 3.6668739,3.6668739 0 0 1 -2.70117,0.51172 l -9.44336,-1.88868 a 3.6668739,3.6668739 0 0 1 -2.87695,-2.87695 l -1.61329,-8.07031 -6.43359,-4.82422 a 3.6668739,3.6668739 0 0 1 -1.4668,-2.93359 v -5.21485 l -3.04101,-12.16601 -13.4043,-1.3418 -0.57422,1.72656 3.39063,10.16992 a 3.6668739,3.6668739 0 0 1 0.15039,1.67774 l -1.85156,12.96289 v 5.40625 a 3.6668739,3.6668739 0 0 1 -2.17774,3.34961 l -16.99609,7.55273 a 3.6668739,3.6668739 0 0 1 -4.9668,-2.18945 l -1.25195,-3.75586 -4.28516,-1.07031 -3.83594,1.91797 1.33985,6.69531 a 3.6668739,3.6668739 0 0 1 0.0215,1.32227 l -3.77734,22.6621 a 3.6668739,3.6668739 0 0 1 -0.80078,1.74414 l -9.44336,11.33204 a 3.6668739,3.6668739 0 0 1 -3.53516,1.24804 l -6.45312,-1.29101 -2.56446,6.41406 -5.61132,20.57422 a 3.6668739,3.6668739 0 0 1 -0.94532,1.62695 l -2.41797,2.41992 3.4336,18.88282 a 3.6668739,3.6668739 0 0 1 -1.01563,3.25 l -8.57812,8.57617 -1.47852,10.34375 12.11328,13.8418 a 3.6668739,3.6668739 0 0 1 0.71875,1.2539 l 3.77735,11.33203 a 3.6668739,3.6668739 0 0 1 -0.0332,2.41407 l -6.02734,16.57617 18.29883,2.81445 4.35351,-4.35156 a 3.6668739,3.6668739 0 0 1 3.11133,-1.03711 l 13.21875,1.88867 a 3.6668739,3.6668739 0 0 1 2.53125,1.5957 l 3.1875,4.78125 14.72461,6.54297 4.31641,-1.43945 a 3.6668739,3.6668739 0 0 1 2.80078,0.19922 l 6.4707,3.23633 30.91211,-5.45508 a 3.6668739,3.6668739 0 0 1 2.27539,0.33203 l 0.42383,0.21289 -1.84375,-7.37695 a 3.6668739,3.6668739 0 0 1 3.55664,-4.55469 h 9.8125 l 8.38867,-8.39063 -7.61523,-15.23242 -13.76172,-5.16015 a 3.6668739,3.6668739 0 0 1 -2.23828,-2.42579 l -7.55274,-26.43945 a 3.6668739,3.6668739 0 0 1 0.2461,-2.64844 l 3.77734,-7.55273 a 3.6668739,3.6668739 0 0 1 3.58399,-2.01367 l 21.63672,1.80468 17.96484,-8.98437 a 3.6668739,3.6668739 0 0 1 2.04492,-0.36523 l 16.99609,1.88867 a 3.6668739,3.6668739 0 0 1 1.98243,0.86133 l 24.33007,20.85351 3.35547,-2.23633 a 3.6668739,3.6668739 0 0 1 4.62696,0.45899 l 12.5,12.50195 5.2539,1.3125 5.24805,-2.62305 5.26758,-10.53711 -9.64453,-4.13281 a 3.6668739,3.6668739 0 0 1 -1.70118,-1.48437 l -5.66601,-9.44336 a 3.6668739,3.6668739 0 0 1 -0.47656,-1.31446 l -5.66407,-35.88281 a 3.6668739,3.6668739 0 0 1 1.0293,-3.16406 l 6.88086,-6.88086 3.51562,-12.30859 a 3.6668739,3.6668739 0 0 1 2.36524,-2.47071 l 28.32812,-9.4414 a 3.6668739,3.6668739 0 0 1 2.79883,0.19922 l 6.4043,3.20117 24.29883,-5.20703 9.52344,-7.9375 3.375,-27.00196 -6.83985,-6.83789 -9.46875,1.57813 a 3.6668739,3.6668739 0 0 1 -4.19922,-2.89844 l -3.58594,-17.92773 z",
+      "strokeColor": "#f7e90c",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 390.07033000000035,
+        "minY": 516.97266,
+        "maxX": 690.1719100000005,
+        "maxY": 744.9785000000003,
+        "centerX": 540.1211200000005,
+        "centerY": 630.9755800000001,
+        "width": 300.1015800000001,
+        "height": 228.00584000000026
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon106-8",
+      "d": "m 261.44922,638.68555 v 25.13086 a 3.6671703,3.6671703 0 0 1 -4.55469,3.55664 l -22.66211,-5.66602 a 3.6671703,3.6671703 0 0 1 -2.51562,-2.19531 l -2.9043,-7.25977 -32.80664,-1.64062 -2.19336,5.48242 4.0957,8.18945 9.48633,1.58008 a 3.6671703,3.6671703 0 0 1 2.07813,1.11524 l 26.43945,28.32812 a 3.6671703,3.6671703 0 0 1 0.9375,3.10547 l -1.79492,10.77148 1.66015,11.62696 8.77735,10.5332 a 3.6671703,3.6671703 0 0 1 0.625,3.61523 l -12.67383,34.39258 1.17969,2.35742 a 3.6671703,3.6671703 0 0 1 -0.22852,3.67383 l -18.12695,27.19336 1.47461,11.8086 17.07031,8.5332 17.00195,7.73047 0.60157,-1.80274 a 3.6671703,3.6671703 0 0 1 4.92382,-2.21093 l 13.22071,5.66601 a 3.6671703,3.6671703 0 0 1 0.90234,0.55469 l 20.82031,17.34961 3.38086,-1.69141 v -10.95312 a 3.6671703,3.6671703 0 0 1 1.91016,-3.21875 l 20.77539,-11.33203 a 3.6671703,3.6671703 0 0 1 3.88672,0.23437 l 12.88086,9.20313 21.42578,8.92578 17.47265,-1.7461 17.9043,-6.88672 -9.80664,-7.35546 a 3.6671703,3.6671703 0 0 1 -1.4375,-3.38868 l 1.66602,-13.32812 -4.39844,-4.39649 a 3.6671703,3.6671703 0 0 1 0.95312,-5.87304 l 8.05274,-4.02735 -4.02539,-8.04882 a 3.6671703,3.6671703 0 0 1 0.3457,-3.83985 l 4.2207,-5.6289 -3.97851,-6.95899 -7.9375,7.9375 a 3.6671703,3.6671703 0 0 1 -5.18555,-0.002 l -5.66406,-5.66602 a 3.6671703,3.6671703 0 0 1 -0.0859,-5.09375 l 25.79102,-27.63281 1.66015,-6.63477 a 3.6671703,3.6671703 0 0 1 0.11133,-0.36328 l 7.11524,-19.57422 -3.14063,-9.41992 -12.73242,-14.55273 a 3.6671703,3.6671703 0 0 1 -0.87109,-2.9336 l 1.54882,-10.83789 -22.50195,-13.84765 a 3.6671703,3.6671703 0 0 1 -0.66992,-0.5293 l -14.41406,-14.41211 -26.45899,-7.05664 -25.22265,6.30469 2.21679,5.54297 a 3.6671703,3.6671703 0 0 1 -4.12304,4.95703 l -9.38672,-1.87696 -11.27344,-1.8789 a 3.6671703,3.6671703 0 0 1 -2.875,-2.45703 l -3.19531,-9.5918 z",
+      "strokeColor": "#7dc0f7",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 193.81250000000003,
+        "minY": 638.68555,
+        "maxX": 399.31645000000003,
+        "maxY": 850.20508,
+        "centerX": 296.564475,
+        "centerY": 744.4453149999999,
+        "width": 205.50395,
+        "height": 211.51952999999992
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon100-2",
+      "d": "m 545.51367,658.13672 -17.91797,8.96094 a 3.6683081,3.6683081 0 0 1 -1.94531,0.37304 l -20.1875,-1.68164 -2.0293,4.0586 6.6543,23.28906 13.37695,5.01758 a 3.6683081,3.6683081 0 0 1 1.99414,1.79297 l 9.44141,18.88476 a 3.6683081,3.6683081 0 0 1 -0.6875,4.23438 l -11.33008,11.33007 a 3.6683081,3.6683081 0 0 1 -2.59375,1.07422 h -6.63476 l 2.63867,10.55274 a 3.6683081,3.6683081 0 0 1 -5.19922,4.16992 l -6.4707,-3.23633 -30.91016,5.45508 a 3.6683081,3.6683081 0 0 1 -2.27734,-0.33008 l -6.19532,-3.09765 -4.22461,1.4082 a 3.6683081,3.6683081 0 0 1 -2.65039,-0.12891 l -11.83789,-5.26172 v 7.33399 l 11.3711,6.5 a 3.6683081,3.6683081 0 0 1 1.23242,1.14844 l 7.55469,11.33203 a 3.6683081,3.6683081 0 0 1 0.22851,3.67578 l -2.76367,5.52539 4.27149,5.69531 5.51562,6.89453 5.98633,-3.5918 7.0957,-10.64648 a 3.6683081,3.6683081 0 0 1 1.89258,-1.44531 l 16.99609,-5.66406 a 3.6683081,3.6683081 0 0 1 1.61524,-0.15821 l 15.10937,1.88867 a 3.6683081,3.6683081 0 0 1 2.13867,1.04493 l 5.66602,5.66406 a 3.6683081,3.6683081 0 0 1 0.91992,3.64844 l -5.64258,18.80468 -1.56836,6.27149 1.86914,4.35937 4.14063,-9.31836 a 3.6683081,3.6683081 0 0 1 4.24023,-2.06836 l 7.55469,1.88868 a 3.6683081,3.6683081 0 0 1 2.7168,2.88281 l 5.4668,29.1582 31.12304,32.95508 40.23242,28.9668 -0.97656,-8.79297 a 3.6683081,3.6683081 0 0 1 4.16406,-4.03516 l 4.23047,0.60352 -7.64453,-9.82813 a 3.6683081,3.6683081 0 0 1 -0.53906,-0.96484 l -5.66602,-15.10938 a 3.6683081,3.6683081 0 0 1 0.57032,-3.57812 l 6.58593,-8.23242 -1.69531,-13.57227 a 3.6683081,3.6683081 0 0 1 0.1582,-1.61523 l 3.77735,-11.33008 a 3.6683081,3.6683081 0 0 1 3.48047,-2.50781 h 5.66406 a 3.6683081,3.6683081 0 0 1 2.03516,0.61523 l 3.89453,2.59766 5.65039,-2.82617 a 3.6683081,3.6683081 0 0 1 2.24414,-0.33594 l 33.32812,5.55273 6.69727,-1.33789 3.10351,-9.3125 a 3.6683081,3.6683081 0 0 1 2.76172,-2.4375 l 37.76953,-7.55469 a 3.6683081,3.6683081 0 0 1 0.71875,-0.0703 h 24.72071 l 6.86914,-8.24023 -7.95313,-17.4961 -10.16797,-5.08398 a 3.6683081,3.6683081 0 0 1 -1.97656,-2.67774 l -1.88867,-11.33203 a 3.6683081,3.6683081 0 0 1 1.97656,-3.88476 l 16.64649,-8.32227 -1.66211,-18.28125 a 3.6683081,3.6683081 0 0 1 0.0351,-0.93554 l 1.74414,-10.4668 -8.67968,-27.76953 -24.88477,-10.66602 a 3.6683081,3.6683081 0 0 1 -1.96094,-2.00976 l -3.39453,-8.48829 -4.75976,-3.56836 -7.32813,4.39649 a 3.6683081,3.6683081 0 0 1 -0.8789,0.38281 l -13.21875,3.77735 a 3.6683081,3.6683081 0 0 1 -3.35547,-0.70899 l -10.61719,-8.84766 -6.26172,-1.25195 -4.2793,5.70508 a 3.6683081,3.6683081 0 0 1 -1.15234,1.00586 l -16.99609,9.44336 a 3.6683081,3.6683081 0 0 1 -3.81641,-0.1543 l -4.74219,-3.16211 h -11.73047 l -6.53906,13.08008 a 3.6683081,3.6683081 0 0 1 -1.64062,1.64063 l -7.55469,3.77734 a 3.6683081,3.6683081 0 0 1 -2.5293,0.27734 l -7.55469,-1.88867 a 3.6683081,3.6683081 0 0 1 -1.70507,-0.96484 l -11.09375,-11.09375 -3.16407,2.10937 a 3.6683081,3.6683081 0 0 1 -4.41992,-0.26758 L 560.30664,659.7832 Z",
+      "strokeColor": "#f41a0e",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 446.52734000000015,
+        "minY": 658.13672,
+        "maxX": 763.3925800000006,
+        "maxY": 897.7480499999998,
+        "centerX": 604.9599600000004,
+        "centerY": 777.9423849999998,
+        "width": 316.8652400000005,
+        "height": 239.61132999999984
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon54-8",
+      "d": "m 507.43945,778.97852 -15.01562,5.0039 -6.85742,10.28711 a 3.6652115,3.6652115 0 0 1 -1.16407,1.10938 l -9.4414,5.66406 a 3.6652115,3.6652115 0 0 1 -4.7461,-0.85352 l -7.55468,-9.4414 a 3.6652115,3.6652115 0 0 1 -0.0703,-0.0899 l -4.84375,-6.45703 -22.07617,-4.73242 -2.6289,6.57422 a 3.6652115,3.6652115 0 0 1 -5.74805,1.45312 l -9.90039,-8.25195 -13.30469,3.32617 a 3.6652115,3.6652115 0 0 1 -1.49219,0.0606 l -9.13086,-1.52344 -2.9707,3.96094 4.65234,9.30469 a 3.6652115,3.6652115 0 0 1 -1.63867,4.91601 l -6.7832,3.39258 2.07031,2.07031 a 3.6652115,3.6652115 0 0 1 1.04492,3.04688 l -1.625,12.99609 11.52344,8.64258 18.70313,-10.20312 a 3.6652115,3.6652115 0 0 1 3.27343,-0.11915 l 20.77344,9.44336 a 3.6652115,3.6652115 0 0 1 1.98047,2.24219 l 9.23242,29.53906 16.54492,20.22461 a 3.6652115,3.6652115 0 0 1 0.75782,1.60157 l 1.73047,8.65625 14.01367,19.26953 27.34765,10.9375 a 3.6652115,3.6652115 0 0 1 1.91602,1.76367 l 9.14648,18.29297 25.95313,24.09765 a 3.6652115,3.6652115 0 0 1 1.04687,1.74219 l 7.55274,28.32813 a 3.6652115,3.6652115 0 0 1 -0.33789,2.72265 l -8.65821,15.58794 0.70704,2.1191 5.26367,1.0527 22.67773,-26.16599 4.71875,-14.1582 -11.61719,-11.61719 a 3.6652115,3.6652115 0 0 1 0.5586,-5.64062 l 11.33008,-7.55469 a 3.6652115,3.6652115 0 0 1 3.9746,-0.0586 l 14.21876,8.88671 h 2.83789 v -4.21679 l -46.08594,-44.24219 a 3.6652115,3.6652115 0 0 1 -0.53125,-4.64648 h -10.15039 a 3.6652115,3.6652115 0 0 1 -2.34571,-0.84961 l -22.6621,-18.88282 a 3.6652115,3.6652115 0 0 1 -1.14844,-1.71289 l -10.90625,-34.5332 -21.43946,-12.50586 a 3.6652115,3.6652115 0 0 1 -1.8125,-3.39453 l 1.88868,-30.2168 a 3.6652115,3.6652115 0 0 1 2.5,-3.24804 l 16.99609,-5.66602 a 3.6652115,3.6652115 0 0 1 1.75977,-0.13867 l 8.14843,1.35742 4.10742,-13.69531 -3.22851,-3.22852 z",
+      "strokeColor": "#0fe552",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 386.72463000000005,
+        "minY": 778.97852,
+        "maxX": 605.3847899999998,
+        "maxY": 1016.7363,
+        "centerX": 496.05470999999994,
+        "centerY": 897.8574100000001,
+        "width": 218.6601599999998,
+        "height": 237.75778000000003
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon46-7",
+      "d": "m 1077.8066,860.04492 -25.8984,18.99219 a 3.9599094,3.9599094 0 0 1 -3.3027,0.64844 l -6.8282,-1.70703 -57.80464,7.45898 a 3.9599094,3.9599094 0 0 1 -2.27735,-0.38672 l -9.27343,-4.63867 -3.75391,2.50391 a 3.9599094,3.9599094 0 0 1 -4.62891,-0.16993 l -15.49609,-12.05273 -36.92578,8.79102 -19.53516,15.98437 -10.97656,18.29492 a 3.9599094,3.9599094 0 0 1 -2.85938,1.88672 l -41.54687,5.66602 a 3.9599094,3.9599094 0 0 1 -3.33594,-1.125 l -3.07031,-3.07032 -17.92969,-5.3789 a 3.9599094,3.9599094 0 0 1 -1.95312,-1.31836 l -6.10352,-7.62891 -8.66016,1.44336 -11.89648,4.46094 1.58594,15.85351 a 3.9599094,3.9599094 0 0 1 -0.89844,2.92969 l -7.54883,9.0586 1.32227,1.98242 5.96094,1.6582 a 3.9599094,3.9599094 0 0 1 2.67187,2.49024 l 0.98437,2.77539 a 3.9599094,3.9599094 0 0 1 -0.46874,3.5664 l -7.9043,11.49805 -0.65235,3.25976 9.65821,-1.20703 a 3.9599094,3.9599094 0 0 1 4.44922,3.92969 v 4.73047 l 5.24804,10.49219 a 3.9599094,3.9599094 0 0 1 -0.74023,4.57031 l -4.50781,4.50977 v 12.90822 l 9.14453,4.5722 a 3.9599094,3.9599094 0 0 1 2.03515,2.4532 l 6.62305,23.1757 11.74219,-1.4687 a 3.9599094,3.9599094 0 0 1 4.44922,3.9297 v 5.8223 l 5.17578,-3.4493 a 3.9599094,3.9599094 0 0 1 3.44726,-0.4609 l 11.33204,3.7754 a 3.9599094,3.9599094 0 0 1 1.54687,0.9551 l 9.70898,9.707 16.19532,-4.416 3.29687,-16.4883 a 3.9599094,3.9599094 0 0 1 3.44531,-3.1582 l 16.9961,-1.8887 a 3.9599094,3.9599094 0 0 1 2.91211,0.8438 l 18.33203,14.6679 9.5,3.1661 23.58789,-6.7364 10.55078,-21.1074 a 3.9599094,3.9599094 0 0 1 4.79297,-1.9863 l 14.33789,4.7793 11.50195,-14.7852 a 3.9599094,3.9599094 0 0 1 4.37696,-1.3242 l 5.66599,1.8887 a 3.9599094,3.9599094 0 0 1 2.209,5.6797 l -8.85937,15.9433 1.65235,19.8106 10.05862,8.3847 a 3.9599094,3.9599094 0 0 1 1.3711,3.6914 l -6.7871,40.7149 h 144.3378 V 979.71484 884.29492 l -6.7226,1.1211 a 3.9599094,3.9599094 0 0 1 -1.5098,-0.041 l -15.4531,-3.43555 -8.0898,4.85352 a 3.9599094,3.9599094 0 0 1 -4.4903,-0.28711 z",
+      "strokeColor": "#f77925",
+      "fillColor": "none",
+      "transform": null,
+      "boundingBox": {
+        "minX": 776.88867,
+        "minY": 860.04492,
+        "maxX": 1147.5898000000002,
+        "maxY": 1100.3965,
+        "centerX": 962.2392350000001,
+        "centerY": 980.22071,
+        "width": 370.70113000000015,
+        "height": 240.35158
+      },
+      "layer": "Nations"
+    },
+    {
+      "id": "polygon10",
+      "d": "m 158,193 -6,1 2,-6 7,-3 1,-4 -14,-4 V 0 h 214 v 33 l -5,6 -14,5 -19,10 -4,10 -10,11 -1,9 -6,2 -11,25 -15,21 -8,2 -5,8 -6,-1 -22,13 h -38 l -27,27 v 16 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 148,
+        "minY": 0,
+        "maxX": 362,
+        "maxY": 197,
+        "centerX": 255,
+        "centerY": 98.5,
+        "width": 214,
+        "height": 197
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon72",
+      "d": "m 405,49 -4,-4 -4,3 -6,-1 4,-6 -1,-3 -10,-5 -2,7 -2,-7 -3,-2 -3,7 -3,-5 -5,9 v -9 h -4 V 0 h 178 l -5,9 -5,-3 -13,13 -1,14 -3,5 V 23 l -6,-3 -2,6 -6,7 -7,15 3,10 -7,2 -9,-3 -2,-2 4,-5 -8,-7 -7,2 6,17 6,4 v 8 l -6,-2 -4,2 -11,17 12,9 -2,6 -5,3 -18,-8 -2,9 5,5 7,4 -2,3 -18,-4 -8,-15 v -9 l -12,-6 -2,-5 33,1 12,-5 2,-13 -6,-5 -36,-14 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 362,
+        "minY": 0,
+        "maxX": 540,
+        "maxY": 122,
+        "centerX": 451,
+        "centerY": 61,
+        "width": 178,
+        "height": 122
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon320",
+      "d": "m 95,218 -1,-2 h 3 l 4,-4 h 9 l 9,5 1,10 h 10 v -4 l 8,-6 v -3 l -8,-6 -1,-11 10,-8 1,-7 8,-5 V 0 H 0 v 273 h 58 l 12,-12 -6,-11 3,-8 4,3 10,-11 -7,-6 6,-3 -2,-7 4,-1 7,3 h 5 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 148,
+        "maxY": 273,
+        "centerX": 74,
+        "centerY": 136.5,
+        "width": 148,
+        "height": 273
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon218",
+      "d": "m 373,229 -7,-1 -7,-8 h -48 l 3,-11 8,-3 6,-3 3,-10 -5,-10 -6,-1 1,-21 9,-15 13,-8 8,-10 -4,-7 2,-9 6,-8 7,3 6,1 4,12 -6,1 -7,15 -14,15 2,9 3,5 -2,13 1,6 8,2 8,5 19,-6 18,-8 1,6 8,1 3,3 h -6 l -8,5 -1,5 -12,-1 -16,2 -2,4 -4,2 3,6 4,3 1,8 4,6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 311,
+        "minY": 104,
+        "maxX": 414,
+        "maxY": 229,
+        "centerX": 362.5,
+        "centerY": 166.5,
+        "width": 103,
+        "height": 125
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon244",
+      "d": "m 109,246 -11,13 -11,-2 -17,4 -12,12 30,30 12,-12 12,-4 10,-6 8,1 -3,-6 -8,-4 h -3 l -1,-7 13,-3 -2,-6 -5,1 11,-7 h 3 l 4,-10 -3,-11 -6,-2 h -10 l -10,5 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 58,
+        "minY": 227,
+        "maxX": 139,
+        "maxY": 303,
+        "centerX": 98.5,
+        "centerY": 265,
+        "width": 81,
+        "height": 76
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon180",
+      "d": "m 173,301 -4,10 -16,4 2,5 -5,-1 -6,-1 -2,-6 -6,-2 v 16 l -12,-3 -2,-5 -20,-1 -14,-14 12,-12 10,1 10,3 4,-4 10,3 13,1 13,3 8,-2 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 88,
+        "minY": 291,
+        "maxX": 173,
+        "maxY": 326,
+        "centerX": 130.5,
+        "centerY": 308.5,
+        "width": 85,
+        "height": 35
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon290",
+      "d": "m 102,317 -2,5 3,6 6,1 14,15 -1,6 1,7 5,6 -7,19 1,2 -10,15 -11,-3 -5,1 -24,-13 -13,-3 -5,-6 -6,-1 -2,4 -7,-3 -6,6 2,3 -3,12 -2,10 -13,21 h -3 l -4,6 3,7 2,1 -3,9 1,4 -5,8 11,7 8,-1 6,7 1,9 3,6 v 5 l -4,1 -16,22 -17,2 V 273 h 58 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 0,
+        "minY": 273,
+        "maxX": 128,
+        "maxY": 520,
+        "centerX": 64,
+        "centerY": 396.5,
+        "width": 128,
+        "height": 247
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "path16-9",
+      "d": "m 374.83858,338.99008 c -28.16113,-2e-5 -50.99024,22.8291 -50.9902,50.99023 v 30.2168 l -1.8887,9.4414 -9.4414,15.10938 -13.2207,7.55469 -13.2188,1.88671 11.3301,1.88868 7.5547,3.77734 3.7773,15.10938 v 24.55078 l 9.4415,13.21875 3.7773,11.33203 -1.8887,24.55078 -5.664,7.55273 3.7754,1.88867 5.666,-3.77734 11.332,3.77734 1.8887,7.55469 -3.7774,16.9961 -20.7734,18.88671 13.2187,1.88672 -7.5546,3.77735 9.4433,9.44336 33.9942,-3.77735 13.2187,-18.88476 13.2207,-24.55078 v 5.66601 h 3.7774 l 7.5527,-9.44336 v -69.875 h 64.2109 l 5.6641,-24.55078 h -20.48226 v -34.16558 l -11.62124,-9.27192 -3.7774,-16.99609 7.5547,-11.33008 -3.7773,-11.33203 3.7773,-24.55078 7.5527,-13.21875 -1.8886,-11.33203 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 359.89807999999994,
+        "minY": 237.00965,
+        "maxX": 543.0836800000002,
+        "maxY": 514.6229299999999,
+        "centerX": 451.49088000000006,
+        "centerY": 375.8162899999999,
+        "width": 183.18560000000025,
+        "height": 277.6132799999999
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon212",
+      "d": "m 233,415 5,16 h -14 l -3,3 -10,2 2,15 5,3 v 4 l -4,3 -8,1 -1,4 h -51 l -6,-3 -6,6 h -27 l -5,-8 14,-17 7,-5 15,-1 11,-6 1,-7 v -7 l 11,-6 7,5 12,5 10,-1 13,-5 11,-6 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 110,
+        "minY": 410,
+        "maxX": 238,
+        "maxY": 469,
+        "centerX": 174,
+        "centerY": 439.5,
+        "width": 128,
+        "height": 59
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon540",
+      "d": "m 37,490 10,-2 5,1 8,-3 18,5 5,3 3,-9 4,-2 8,1 9,-10 6,-1 2,-4 h 27 l 8,2 4,-5 h 51 l 1,10 -2,9 4,7 h 4 l 5,-3 1,1 v 26 l -6,1 -4,4 -5,-1 -24,-5 -10,3 -19,-7 -33,-2 -11,2 -7,4 -10,-3 -5,6 -5,2 -11,-4 v -5 l -4,3 -18,-5 -4,-7 -1,-8 -4,1 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 37,
+        "minY": 466,
+        "maxX": 218,
+        "maxY": 521,
+        "centerX": 127.5,
+        "centerY": 493.5,
+        "width": 181,
+        "height": 55
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon498",
+      "d": "m 276,510 h -13 l -6,-3 -5,1 -5,5 -11,11 -3,-1 -9,4 -1,-9 -5,-2 v -26 h 2 l 4,-22 -2,-10 h -4 v -4 l 5,-4 2,-6 v -8 l -1,-5 h 14 l 9,11 1,5 8,11 15,6 5,10 14,13 4,15 -5,9 h -4 v -3 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 218,
+        "minY": 431,
+        "maxX": 294,
+        "maxY": 527,
+        "centerX": 256,
+        "centerY": 479,
+        "width": 76,
+        "height": 96
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon28",
+      "d": "m 278,443 -6,-19 -12,-7 1,-16 9,-3 6,1 -1,4 3,7 4,-9 4,1 3,16 17,18 25,18 v 23 l 4,3 h -13 l -25,-24 3,-3 h -10 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 260,
+        "minY": 398,
+        "maxX": 335,
+        "maxY": 480,
+        "centerX": 297.5,
+        "centerY": 439,
+        "width": 75,
+        "height": 82
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon66",
+      "d": "m 448.78212,437.02176 v 34.16558 l 20.51671,1.6e-4 28.32812,-1.88867 5.66407,-3.77735 1.88867,24.55079 -1.88867,11.33007 -16.9961,13.22071 -5.66601,15.10742 3.77734,15.10937 -22.66211,13.21875 1.88867,-13.21875 -3.77734,-11.33203 1.88867,-5.66601 -1.88867,-13.21875 3.77734,-18.88477 h -64.20898 v 69.875 l 28.32617,1.88867 7.55469,-3.77734 7.55469,1.88867 1.88867,5.66602 16.99609,-7.55469 22.66211,-13.21875 7.55469,5.66406 1.88867,9.44336 9.44141,1.88867 26.43945,-16.99609 13.2207,1.88672 -1.88867,13.2207 15.10742,1.88867 24.55078,-3.77734 13.22071,-13.21875 22.66211,-1.88867 3.77734,16.99609 11.33008,-1.88867 5.66601,-16.99609 13.22071,-3.77735 7.55273,-15.10937 -1.88867,-11.33008 v -9.44336 l 3.77734,-26.43945 18.88477,-16.9961 h -90.64844 l 1.88867,16.9961 -13.2207,28.32812 -20.77344,1.88867 -9.4414,16.9961 -13.22071,-1.88868 -5.66601,-18.88476 1.88867,9.44336 -5.66406,3.77734 1.88671,7.55274 -13.21874,11.33203 -9.44336,-9.44336 -5.66407,-15.10742 9.44141,-1.88867 1.88867,-5.66602 11.33203,-1.88867 7.55274,1.88867 v -5.66602 l 5.66601,-7.55273 -11.33008,-22.66211 1.88868,-11.33203 -3.77735,-28.32813 -9.44336,-18.88476 -7.55468,15.10742 -37.76954,16.99805 -9.44336,-1.88867 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 444.5254,
+        "minY": 384.0256199999999,
+        "maxX": 724.0254,
+        "maxY": 542.6623400000001,
+        "centerX": 584.2754,
+        "centerY": 463.34398,
+        "width": 279.5,
+        "height": 158.6367200000002
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon238",
+      "d": "m 285,513 v -2 h 4 l 1,3 5,1 13,-15 3,-9 -7,-7 6,-4 8,5 h 4 v -5 h 13 l 4,7 7,11 h 4 l -3,2 5,8 15,-1 4,4 -16,-1 -5,4 7,7 2,12 1,-5 7,8 1,-5 8,6 7,7 -3,3 3,3 17,4 v 5 H 232 l 2,-8 -2,-7 -7,-9 6,-4 5,-7 11,-11 11,6 15,12 8,1 1,-11 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 225,
+        "minY": 480,
+        "maxX": 400,
+        "maxY": 559,
+        "centerX": 312.5,
+        "centerY": 519.5,
+        "width": 175,
+        "height": 79
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon166",
+      "d": "m 414,552 2,-3 19,-19 6,-4 6,2 6,6 11,-3 2,-10 9,-1 10,8 6,2 14,-4 6,-12 9,3 7,-9 3,1 -5,9 1,12 6,5 -4,24 H 400 v -5 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": "matrix(1.8885246,0,0,1.8885246,0.9442593,48.157374)",
+      "boundingBox": {
+        "minX": 400,
+        "minY": 508,
+        "maxX": 532,
+        "maxY": 559,
+        "centerX": 466,
+        "centerY": 533.5,
+        "width": 132,
+        "height": 51
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon252",
+      "d": "m 484.38672,544.16797 a 0.67309076,0.67309076 0 0 0 -0.32031,0.0898 l -22.66211,13.22071 a 0.67309076,0.67309076 0 0 0 -0.33399,0.58203 v 5.66406 a 0.67309076,0.67309076 0 0 0 1.01367,0.58203 l 22.66211,-13.21875 a 0.67309076,0.67309076 0 0 0 0.33399,-0.58203 v -5.66602 a 0.67309076,0.67309076 0 0 0 -0.69336,-0.67187 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 461.07031000000006,
+        "minY": 544.16793,
+        "maxX": 485.08008000000007,
+        "maxY": 564.3066,
+        "centerX": 473.07519500000006,
+        "centerY": 554.237265,
+        "width": 24.009770000000003,
+        "height": 20.138670000000047
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon158",
+      "d": "m 503.2832,500.68359 a 0.72101739,0.72101739 0 0 0 -0.43359,0.15235 l -16.99805,13.21875 a 0.72101739,0.72101739 0 0 0 -0.23242,0.31445 l -5.66406,15.10742 a 0.72101739,0.72101739 0 0 0 0.67578,0.97461 h 22.66211 a 0.72101739,0.72101739 0 0 0 0.67578,-0.97461 l -5.36719,-14.3125 8.60938,-1.72265 a 0.72101739,0.72101739 0 0 0 0.54297,-0.47852 l 1.88867,-5.66601 a 0.72101739,0.72101739 0 0 0 -0.17383,-0.73829 l -5.66602,-5.66406 a 0.72101739,0.72101739 0 0 0 -0.51953,-0.21094 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 479.95508000000007,
+        "minY": 500.68358999999987,
+        "maxX": 509.64258,
+        "maxY": 530.4511699999999,
+        "centerX": 494.79883000000007,
+        "centerY": 515.56738,
+        "width": 29.687499999999943,
+        "height": 29.767580000000066
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "polygon148",
+      "d": "m 831.88672,912.36719 a 0.73410127,0.73410127 0 0 0 -0.50977,0.21484 l -9.30859,9.30859 -26.25586,7.50391 a 0.73410127,0.73410127 0 0 0 -0.31836,0.18555 l -13.39453,13.38281 a 0.73410127,0.73410127 0 0 0 -0.17188,0.76563 l 0.98438,2.77539 a 0.73410127,0.73410127 0 0 0 0.73047,0.48632 l 19.96484,-1.05078 a 0.73410127,0.73410127 0 0 0 0.27735,-0.0703 l 43.43554,-20.77344 a 0.73410127,0.73410127 0 0 0 -0.23437,-1.39258 l -15.47852,-1.7207 4.58399,-4.58398 a 0.73410127,0.73410127 0 0 0 0,-1.03906 l -3.77539,-3.77735 a 0.73410127,0.73410127 0 0 0 -0.5293,-0.21484 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 781.92773,
+        "minY": 912.36719,
+        "maxX": 847.3203099999998,
+        "maxY": 946.99023,
+        "centerX": 814.62402,
+        "centerY": 929.67871,
+        "width": 65.39257999999984,
+        "height": 34.623039999999946
+      },
+      "layer": "Seas"
+    },
+    {
+      "id": "path3810",
+      "d": "m 994.30859,711.0293 -43.43554,24.55078 -33.99414,26.43945 16.99609,16.99609 22.66211,-5.66406 1.88867,9.44141 -18.88476,5.66601 -5.66602,7.55469 -11.33008,1.88867 -3.77734,13.21875 -16.99805,-5.66601 v -9.44141 l -16.99609,-7.55469 7.55468,-13.21875 11.33008,-3.77734 -3.77539,-3.77734 -20.77539,3.77734 -11.33008,-7.55469 3.77735,-3.77734 -3.77735,-3.77734 -24.55078,5.66601 -15.10937,35.88281 1.88867,13.21875 -13.21875,9.44336 -3.77734,26.43946 -1.88868,5.66406 -7.55468,1.88867 -5.66407,26.43945 7.55274,16.99805 7.55469,9.44141 18.88476,5.66601 -9.44141,9.44336 -26.43945,7.55274 -13.39453,13.38476 -7.37891,-2.05273 -3.77734,-5.66602 -15.10937,-3.77734 -15.10743,7.55469 h -22.66211 l 11.33008,11.33203 -9.4414,-1.88867 1.88867,11.33007 -5.66602,1.88867 -15.10937,-13.21874 -5.66406,11.33007 18.88476,20.77344 -13.2207,-5.66406 -1.88672,5.66406 28.32617,28.32811 1.88867,13.2207 -16.99609,-5.666 1.88867,15.1074 -13.2207,-1.8886 9.44336,32.1054 13.2207,13.2207 7.55273,3.7754 47.21289,1.8887 7.55469,3.7773 35.88281,-35.8808 v -13.2207 l -15.10937,1.8886 -7.55273,-26.4394 -11.33204,-5.666 v -16.99612 l 5.66602,-5.66602 -5.66602,-11.33008 v -5.66601 l -15.10742,1.88867 1.88867,-9.44336 8.36329,-12.16797 19.96289,-1.05078 43.4375,-20.77344 -16.99805,-1.88867 5.66602,-5.66601 41.54687,-5.66602 11.33203,-18.88477 20.77344,-16.99609 39.66016,-9.44336 16.99609,13.21875 5.66601,-3.77539 11.33008,5.66406 58.54494,-7.55273 7.5547,1.88867 28.3261,-20.77539 5.6661,-18.88476 -11.3301,-16.9961 -24.5508,-3.77734 -49.10156,-22.66211 -20.77539,-1.88867 -13.21875,-13.22071 1.88867,-5.66406 7.55469,1.88867 9.4414,-24.55078 h -5.66601 l -5.66407,-11.33203 24.55079,-20.77344 z",
+      "strokeColor": "#ffffff",
+      "fillColor": "#214478",
+      "transform": null,
+      "boundingBox": {
+        "minX": 695.9218799999999,
+        "minY": 711.0293,
+        "maxX": 1083.0684,
+        "maxY": 1084.957,
+        "centerX": 889.49514,
+        "centerY": 897.99315,
+        "width": 387.14652000000024,
+        "height": 373.9277000000001
+      },
+      "layer": "Seas"
+    }
+  ]
+}

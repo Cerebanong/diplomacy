@@ -1,4 +1,17 @@
-import type { GameState } from '@diplomacy/shared';
+import { useState, useRef, useMemo } from 'react';
+import type { GameState, PowerId, Territory } from '@diplomacy/shared';
+import {
+  CLASSIC_MAP_DATA,
+  CLASSIC_TERRITORY_VISUALS,
+  CLASSIC_POWER_COLORS,
+  NEUTRAL_COLORS,
+  SUPPLY_CENTER_IDS,
+} from '@diplomacy/shared';
+import { ZoomPanWrapper } from './ZoomPanWrapper';
+import { SupplyCenterMarker } from './SupplyCenterMarker';
+import { UnitMarker } from './UnitMarker';
+import { TerritoryTooltip } from './TerritoryTooltip';
+import { ArmyIcon, FleetIcon } from './UnitIcons';
 
 interface GameMapProps {
   gameState: GameState;
@@ -6,287 +19,319 @@ interface GameMapProps {
 }
 
 /**
- * Classic Diplomacy Map SVG
- * This is a simplified representation - the full map will have detailed paths
+ * Get the fill color for a territory based on ownership
  */
-export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
-  return (
-    <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
-      <svg
-        viewBox="0 0 1000 800"
-        className="w-full h-full"
-        style={{ backgroundColor: '#B8D4E8' }}
-      >
-        {/* Map Background */}
-        <defs>
-          {/* Pattern for land territories */}
-          <pattern id="landPattern" patternUnits="userSpaceOnUse" width="4" height="4">
-            <rect width="4" height="4" fill="#E8DCC4" />
-          </pattern>
+function getTerritoryFill(
+  territory: Territory,
+  powers: GameState['powers']
+): string {
+  // Sea territories always use sea color
+  if (territory.type === 'sea') {
+    return NEUTRAL_COLORS.sea;
+  }
 
-          {/* Gradient for sea */}
-          <linearGradient id="seaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#B8D4E8" />
-            <stop offset="100%" stopColor="#9CC4DC" />
-          </linearGradient>
+  // Check if any power owns this as a supply center
+  for (const power of Object.values(powers)) {
+    if (power.supplyCenters.includes(territory.id)) {
+      return CLASSIC_POWER_COLORS[power.id as PowerId].fill;
+    }
+  }
 
-          {/* Power colors */}
-          <linearGradient id="englandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1E3A8A" />
-            <stop offset="100%" stopColor="#1E40AF" />
-          </linearGradient>
-          <linearGradient id="franceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#60A5FA" />
-            <stop offset="100%" stopColor="#3B82F6" />
-          </linearGradient>
-          <linearGradient id="germanyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#374151" />
-            <stop offset="100%" stopColor="#4B5563" />
-          </linearGradient>
-          <linearGradient id="italyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22C55E" />
-            <stop offset="100%" stopColor="#16A34A" />
-          </linearGradient>
-          <linearGradient id="austriaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#EF4444" />
-            <stop offset="100%" stopColor="#DC2626" />
-          </linearGradient>
-          <linearGradient id="russiaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#A855F7" />
-            <stop offset="100%" stopColor="#9333EA" />
-          </linearGradient>
-          <linearGradient id="turkeyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F59E0B" />
-            <stop offset="100%" stopColor="#D97706" />
-          </linearGradient>
-        </defs>
+  // Check if it's a home supply center (colored by home power even if not yet owned)
+  if (territory.homeSupplyCenter) {
+    return CLASSIC_POWER_COLORS[territory.homeSupplyCenter].fill;
+  }
 
-        {/* Sea Background */}
-        <rect width="1000" height="800" fill="url(#seaGradient)" />
-
-        {/* Simplified Europe landmass */}
-        <g className="territories">
-          {/* British Isles */}
-          <path
-            d="M180 180 L220 160 L260 180 L270 240 L250 280 L220 300 L180 280 L160 240 Z"
-            fill="url(#englandGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('lon')}
-          />
-          <path
-            d="M160 140 L200 120 L230 140 L220 160 L180 180 L150 160 Z"
-            fill="url(#englandGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('edi')}
-          />
-
-          {/* France */}
-          <path
-            d="M200 340 L280 320 L320 360 L340 420 L300 480 L240 500 L180 460 L160 400 Z"
-            fill="url(#franceGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('par')}
-          />
-
-          {/* Germany */}
-          <path
-            d="M380 220 L460 200 L520 240 L540 300 L500 360 L420 380 L360 340 L340 280 Z"
-            fill="url(#germanyGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('ber')}
-          />
-
-          {/* Italy */}
-          <path
-            d="M400 420 L440 400 L480 440 L500 520 L480 600 L440 640 L400 600 L380 520 Z"
-            fill="url(#italyGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('rom')}
-          />
-
-          {/* Austria-Hungary */}
-          <path
-            d="M500 360 L580 340 L640 380 L660 440 L620 500 L540 520 L480 480 L460 420 Z"
-            fill="url(#austriaGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('vie')}
-          />
-
-          {/* Russia */}
-          <path
-            d="M600 100 L800 80 L900 160 L920 320 L880 460 L780 520 L680 480 L620 380 L580 260 L560 180 Z"
-            fill="url(#russiaGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('mos')}
-          />
-
-          {/* Turkey */}
-          <path
-            d="M700 520 L800 500 L880 540 L920 600 L900 680 L820 720 L720 700 L660 640 L660 580 Z"
-            fill="url(#turkeyGrad)"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('con')}
-          />
-
-          {/* Neutral territories - Scandinavia */}
-          <path
-            d="M400 80 L480 60 L520 100 L540 180 L500 220 L440 200 L380 160 L360 120 Z"
-            fill="#D4C4A8"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('swe')}
-          />
-
-          {/* Iberian Peninsula */}
-          <path
-            d="M100 440 L180 420 L200 480 L180 560 L120 580 L60 540 L40 480 Z"
-            fill="#D4C4A8"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('spa')}
-          />
-
-          {/* Balkans */}
-          <path
-            d="M580 520 L640 500 L680 540 L700 600 L660 660 L600 680 L540 640 L520 580 Z"
-            fill="#D4C4A8"
-            stroke="#333"
-            strokeWidth="1"
-            className="territory"
-            onClick={() => onTerritoryClick('ser')}
-          />
-        </g>
-
-        {/* Units */}
-        <g className="units">
-          {Object.values(gameState.powers).map(power =>
-            power.units.map((unit, idx) => (
-              <g key={`${power.id}-${unit.territory}-${idx}`} className="unit-marker">
-                {/* Unit circle */}
-                <circle
-                  cx={getUnitPosition(unit.territory).x}
-                  cy={getUnitPosition(unit.territory).y}
-                  r="12"
-                  fill={POWER_FILLS[power.id]}
-                  stroke="#333"
-                  strokeWidth="2"
-                />
-                {/* Unit type indicator */}
-                <text
-                  x={getUnitPosition(unit.territory).x}
-                  y={getUnitPosition(unit.territory).y + 4}
-                  textAnchor="middle"
-                  fill="white"
-                  fontSize="12"
-                  fontWeight="bold"
-                >
-                  {unit.type === 'army' ? 'A' : 'F'}
-                </text>
-              </g>
-            ))
-          )}
-        </g>
-
-        {/* Supply Center markers */}
-        <g className="supply-centers">
-          {/* TODO: Add supply center dots */}
-        </g>
-
-        {/* Legend */}
-        <g transform="translate(20, 700)">
-          <rect x="0" y="0" width="200" height="80" fill="white" fillOpacity="0.9" rx="4" />
-          <text x="10" y="20" fontSize="12" fontWeight="bold">Legend</text>
-          <circle cx="20" cy="40" r="6" fill="#333" />
-          <text x="35" y="44" fontSize="10">Army (A)</text>
-          <circle cx="100" cy="40" r="6" fill="#333" />
-          <text x="115" y="44" fontSize="10">Fleet (F)</text>
-          <rect x="10" y="55" width="10" height="10" fill="#fbbf24" stroke="#333" />
-          <text x="25" y="64" fontSize="10">Supply Center</text>
-        </g>
-
-        {/* Map title */}
-        <text x="500" y="30" textAnchor="middle" fontSize="24" fontWeight="bold" fill="#333">
-          Europe, {gameState.year}
-        </text>
-      </svg>
-    </div>
-  );
+  // Neutral land
+  return NEUTRAL_COLORS.land;
 }
 
-const POWER_FILLS: Record<string, string> = {
-  england: '#1E3A8A',
-  france: '#60A5FA',
-  germany: '#374151',
-  italy: '#22C55E',
-  austria: '#EF4444',
-  russia: '#A855F7',
-  turkey: '#F59E0B',
-};
+/**
+ * Get the owner of a supply center
+ */
+function getSupplyCenterOwner(
+  territoryId: string,
+  powers: GameState['powers']
+): PowerId | null {
+  for (const power of Object.values(powers)) {
+    if (power.supplyCenters.includes(territoryId)) {
+      return power.id as PowerId;
+    }
+  }
+  return null;
+}
 
-// Simplified unit positions - will need proper territory centers
-function getUnitPosition(territory: string): { x: number; y: number } {
-  const positions: Record<string, { x: number; y: number }> = {
-    // England
-    lon: { x: 220, y: 260 },
-    edi: { x: 190, y: 150 },
-    lvp: { x: 170, y: 220 },
-    // France
-    par: { x: 260, y: 380 },
-    bre: { x: 200, y: 360 },
-    mar: { x: 300, y: 440 },
-    // Germany
-    ber: { x: 460, y: 280 },
-    kie: { x: 420, y: 240 },
-    mun: { x: 440, y: 340 },
-    // Italy
-    rom: { x: 440, y: 520 },
-    nap: { x: 480, y: 580 },
-    ven: { x: 440, y: 440 },
-    // Austria
-    vie: { x: 540, y: 400 },
-    bud: { x: 600, y: 420 },
-    tri: { x: 500, y: 440 },
-    // Russia
-    mos: { x: 760, y: 280 },
-    war: { x: 620, y: 320 },
-    sev: { x: 800, y: 420 },
-    stp: { x: 680, y: 140 },
-    // Turkey
-    con: { x: 720, y: 560 },
-    ank: { x: 820, y: 580 },
-    smy: { x: 800, y: 640 },
-    // Neutrals
-    nwy: { x: 420, y: 120 },
-    swe: { x: 480, y: 160 },
-    den: { x: 420, y: 200 },
-    hol: { x: 340, y: 280 },
-    bel: { x: 320, y: 320 },
-    spa: { x: 140, y: 500 },
-    por: { x: 80, y: 520 },
-    tun: { x: 380, y: 680 },
-    ser: { x: 600, y: 560 },
-    rum: { x: 680, y: 480 },
-    bul: { x: 660, y: 540 },
-    gre: { x: 620, y: 620 },
+/**
+ * Classic Diplomacy Map SVG with zoom/pan controls
+ */
+export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredTerritory, setHoveredTerritory] = useState<string | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Check if we're in build phase (for supply center pulse animation)
+  const isBuildPhase = gameState.phase === 'winter_builds';
+
+  // Get all units flattened with their positions
+  const allUnits = useMemo(() => {
+    const units: { unit: typeof gameState.powers.england.units[0]; position: { x: number; y: number } }[] = [];
+
+    for (const power of Object.values(gameState.powers)) {
+      for (const unit of power.units) {
+        const visualData = CLASSIC_TERRITORY_VISUALS[unit.territory];
+        if (visualData) {
+          units.push({
+            unit,
+            position: visualData.center,
+          });
+        }
+      }
+    }
+
+    return units;
+  }, [gameState.powers]);
+
+  // Handle mouse move for tooltip positioning
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
-  return positions[territory] || { x: 500, y: 400 };
+  const { width, height } = CLASSIC_MAP_DATA.viewBox;
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden relative"
+      onMouseMove={handleMouseMove}
+    >
+      <ZoomPanWrapper>
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="w-full h-full"
+          style={{ backgroundColor: NEUTRAL_COLORS.sea }}
+        >
+          {/* Definitions */}
+          <defs>
+            {/* Power gradients */}
+            {Object.entries(CLASSIC_POWER_COLORS).map(([powerId, colors]) => (
+              <linearGradient
+                key={powerId}
+                id={`${powerId}Grad`}
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor={colors.fill} />
+                <stop offset="100%" stopColor={colors.stroke} />
+              </linearGradient>
+            ))}
+
+            {/* Neutral gradient */}
+            <linearGradient id="neutralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={NEUTRAL_COLORS.land} />
+              <stop offset="100%" stopColor="#C4B498" />
+            </linearGradient>
+
+            {/* Sea gradient */}
+            <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={NEUTRAL_COLORS.sea} />
+              <stop offset="100%" stopColor="#9CC4DC" />
+            </linearGradient>
+          </defs>
+
+          {/* Background */}
+          <rect width={width} height={height} fill="url(#seaGrad)" />
+
+          {/* Impassable territories (Switzerland) - rendered before interactive territories */}
+          <path
+            d="m 425.86293,731.80346 -5.66602,5.66602 -24.55078,-3.77734 -1.88867,7.55468 -26.43946,28.32813 5.66602,5.66406 11.33008,-11.33008 7.55469,13.21875 11.33203,1.88868 15.10742,-3.77735 11.33203,9.44336 3.77539,-9.44336 26.43945,5.66602 3.77735,-7.55469 -7.55274,-11.33008 -13.2207,-7.55469 v -15.10742 l -3.77734,-5.66601 z"
+            fill="#C8B898"
+            stroke="#999"
+            strokeWidth={0.8}
+            pointerEvents="none"
+          />
+
+          {/* Territories - render in layers: large seas first, then small seas, then land */}
+          <g className="territories">
+            {Object.entries(gameState.territories)
+              .sort(([idA, a], [idB, b]) => {
+                // Sea territories render before land (lower = rendered first = behind)
+                const aIsSea = a.type === 'sea' ? 0 : 1;
+                const bIsSea = b.type === 'sea' ? 0 : 1;
+                if (aIsSea !== bIsSea) return aIsSea - bIsSea;
+                // Among seas, render larger paths first (behind smaller ones)
+                if (a.type === 'sea' && b.type === 'sea') {
+                  const aLen = CLASSIC_TERRITORY_VISUALS[idA]?.svgPath?.length ?? 0;
+                  const bLen = CLASSIC_TERRITORY_VISUALS[idB]?.svgPath?.length ?? 0;
+                  return bLen - aLen;
+                }
+                return 0;
+              })
+              .map(([id, territory]) => {
+              const visualData = CLASSIC_TERRITORY_VISUALS[id];
+              if (!visualData || !visualData.svgPath) return null;
+
+              const fill = getTerritoryFill(territory, gameState.powers);
+              const isHovered = hoveredTerritory === id;
+
+              return (
+                <path
+                  key={id}
+                  d={visualData.svgPath}
+                  fill={fill}
+                  stroke="#333"
+                  strokeWidth={isHovered ? 2 : 1}
+                  className="territory cursor-pointer transition-opacity"
+                  opacity={isHovered ? 0.85 : 1}
+                  transform={visualData.transform}
+                  onClick={() => onTerritoryClick(id)}
+                  onMouseEnter={() => setHoveredTerritory(id)}
+                  onMouseLeave={() => setHoveredTerritory(null)}
+                />
+              );
+            })}
+          </g>
+
+          {/* Coast Boundaries */}
+          <g className="coast-boundaries" pointerEvents="none">
+            {Object.entries(CLASSIC_TERRITORY_VISUALS).map(([id, visualData]) => {
+              if (!visualData.coastPaths) return null;
+              return visualData.coastPaths.map(coast => (
+                <g key={coast.id}>
+                  {coast.svgPath && (
+                    <path
+                      d={coast.svgPath}
+                      fill="none"
+                      stroke="#666"
+                      strokeWidth={1.5}
+                      strokeDasharray="4,8"
+                    />
+                  )}
+                  <text
+                    x={coast.labelPosition.x}
+                    y={coast.labelPosition.y}
+                    textAnchor="middle"
+                    fontSize="10"
+                    fontWeight="600"
+                    fill="#555"
+                    className="select-none"
+                  >
+                    {coast.label}
+                  </text>
+                </g>
+              ));
+            })}
+          </g>
+
+          {/* Territory Labels */}
+          <g className="territory-labels" pointerEvents="none">
+            {Object.entries(gameState.territories).map(([id]) => {
+              const visualData = CLASSIC_TERRITORY_VISUALS[id];
+              if (!visualData) return null;
+
+              return (
+                <text
+                  key={`label-${id}`}
+                  x={visualData.labelPosition.x}
+                  y={visualData.labelPosition.y}
+                  textAnchor="middle"
+                  fontSize="12"
+                  fontWeight="500"
+                  fill="#333"
+                  className="select-none"
+                >
+                  {id.toUpperCase()}
+                </text>
+              );
+            })}
+          </g>
+
+          {/* Supply Centers */}
+          <g className="supply-centers">
+            {SUPPLY_CENTER_IDS.map(scId => {
+              const visualData = CLASSIC_TERRITORY_VISUALS[scId];
+              if (!visualData || !visualData.supplyCenterPosition) return null;
+
+              const owner = getSupplyCenterOwner(scId, gameState.powers);
+              const isPlayerSC = owner === gameState.playerPower;
+
+              return (
+                <SupplyCenterMarker
+                  key={`sc-${scId}`}
+                  x={visualData.supplyCenterPosition.x}
+                  y={visualData.supplyCenterPosition.y}
+                  owner={owner}
+                  isHighlighted={isBuildPhase && isPlayerSC}
+                  size={10}
+                />
+              );
+            })}
+          </g>
+
+          {/* Units */}
+          <g className="units">
+            {allUnits.map(({ unit, position }, idx) => (
+              <UnitMarker
+                key={`${unit.power}-${unit.territory}-${idx}`}
+                unit={unit}
+                x={position.x}
+                y={position.y}
+              />
+            ))}
+          </g>
+
+          {/* Map title */}
+          <text
+            x={width / 2}
+            y={35}
+            textAnchor="middle"
+            fontSize="28"
+            fontWeight="bold"
+            fill="#333"
+          >
+            Europe, {gameState.year}
+          </text>
+        </svg>
+      </ZoomPanWrapper>
+
+      {/* Legend */}
+      <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur rounded-lg shadow-lg p-3 text-xs">
+        <div className="font-semibold mb-2">Legend</div>
+        <div className="flex gap-4">
+          <div className="flex items-center gap-2">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <ArmyIcon color="#333" size={20} />
+            </svg>
+            <span>Army</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <FleetIcon color="#333" size={20} />
+            </svg>
+            <span>Fleet</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path
+                d="M6 1 L7.5 4.5 L11 5 L8.5 7.5 L9 11 L6 9.5 L3 11 L3.5 7.5 L1 5 L4.5 4.5 Z"
+                fill="#FFD700"
+                stroke="#B8860B"
+                strokeWidth="0.5"
+              />
+            </svg>
+            <span>Supply Center</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Tooltip */}
+      <TerritoryTooltip
+        territory={hoveredTerritory ? gameState.territories[hoveredTerritory] : null}
+        owner={hoveredTerritory ? getSupplyCenterOwner(hoveredTerritory, gameState.powers) : null}
+        mousePosition={mousePosition}
+        containerRef={containerRef as React.RefObject<HTMLDivElement>}
+      />
+    </div>
+  );
 }

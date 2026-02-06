@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { PowerId } from '@diplomacy/shared';
-import { Crown, Swords, Users, Coins } from 'lucide-react';
+import { MAP_STYLES } from '@diplomacy/shared';
+import { Crown, Swords, Users, Coins, Map } from 'lucide-react';
 import { apiUrl } from '../config';
 
 const POWERS: { id: PowerId; name: string; color: string; description: string }[] = [
@@ -29,6 +30,7 @@ const AI_MODELS = [
 export function HomePage() {
   const navigate = useNavigate();
   const [selectedPower, setSelectedPower] = useState<PowerId | null>(null);
+  const [mapStyle, setMapStyle] = useState('classic');
   const [victoryCondition, setVictoryCondition] = useState(18);
   const [aiModel, setAiModel] = useState<'haiku' | 'sonnet'>('haiku');
   const [isCreating, setIsCreating] = useState(false);
@@ -43,6 +45,7 @@ export function HomePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           variant: 'classic',
+          mapStyle,
           playerPower: selectedPower,
           victoryCondition,
           aiModel,
@@ -107,6 +110,28 @@ export function HomePage() {
             {POWERS.find(p => p.id === selectedPower)?.description}
           </p>
         )}
+
+        {/* Map Style */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Map size={16} />
+            Map Style
+          </label>
+          <select
+            value={mapStyle}
+            onChange={e => setMapStyle(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+          >
+            {MAP_STYLES.map(style => (
+              <option key={style.id} value={style.id} disabled={!style.available}>
+                {style.name}{!style.available ? ' (Coming Soon)' : ''}
+              </option>
+            ))}
+          </select>
+          <p className="text-sm text-gray-500 mt-1">
+            {MAP_STYLES.find(s => s.id === mapStyle)?.description}
+          </p>
+        </div>
 
         {/* Victory Condition */}
         <div className="mb-6">
