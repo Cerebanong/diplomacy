@@ -26,6 +26,7 @@ import type {
   MoveOrder,
   SupportOrder,
   HoldOrder,
+  BuildOrder,
 } from '@diplomacy/shared';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -169,6 +170,12 @@ export function resolveOrders(
       }
       const destBase = baseTerritory(order.destination);
       const unit = findUnit(newState.powers, order.location);
+
+      // Correct unitType if it doesn't match the actual unit (e.g. AI says "fleet" but it's an army)
+      if (unit && order.unitType !== unit.type) {
+        order.unitType = unit.type;
+      }
+
       const valid = unit
         ? isValidMove(unit, order.location, order.destination, order.destinationCoast, newState.territories)
         : false;
@@ -186,6 +193,12 @@ export function resolveOrders(
             : undefined,
       });
     } else if (order.type === 'hold') {
+      // Correct unitType if it doesn't match the actual unit
+      const holdUnit = findUnit(newState.powers, order.location);
+      if (holdUnit && order.unitType !== holdUnit.type) {
+        order.unitType = holdUnit.type;
+      }
+
       const base = baseTerritory(order.location);
       holdStrengths.set(base, {
         territory: base,
@@ -194,6 +207,22 @@ export function resolveOrders(
       });
     }
     // convoy orders are ignored for now
+  }
+
+  // Ensure ALL occupied territories have base defensive strength 1.
+  // This covers units with support/convoy orders (not just hold orders).
+  // In standard Diplomacy, any stationary unit defends with strength 1.
+  for (const power of Object.values(newState.powers)) {
+    for (const unit of power.units) {
+      const base = baseTerritory(unit.territory);
+      if (!holdStrengths.has(base)) {
+        holdStrengths.set(base, {
+          territory: base,
+          power: unit.power,
+          strength: 1,
+        });
+      }
+    }
   }
 
   // Build a quick lookup: who is being attacked from where
@@ -232,6 +261,11 @@ export function resolveOrders(
 
     // Validate the supporting unit can reach the destination
     const supportingUnit = findUnit(newState.powers, supportOrder.location);
+
+    // Correct unitType if it doesn't match the actual unit
+    if (supportingUnit && supportOrder.unitType !== supportingUnit.type) {
+      supportOrder.unitType = supportingUnit.type;
+    }
     if (!supportingUnit) {
       resolutions.push({ order: supportOrder, success: false, reason: 'No unit at location' });
       continue;
@@ -554,4 +588,90 @@ export function resolveOrders(
   }
 
   return result;
+}
+
+// ── Winter builds resolution ────────────────────────────────────────────────
+
+/**
+ * Calculate the build/disband adjustment for a power.
+ * Positive = can build, negative = must disband.
+ */
+export function getAdjustment(power: { supplyCenters: string[]; units: Unit[] }): number {
+  return power.supplyCenters.length - power.units.length;
+}
+
+/**
+ * Get the available home supply centers where a power can build.
+ * A power can only build at its own home SCs that it currently owns and are unoccupied.
+ */
+export function getAvailableBuildLocations(
+  powerId: PowerId,
+  state: GameState,
+): string[] {
+  const power = state.powers[powerId];
+  const allUnits: Unit[] = [];
+  for (const p of Object.values(state.powers)) {
+    allUnits.push(...p.units);
+  }
+  const occupiedTerritories = new Set(allUnits.map(u => baseTerritory(u.territory)));
+
+  return power.supplyCenters.filter(sc => {
+    const territory = state.territories[sc];
+    if (!territory) return false;
+    // Must be a home supply center for this power
+    if (territory.homeSupplyCenter !== powerId) return false;
+    // Must not be occupied
+    return !occupiedTerritories.has(sc);
+  });
+}
+
+/**
+ * Resolve winter build/disband orders for all powers.
+ */
+export function resolveBuilds(
+  state: GameState,
+  allBuilds: Record<PowerId, BuildOrder[]>,
+): TurnResult {
+  const newState: GameState = structuredClone(state);
+
+  for (const [powerId, builds] of Object.entries(allBuilds)) {
+    const power = newState.powers[powerId as PowerId];
+    if (!power) continue;
+
+    for (const build of builds) {
+      if (build.action === 'build' && build.unitType && build.location) {
+        power.units.push({
+          type: build.unitType,
+          territory: build.location,
+          coast: build.coast,
+          power: powerId as PowerId,
+        });
+      } else if (build.action === 'disband' && build.location) {
+        const idx = power.units.findIndex(
+          u => baseTerritory(u.territory) === baseTerritory(build.location!),
+        );
+        if (idx >= 0) {
+          power.units.splice(idx, 1);
+        }
+      }
+    }
+
+    // Mark eliminated powers
+    if (power.supplyCenters.length === 0 && power.units.length === 0) {
+      power.isEliminated = true;
+    }
+  }
+
+  // Advance to spring orders of next year
+  newState.phase = 'spring_orders';
+  newState.year += 1;
+
+  return {
+    year: state.year,
+    phase: state.phase,
+    orders: {} as Record<PowerId, Order[]>,
+    resolutions: [],
+    builds: allBuilds,
+    newState,
+  };
 }
