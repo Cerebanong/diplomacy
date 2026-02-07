@@ -202,7 +202,7 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
 
           {/* Coast Boundaries */}
           <g className="coast-boundaries" pointerEvents="none">
-            {Object.entries(CLASSIC_TERRITORY_VISUALS).map(([id, visualData]) => {
+            {Object.entries(CLASSIC_TERRITORY_VISUALS).map(([_id, visualData]) => {
               if (!visualData.coastPaths) return null;
               return visualData.coastPaths.map(coast => (
                 <g key={coast.id}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { GameState, Order } from '@diplomacy/shared';
 import { Play, Trash2, Plus } from 'lucide-react';
 import { apiUrl } from '../../config';
@@ -30,6 +30,14 @@ export function OrdersPanel({
 }: OrdersPanelProps) {
   const [orders, setOrders] = useState<DraftOrder[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnResult, setTurnResult] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (turnResult) {
+      const timer = setTimeout(() => setTurnResult(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [turnResult]);
 
   const playerPower = gameState.powers[gameState.playerPower];
   const units = playerPower.units;
@@ -59,9 +67,12 @@ export function OrdersPanel({
     setOrders(prev => prev.filter(o => o.id !== id));
   };
 
-  const handleSubmit = async () => {
-    if (aiNegotiationsInProgress) return;
+  const formatPhase = (phase: string, year: number) => {
+    const name = phase.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
+    return `${name} ${year}`;
+  };
 
+  const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
       // Add hold orders for any units without orders
@@ -86,6 +97,8 @@ export function OrdersPanel({
         };
       });
 
+      const previousPhase = formatPhase(gameState.phase, gameState.year);
+
       const response = await fetch(apiUrl(`/api/game/${gameId}/orders`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -94,6 +107,8 @@ export function OrdersPanel({
 
       if (response.ok) {
         const result = await response.json();
+        const newPhase = formatPhase(result.newState.phase, result.newState.year);
+        setTurnResult(`${previousPhase} resolved — advancing to ${newPhase}`);
         setOrders([]);
         onOrdersSubmitted(result.newState);
       } else {
@@ -216,25 +231,28 @@ export function OrdersPanel({
 
       {/* Submit Button */}
       <div className="p-4 border-t border-gray-200">
-        {aiNegotiationsInProgress ? (
-          <div className="text-center py-3 text-yellow-600 animate-pulse">
-            <p className="font-semibold">AI diplomats are negotiating...</p>
-            <p className="text-sm">Please wait before resolving the turn</p>
+        {turnResult && (
+          <div className="mb-3 text-center py-2 px-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm font-medium">
+            {turnResult}
           </div>
-        ) : (
-          <button
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
-              isSubmitting
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-gray-800 text-white hover:bg-gray-700'
-            }`}
-          >
-            <Play size={20} />
-            {isSubmitting ? 'Resolving...' : 'Resolve Turn'}
-          </button>
         )}
+        {aiNegotiationsInProgress && (
+          <div className="mb-3 text-center text-yellow-600 animate-pulse text-sm">
+            AI diplomats are negotiating...
+          </div>
+        )}
+        <button
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+          className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
+            isSubmitting
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-gray-800 text-white hover:bg-gray-700'
+          }`}
+        >
+          <Play size={20} />
+          {isSubmitting ? 'Resolving...' : aiNegotiationsInProgress ? 'Submit Orders' : 'Resolve Turn'}
+        </button>
       </div>
     </div>
   );

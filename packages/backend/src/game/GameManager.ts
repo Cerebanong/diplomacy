@@ -232,9 +232,8 @@ export class GameManager {
     const session = this.games.get(gameId);
     if (!session) throw new Error('Game not found');
 
-    if (session.negotiations.aiNegotiationsInProgress) {
-      throw new Error('Cannot resolve turn while AI negotiations are in progress');
-    }
+    // Stop any in-progress AI negotiations — player is ready to resolve
+    session.negotiations.aiNegotiationsInProgress = false;
 
     // Get AI orders for all other powers
     const allOrders: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
@@ -266,10 +265,19 @@ export class GameManager {
     // Check for victory
     this.checkVictory(session);
 
-    // If game continues, start next round of AI negotiations
+    // Auto-advance past non-interactive phases (retreats with no dislodged units,
+    // winter builds with no adjustments needed — always true with placeholder adjudicator)
+    if (!session.state.isComplete) {
+      await this.autoAdvancePhases(session);
+    }
+
+    // If game continues, start next round of AI negotiations for the new orders phase
     if (!session.state.isComplete) {
       this.startAiNegotiations(gameId);
     }
+
+    // Return the final state (after auto-advancing) so the frontend shows the correct phase
+    result.newState = session.state;
 
     return result;
   }
@@ -311,6 +319,23 @@ export class GameManager {
     };
   }
 
+  private isInteractivePhase(phase: GameState['phase']): boolean {
+    return phase === 'spring_orders' || phase === 'fall_orders';
+  }
+
+  private async autoAdvancePhases(session: GameSession) {
+    // Skip non-interactive phases (retreats with no dislodged units,
+    // winter builds with no adjustments). With the placeholder adjudicator
+    // these phases never require action, so advance until we reach an orders phase.
+    while (!session.state.isComplete && !this.isInteractivePhase(session.state.phase)) {
+      const emptyOrders: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
+      const skipResult = await this.adjudicateOrders(session.state, emptyOrders);
+      session.state = skipResult.newState;
+      session.turnHistory.push(skipResult);
+      this.checkVictory(session);
+    }
+  }
+
   private updateTrustScores(_session: GameSession, _result: TurnResult) {
     // TODO: Analyze orders and update trust scores based on
     // whether AI agents followed through on agreements
@@ -341,6 +366,9 @@ export class GameManager {
     const session = this.games.get(gameId);
     if (!session) return;
 
+    // Stop if negotiations were cancelled (e.g. player submitted orders early)
+    if (!session.negotiations.aiNegotiationsInProgress) return;
+
     session.negotiations.currentAiRound += 1;
 
     // Generate AI-to-AI messages for this round
@@ -354,6 +382,8 @@ export class GameManager {
     // Record messages (but don't show to player)
     for (const msg of result.messages) {
       const channelId = getChannelId(msg.from, msg.to);
+      const channel = session.negotiations.channels[channelId];
+      if (!channel) continue; // Skip messages with invalid power IDs from AI
       const message: Message = {
         id: uuidv4(),
         timestamp: new Date(),
@@ -362,7 +392,7 @@ export class GameManager {
         content: msg.content,
         isHuman: false,
       };
-      session.negotiations.channels[channelId].messages.push(message);
+      channel.messages.push(message);
       session.allNegotiationHistory.push(message);
     }
 
