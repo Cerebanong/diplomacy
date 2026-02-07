@@ -14,6 +14,7 @@ import {
   generateRandomPersonality,
 } from '@diplomacy/shared';
 import { AiManager } from '../ai/AiManager.js';
+import { resolveOrders } from './adjudicator.js';
 
 interface GameSession {
   state: GameState;
@@ -286,37 +287,7 @@ export class GameManager {
     state: GameState,
     orders: Record<PowerId, Order[]>
   ): Promise<TurnResult> {
-    // TODO: Integrate with DATC-compliant adjudicator
-    // For now, return a placeholder result
-    const newState = { ...state };
-
-    // Advance phase
-    switch (state.phase) {
-      case 'spring_orders':
-        newState.phase = 'spring_retreats';
-        break;
-      case 'spring_retreats':
-        newState.phase = 'fall_orders';
-        break;
-      case 'fall_orders':
-        newState.phase = 'fall_retreats';
-        break;
-      case 'fall_retreats':
-        newState.phase = 'winter_builds';
-        break;
-      case 'winter_builds':
-        newState.phase = 'spring_orders';
-        newState.year += 1;
-        break;
-    }
-
-    return {
-      year: state.year,
-      phase: state.phase,
-      orders,
-      resolutions: [], // TODO: Fill in actual resolutions
-      newState,
-    };
+    return resolveOrders(state, orders);
   }
 
   private isInteractivePhase(phase: GameState['phase']): boolean {
@@ -324,9 +295,9 @@ export class GameManager {
   }
 
   private async autoAdvancePhases(session: GameSession) {
-    // Skip non-interactive phases (retreats with no dislodged units,
-    // winter builds with no adjustments). With the placeholder adjudicator
-    // these phases never require action, so advance until we reach an orders phase.
+    // Skip non-interactive phases (retreats and winter builds).
+    // Dislodged units are removed immediately by the adjudicator (no retreat phase),
+    // and winter builds are not yet implemented, so advance to next orders phase.
     while (!session.state.isComplete && !this.isInteractivePhase(session.state.phase)) {
       const emptyOrders: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
       const skipResult = await this.adjudicateOrders(session.state, emptyOrders);
