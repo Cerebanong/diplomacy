@@ -131,10 +131,14 @@ export function resolveOrders(
   const newState: GameState = structuredClone(state);
   const resolutions: OrderResolution[] = [];
 
-  // Flatten all orders
+  // Flatten all orders, filtering out any malformed entries (e.g. from AI parsing)
   const flatOrders: Order[] = [];
   for (const orders of Object.values(allOrders)) {
-    flatOrders.push(...orders);
+    for (const o of orders) {
+      if (o && o.location) {
+        flatOrders.push(o);
+      }
+    }
   }
 
   // Assign default hold orders for units that have no order
@@ -159,6 +163,10 @@ export function resolveOrders(
 
   for (const order of flatOrders) {
     if (order.type === 'move') {
+      if (!order.destination) {
+        resolutions.push({ order, success: false, reason: 'Missing destination' });
+        continue;
+      }
       const destBase = baseTerritory(order.destination);
       const unit = findUnit(newState.powers, order.location);
       const valid = unit
