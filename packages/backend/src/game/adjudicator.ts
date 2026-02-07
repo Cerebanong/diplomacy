@@ -400,6 +400,39 @@ export function resolveOrders(
     }
   }
 
+  // ── Step 3c: Verify moves that relied on occupants departing ──
+  // If a unit at territory X tried to move away but failed (bounced),
+  // any move into X that assumed X was being vacated must be re-evaluated.
+  // The staying unit defends with strength 1 (no support for a failed move).
+  let verifyChanged = true;
+  while (verifyChanged) {
+    verifyChanged = false;
+    for (const move of [...successfulMoves]) {
+      // Was there a unit at the destination that tried to move but failed?
+      const stayingUnit = moveIntents.find(
+        mi => mi.valid && mi.from === move.to && mi.to !== mi.from && !successfulMoves.has(mi),
+      );
+      if (!stayingUnit) continue;
+
+      // The occupant is still there — check if we can dislodge
+      // A bounced unit defends with base strength 1
+      const defenderStr = holdStrengths.get(move.to)?.strength ?? 1;
+      if (move.strength > defenderStr) {
+        // Strong enough to dislodge the staying unit
+        dislodgedTerritories.add(move.to);
+      } else {
+        // Cannot dislodge — this move fails too
+        successfulMoves.delete(move);
+        resolutions.push({
+          order: move.order,
+          success: false,
+          reason: `Bounced: unit in ${move.to} failed to leave`,
+        });
+        verifyChanged = true;
+      }
+    }
+  }
+
   // ── Step 4: Apply results to state ──
 
   // Record resolutions for successful moves and holds
