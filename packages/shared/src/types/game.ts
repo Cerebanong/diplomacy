@@ -37,6 +37,13 @@ export interface Unit {
   power: PowerId;
 }
 
+export interface DislodgedUnit {
+  unit: Unit;
+  dislodgedFrom: string;      // base territory the unit was in
+  attackerOrigin: string;      // base territory the attack came from (can't retreat here)
+  validRetreats: string[];     // pre-computed valid retreat destinations
+}
+
 export interface Power {
   id: PowerId;
   name: string;
@@ -63,6 +70,8 @@ export interface GameState {
   winner?: PowerId;
   /** Track API costs */
   totalApiCost: number;
+  /** Dislodged units awaiting retreat orders (only present during retreat phases) */
+  dislodgedUnits?: DislodgedUnit[];
 }
 
 export interface GameConfig {

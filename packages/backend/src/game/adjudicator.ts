@@ -1,16 +1,15 @@
 /**
  * Diplomacy order adjudicator
  *
- * Resolves hold, move, and support orders with standard conflict rules:
+ * Resolves hold, move, support, and convoy orders with standard conflict rules:
  * - Moves validated against adjacency lists and terrain types
+ * - Convoy chains allow armies to move across sea zones via fleets
  * - Supports increment strength of matching moves/holds
  * - Supports are cut when the supporting unit is attacked from a non-destination territory
  * - Conflicting moves to the same destination: highest strength wins, ties bounce
  * - Defenders (holding units) get strength 1 + supports
- * - Dislodged units are removed (simplified: no retreat phase)
+ * - Dislodged units are preserved with metadata for the retreat phase
  * - Supply centers update after fall resolution
- *
- * Convoys are not yet implemented.
  */
 
 import type {
@@ -20,13 +19,16 @@ import type {
   OrderResolution,
   Territory,
   Unit,
+  DislodgedUnit,
 } from '@diplomacy/shared';
 import type {
   Order,
   MoveOrder,
   SupportOrder,
   HoldOrder,
+  ConvoyOrder,
   BuildOrder,
+  RetreatOrder,
 } from '@diplomacy/shared';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -89,6 +91,81 @@ function isValidMove(
   // Armies use the base territory adjacency list.
   // For multi-coast destinations, armies move to the base territory id.
   return fromTerritory.adjacencies.includes(destBase) || fromTerritory.adjacencies.includes(to);
+}
+
+/**
+ * Check if a valid convoy path exists from `armyFrom` to `armyTo` through
+ * a chain of convoying fleets on sea zones.
+ */
+function isValidConvoyPath(
+  armyFrom: string,
+  armyTo: string,
+  convoyOrders: ConvoyOrder[],
+  territories: Record<string, Territory>,
+): boolean {
+  const armyBase = baseTerritory(armyFrom);
+  const destBase = baseTerritory(armyTo);
+
+  // Collect sea-zone locations of fleets whose convoy orders match this army move
+  const convoyingFleetZones = new Set<string>();
+  for (const c of convoyOrders) {
+    if (
+      baseTerritory(c.convoyedArmy.location) === armyBase &&
+      baseTerritory(c.convoyDestination) === destBase
+    ) {
+      const fleetBase = baseTerritory(c.location);
+      const fleetTerritory = territories[fleetBase];
+      if (fleetTerritory && fleetTerritory.type === 'sea') {
+        convoyingFleetZones.add(fleetBase);
+      }
+    }
+  }
+
+  if (convoyingFleetZones.size === 0) return false;
+
+  // BFS from army's origin through convoying fleet sea zones
+  const armyTerritory = territories[armyBase];
+  if (!armyTerritory) return false;
+
+  const visited = new Set<string>();
+  const queue: string[] = [];
+
+  // Seed: sea zones adjacent to the army that have a convoying fleet
+  for (const adj of armyTerritory.adjacencies) {
+    const adjBase = baseTerritory(adj);
+    if (convoyingFleetZones.has(adjBase) && !visited.has(adjBase)) {
+      visited.add(adjBase);
+      queue.push(adjBase);
+    }
+  }
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    const currentTerritory = territories[current];
+    if (!currentTerritory) continue;
+
+    // Check if this sea zone is adjacent to the destination
+    const destTerritory = territories[destBase];
+    if (destTerritory) {
+      if (
+        currentTerritory.adjacencies.includes(destBase) ||
+        destTerritory.adjacencies.includes(current)
+      ) {
+        return true;
+      }
+    }
+
+    // Expand to adjacent sea zones with convoying fleets
+    for (const adj of currentTerritory.adjacencies) {
+      const adjBase = baseTerritory(adj);
+      if (convoyingFleetZones.has(adjBase) && !visited.has(adjBase)) {
+        visited.add(adjBase);
+        queue.push(adjBase);
+      }
+    }
+  }
+
+  return false;
 }
 
 /** Find the unit at a given territory in the given powers map. */
@@ -162,6 +239,41 @@ export function resolveOrders(
   const moveIntents: MoveIntent[] = [];
   const holdStrengths = new Map<string, HoldStrength>(); // territory base → strength
 
+  // First pass: collect and validate all convoy orders
+  const convoyOrders: ConvoyOrder[] = [];
+  for (const order of flatOrders) {
+    if (order.type !== 'convoy') continue;
+    const convoy = order as ConvoyOrder;
+    const fleetUnit = findUnit(newState.powers, convoy.location);
+
+    // Correct unitType if it doesn't match the actual unit
+    if (fleetUnit && convoy.unitType !== fleetUnit.type) {
+      convoy.unitType = fleetUnit.type;
+    }
+
+    if (!fleetUnit) {
+      resolutions.push({ order: convoy, success: false, reason: 'No unit at location' });
+      continue;
+    }
+    if (fleetUnit.type !== 'fleet') {
+      resolutions.push({ order: convoy, success: false, reason: 'Only fleets can convoy' });
+      continue;
+    }
+    const fleetBase = baseTerritory(convoy.location);
+    const fleetTerritory = newState.territories[fleetBase];
+    if (!fleetTerritory || fleetTerritory.type !== 'sea') {
+      resolutions.push({ order: convoy, success: false, reason: 'Fleet must be in a sea zone to convoy' });
+      continue;
+    }
+    const convoyedArmy = findUnit(newState.powers, convoy.convoyedArmy.location);
+    if (!convoyedArmy || convoyedArmy.type !== 'army') {
+      resolutions.push({ order: convoy, success: false, reason: 'No army at convoyed location' });
+      continue;
+    }
+    convoyOrders.push(convoy);
+  }
+
+  // Second pass: process move and hold orders
   for (const order of flatOrders) {
     if (order.type === 'move') {
       if (!order.destination) {
@@ -176,9 +288,29 @@ export function resolveOrders(
         order.unitType = unit.type;
       }
 
-      const valid = unit
-        ? isValidMove(unit, order.location, order.destination, order.destinationCoast, newState.territories)
-        : false;
+      let valid: boolean;
+      let invalidReason: string | undefined;
+
+      if (order.viaConvoy && unit?.type === 'army') {
+        // Army moving via convoy — validate convoy chain instead of direct adjacency
+        valid = unit
+          ? isValidConvoyPath(order.location, order.destination, convoyOrders, newState.territories)
+          : false;
+        invalidReason = !unit
+          ? 'No unit at location'
+          : !valid
+            ? 'No valid convoy path'
+            : undefined;
+      } else {
+        valid = unit
+          ? isValidMove(unit, order.location, order.destination, order.destinationCoast, newState.territories)
+          : false;
+        invalidReason = !unit
+          ? 'No unit at location'
+          : !valid
+            ? 'Invalid move (not adjacent or terrain mismatch)'
+            : undefined;
+      }
 
       moveIntents.push({
         order,
@@ -186,11 +318,7 @@ export function resolveOrders(
         to: destBase,
         strength: 1,
         valid,
-        invalidReason: !unit
-          ? 'No unit at location'
-          : !valid
-            ? 'Invalid move (not adjacent or terrain mismatch)'
-            : undefined,
+        invalidReason,
       });
     } else if (order.type === 'hold') {
       // Correct unitType if it doesn't match the actual unit
@@ -206,7 +334,6 @@ export function resolveOrders(
         strength: 1,
       });
     }
-    // convoy orders are ignored for now
   }
 
   // Ensure ALL occupied territories have base defensive strength 1.
@@ -337,7 +464,8 @@ export function resolveOrders(
 
   // Track successful moves and dislodged units
   const successfulMoves = new Set<MoveIntent>();
-  const dislodgedTerritories = new Set<string>(); // base territories whose occupant is dislodged
+  const dislodgedTerritories = new Map<string, string>(); // dislodgedBase → attackerOrigin
+  const standoffTerritories = new Set<string>(); // territories left vacant due to standoff
 
   for (const [dest, moves] of movesByDest) {
     // Defender strength (unit currently at destination that is NOT moving away)
@@ -353,7 +481,7 @@ export function resolveOrders(
       if (move.strength > effectiveDefenderStrength) {
         successfulMoves.add(move);
         if (effectiveDefenderStrength > 0) {
-          dislodgedTerritories.add(dest);
+          dislodgedTerritories.set(dest, move.from);
         }
       } else {
         resolutions.push({
@@ -384,6 +512,11 @@ export function resolveOrders(
       const winners = moves.filter(m => m.strength === maxStrength);
       if (winners.length > 1) {
         // Tie — all bounce (standoff)
+        // Track standoff vacancy: territory is left vacant if no static occupant
+        const hasStaticOccupant = !occupantMovingAway && findUnit(newState.powers, dest);
+        if (!hasStaticOccupant) {
+          standoffTerritories.add(dest);
+        }
         for (const move of moves) {
           resolutions.push({
             order: move.order,
@@ -395,7 +528,7 @@ export function resolveOrders(
         // Clear winner
         successfulMoves.add(winners[0]);
         if (effectiveDefenderStrength > 0) {
-          dislodgedTerritories.add(dest);
+          dislodgedTerritories.set(dest, winners[0].from);
         }
         // Losers bounce
         for (const move of moves) {
@@ -453,7 +586,7 @@ export function resolveOrders(
       const defenderStr = holdStrengths.get(move.to)?.strength ?? 1;
       if (move.strength > defenderStr) {
         // Strong enough to dislodge the staying unit
-        dislodgedTerritories.add(move.to);
+        dislodgedTerritories.set(move.to, move.from);
       } else {
         // Cannot dislodge — this move fails too
         successfulMoves.delete(move);
@@ -484,6 +617,26 @@ export function resolveOrders(
     }
   }
 
+  // Record convoy order resolutions (for convoys not already resolved as invalid)
+  for (const convoy of convoyOrders) {
+    const fleetBase = baseTerritory(convoy.location);
+    if (dislodgedTerritories.has(fleetBase)) {
+      resolutions.push({ order: convoy, success: false, reason: 'Convoying fleet dislodged' });
+    } else {
+      // Check if the corresponding army move succeeded
+      const armyBase = baseTerritory(convoy.convoyedArmy.location);
+      const destBase = baseTerritory(convoy.convoyDestination);
+      const armyMoveSucceeded = [...successfulMoves].some(
+        m => m.from === armyBase && m.to === destBase && m.order.viaConvoy,
+      );
+      if (armyMoveSucceeded) {
+        resolutions.push({ order: convoy, success: true });
+      } else {
+        resolutions.push({ order: convoy, success: false, reason: 'Convoyed army move failed' });
+      }
+    }
+  }
+
   // Apply successful moves: update unit territories
   for (const move of successfulMoves) {
     const fromBase = baseTerritory(move.order.location);
@@ -503,22 +656,26 @@ export function resolveOrders(
     }
   }
 
-  // Remove dislodged units (simplified: no retreat phase)
-  for (const dislodgedBase of dislodgedTerritories) {
+  // Preserve dislodged units for retreat phase (instead of removing them immediately)
+  const dislodgedUnits: DislodgedUnit[] = [];
+  for (const [dislodgedBase, attackerOrigin] of dislodgedTerritories) {
     for (const power of Object.values(newState.powers)) {
       const idx = power.units.findIndex(u => baseTerritory(u.territory) === dislodgedBase);
       if (idx >= 0) {
-        // Only remove if it wasn't the unit that successfully moved there
         const unit = power.units[idx];
+        // Only dislodge if it wasn't the unit that successfully moved there
         const wasAttacker = [...successfulMoves].some(
           m => m.order.power === unit.power && m.to === dislodgedBase,
         );
         if (!wasAttacker) {
-          power.units.splice(idx, 1);
+          const validRetreats = getValidRetreats(unit, dislodgedBase, attackerOrigin, standoffTerritories, newState);
+          dislodgedUnits.push({ unit: { ...unit }, dislodgedFrom: dislodgedBase, attackerOrigin, validRetreats });
+          power.units.splice(idx, 1); // Remove from active units
         }
       }
     }
   }
+  newState.dislodgedUnits = dislodgedUnits.length > 0 ? dislodgedUnits : undefined;
 
   // ── Step 5: Update supply centers (after fall moves only) ──
   if (state.phase === 'fall_orders') {
@@ -672,6 +829,116 @@ export function resolveBuilds(
     orders: {} as Record<PowerId, Order[]>,
     resolutions: [],
     builds: allBuilds,
+    newState,
+  };
+}
+
+// ── Retreat helpers ─────────────────────────────────────────────────────────
+
+function getValidRetreats(
+  unit: Unit,
+  dislodgedFrom: string,
+  attackerOrigin: string,
+  standoffTerritories: Set<string>,
+  state: GameState,
+): string[] {
+  const fromTerritory = state.territories[dislodgedFrom];
+  if (!fromTerritory) return [];
+
+  // All occupied territories after resolution
+  const occupied = new Set<string>();
+  for (const power of Object.values(state.powers)) {
+    for (const u of power.units) {
+      occupied.add(baseTerritory(u.territory));
+    }
+  }
+
+  return fromTerritory.adjacencies
+    .map(adj => baseTerritory(adj))
+    .filter(adj => {
+      if (adj === attackerOrigin) return false;        // can't retreat to attacker's origin
+      if (occupied.has(adj)) return false;              // can't retreat to occupied territory
+      if (standoffTerritories.has(adj)) return false;   // can't retreat to standoff vacancy
+      const territory = state.territories[adj];
+      if (!territory) return false;
+      if (unit.type === 'army' && territory.type === 'sea') return false;
+      if (unit.type === 'fleet' && territory.type === 'land') return false;
+      return true;
+    })
+    .filter((v, i, a) => a.indexOf(v) === i); // dedupe
+}
+
+// ── Retreat resolution ──────────────────────────────────────────────────────
+
+export function resolveRetreats(
+  state: GameState,
+  allRetreats: Record<PowerId, RetreatOrder[]>,
+): TurnResult {
+  const newState: GameState = structuredClone(state);
+  const resolutions: OrderResolution[] = [];
+
+  // Collect all retreat destinations to detect clashes
+  const retreatTargets = new Map<string, RetreatOrder[]>();
+
+  for (const retreats of Object.values(allRetreats)) {
+    for (const retreat of retreats) {
+      if (retreat.destination) {
+        const dest = baseTerritory(retreat.destination);
+        const list = retreatTargets.get(dest) || [];
+        list.push(retreat);
+        retreatTargets.set(dest, list);
+      }
+    }
+  }
+
+  // Find clashing destinations (2+ retreats to same place → both disband)
+  const clashedDestinations = new Set<string>();
+  for (const [dest, orders] of retreatTargets) {
+    if (orders.length > 1) clashedDestinations.add(dest);
+  }
+
+  // Process each retreat
+  for (const retreats of Object.values(allRetreats)) {
+    for (const retreat of retreats) {
+      if (!retreat.destination) {
+        resolutions.push({ order: retreat as any, success: true, reason: 'Disbanded' });
+        continue;
+      }
+      const dest = baseTerritory(retreat.destination);
+      if (clashedDestinations.has(dest)) {
+        resolutions.push({ order: retreat as any, success: false, reason: 'Retreat clash — both units disbanded' });
+        continue;
+      }
+      // Successful retreat — add unit back to the power's units at new location
+      const power = newState.powers[retreat.power];
+      if (power) {
+        power.units.push({
+          type: retreat.unitType,
+          territory: dest,
+          power: retreat.power,
+          coast: undefined,
+        });
+        resolutions.push({ order: retreat as any, success: true });
+      }
+    }
+  }
+
+  // Clear dislodged units
+  newState.dislodgedUnits = undefined;
+
+  // Advance phase
+  switch (state.phase) {
+    case 'spring_retreats': newState.phase = 'fall_orders'; break;
+    case 'fall_retreats': newState.phase = 'winter_builds'; break;
+    default: break;
+  }
+
+  return {
+    year: state.year,
+    phase: state.phase,
+    orders: {} as any,
+    resolutions,
+    retreats: allRetreats,
     newState,
   };
 }

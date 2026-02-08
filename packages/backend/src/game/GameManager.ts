@@ -4,6 +4,8 @@ import {
   type GameConfig,
   type PowerId,
   type Order,
+  type BuildOrder,
+  type RetreatOrder,
   type TurnResult,
   type NegotiationState,
   type Message,
@@ -14,7 +16,7 @@ import {
   generateRandomPersonality,
 } from '@diplomacy/shared';
 import { AiManager } from '../ai/AiManager.js';
-import { resolveOrders } from './adjudicator.js';
+import { resolveOrders, resolveBuilds, resolveRetreats, getAdjustment, getAvailableBuildLocations } from './adjudicator.js';
 
 interface GameSession {
   state: GameState;
@@ -283,6 +285,136 @@ export class GameManager {
     return result;
   }
 
+  async submitBuilds(gameId: string, playerBuilds: BuildOrder[]): Promise<TurnResult> {
+    const session = this.games.get(gameId);
+    if (!session) throw new Error('Game not found');
+    if (session.state.phase !== 'winter_builds') throw new Error('Not in winter builds phase');
+
+    const allBuilds: Record<PowerId, BuildOrder[]> = {} as Record<PowerId, BuildOrder[]>;
+    allBuilds[session.state.playerPower] = playerBuilds;
+
+    // Auto-generate AI builds/disbands
+    for (const powerId of Object.keys(session.aiAgents) as PowerId[]) {
+      allBuilds[powerId] = this.generateAiBuilds(session.state, powerId);
+    }
+
+    const result = resolveBuilds(session.state, allBuilds);
+    session.state = result.newState;
+    session.turnHistory.push(result);
+
+    this.checkVictory(session);
+
+    // Start negotiations for next turn
+    if (!session.state.isComplete) {
+      this.startAiNegotiations(gameId);
+    }
+
+    return result;
+  }
+
+  async submitRetreats(gameId: string, playerRetreats: RetreatOrder[]): Promise<TurnResult> {
+    const session = this.games.get(gameId);
+    if (!session) throw new Error('Game not found');
+    const phase = session.state.phase;
+    if (phase !== 'spring_retreats' && phase !== 'fall_retreats') {
+      throw new Error('Not in a retreat phase');
+    }
+
+    const allRetreats: Record<PowerId, RetreatOrder[]> = {} as any;
+    allRetreats[session.state.playerPower] = playerRetreats.map(r => ({
+      ...r,
+      power: session.state.playerPower,
+    }));
+
+    // Generate AI retreats via heuristic
+    for (const powerId of Object.keys(session.aiAgents) as PowerId[]) {
+      allRetreats[powerId] = this.generateAiRetreats(session.state, powerId);
+    }
+
+    const result = resolveRetreats(session.state, allRetreats);
+    session.state = result.newState;
+    session.turnHistory.push(result);
+
+    this.checkVictory(session);
+
+    if (!session.state.isComplete) {
+      await this.autoAdvancePhases(session);
+    }
+    if (!session.state.isComplete) {
+      this.startAiNegotiations(gameId);
+    }
+
+    result.newState = session.state;
+    return result;
+  }
+
+  private generateAiRetreats(state: GameState, powerId: PowerId): RetreatOrder[] {
+    if (!state.dislodgedUnits) return [];
+    const retreats: RetreatOrder[] = [];
+
+    for (const du of state.dislodgedUnits) {
+      if (du.unit.power !== powerId) continue;
+
+      let destination: string | undefined;
+      if (du.validRetreats.length > 0) {
+        // Prefer: own supply center > any supply center > any valid territory
+        const ownSC = du.validRetreats.find(t =>
+          state.powers[powerId].supplyCenters.includes(t)
+        );
+        const anySC = du.validRetreats.find(t =>
+          state.territories[t]?.isSupplyCenter
+        );
+        destination = ownSC ?? anySC ?? du.validRetreats[0];
+      }
+
+      retreats.push({
+        power: powerId,
+        unitType: du.unit.type,
+        location: du.dislodgedFrom,
+        destination,
+      });
+    }
+    return retreats;
+  }
+
+  private generateAiBuilds(state: GameState, powerId: PowerId): BuildOrder[] {
+    const power = state.powers[powerId];
+    if (!power || power.isEliminated) return [];
+
+    const adj = getAdjustment(power);
+    const builds: BuildOrder[] = [];
+
+    if (adj > 0) {
+      // Can build — place armies at available home SCs
+      const locations = getAvailableBuildLocations(powerId, state);
+      for (let i = 0; i < Math.min(adj, locations.length); i++) {
+        const territory = state.territories[locations[i]];
+        // Build fleets at coastal home SCs, armies at inland ones
+        const unitType = territory && territory.type === 'coastal' ? 'fleet' : 'army';
+        builds.push({
+          power: powerId,
+          action: 'build',
+          unitType,
+          location: locations[i],
+        });
+      }
+    } else if (adj < 0) {
+      // Must disband — remove units (last ones in list as simple heuristic)
+      const toDisband = Math.min(-adj, power.units.length);
+      for (let i = 0; i < toDisband; i++) {
+        const unit = power.units[power.units.length - 1 - i];
+        builds.push({
+          power: powerId,
+          action: 'disband',
+          unitType: unit.type,
+          location: unit.territory,
+        });
+      }
+    }
+
+    return builds;
+  }
+
   private async adjudicateOrders(
     state: GameState,
     orders: Record<PowerId, Order[]>
@@ -290,19 +422,30 @@ export class GameManager {
     return resolveOrders(state, orders);
   }
 
-  private isInteractivePhase(phase: GameState['phase']): boolean {
-    return phase === 'spring_orders' || phase === 'fall_orders';
+  private isInteractivePhase(phase: GameState['phase'], state: GameState): boolean {
+    if (phase === 'spring_orders' || phase === 'fall_orders' || phase === 'winter_builds') {
+      return true;
+    }
+    if ((phase === 'spring_retreats' || phase === 'fall_retreats') && state.dislodgedUnits?.length) {
+      return true;
+    }
+    return false;
   }
 
   private async autoAdvancePhases(session: GameSession) {
-    // Skip non-interactive phases (retreats and winter builds).
-    // Dislodged units are removed immediately by the adjudicator (no retreat phase),
-    // and winter builds are not yet implemented, so advance to next orders phase.
-    while (!session.state.isComplete && !this.isInteractivePhase(session.state.phase)) {
-      const emptyOrders: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
-      const skipResult = await this.adjudicateOrders(session.state, emptyOrders);
-      session.state = skipResult.newState;
-      session.turnHistory.push(skipResult);
+    while (!session.state.isComplete && !this.isInteractivePhase(session.state.phase, session.state)) {
+      if (session.state.phase === 'spring_retreats' || session.state.phase === 'fall_retreats') {
+        // Empty retreat phase (no dislodged units) — advance with resolveRetreats
+        const emptyRetreats: Record<PowerId, RetreatOrder[]> = {} as any;
+        const skipResult = resolveRetreats(session.state, emptyRetreats);
+        session.state = skipResult.newState;
+        session.turnHistory.push(skipResult);
+      } else {
+        const emptyOrders: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
+        const skipResult = await this.adjudicateOrders(session.state, emptyOrders);
+        session.state = skipResult.newState;
+        session.turnHistory.push(skipResult);
+      }
       this.checkVictory(session);
     }
   }

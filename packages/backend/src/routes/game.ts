@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { GameManager } from '../game/GameManager.js';
-import type { Order } from '@diplomacy/shared';
+import type { Order, BuildOrder, RetreatOrder } from '@diplomacy/shared';
 
 export const gameRouter = Router();
 
@@ -112,6 +112,59 @@ gameRouter.post('/:id/orders', async (req, res) => {
     } else {
       console.error('Error submitting orders:', error);
       res.status(500).json({ error: 'Failed to submit orders' });
+    }
+  }
+});
+
+/**
+ * POST /api/game/:id/builds
+ * Submit player build/disband orders for winter phase
+ */
+gameRouter.post('/:id/builds', async (req, res) => {
+  try {
+    const builds: BuildOrder[] = (req.body.builds || []).map((b: any) => ({
+      power: '', // will be set by GameManager
+      action: b.action,
+      unitType: b.unitType,
+      location: b.location,
+      coast: b.coast,
+    }));
+    const result = await gameManager.submitBuilds(req.params.id, builds);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: error.message });
+    } else if (error instanceof Error && error.message.includes('Not in winter')) {
+      res.status(409).json({ error: error.message });
+    } else {
+      console.error('Error submitting builds:', error);
+      res.status(500).json({ error: 'Failed to submit builds' });
+    }
+  }
+});
+
+/**
+ * POST /api/game/:id/retreats
+ * Submit player retreat orders
+ */
+gameRouter.post('/:id/retreats', async (req, res) => {
+  try {
+    const retreats: RetreatOrder[] = (req.body.retreats || []).map((r: any) => ({
+      power: '' as any,
+      unitType: r.unitType,
+      location: r.location,
+      destination: r.destination,
+    }));
+    const result = await gameManager.submitRetreats(req.params.id, retreats);
+    res.json(result);
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('not found')) {
+      res.status(404).json({ error: error.message });
+    } else if (error instanceof Error && error.message.includes('Not in a retreat')) {
+      res.status(409).json({ error: error.message });
+    } else {
+      console.error('Error submitting retreats:', error);
+      res.status(500).json({ error: 'Failed to submit retreats' });
     }
   }
 });
