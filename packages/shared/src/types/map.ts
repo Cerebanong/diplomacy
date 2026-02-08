@@ -28,6 +28,8 @@ export interface TerritoryVisualData {
   labelPosition: { x: number; y: number };
   /** Supply center marker position (only for supply centers) */
   supplyCenterPosition?: { x: number; y: number };
+  /** Font size for territory label (default 12 if omitted) */
+  labelFontSize?: number;
   /** Default fill color (if not owned by a power) */
   defaultFill?: string;
   /** Coast boundary paths for multi-coast territories (SPA, STP, BUL) */

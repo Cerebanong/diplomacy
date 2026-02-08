@@ -57,6 +57,7 @@ export function OrdersPanel({
   const [draftRetreats, setDraftRetreats] = useState<Record<string, string | undefined>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [turnResult, setTurnResult] = useState<string | null>(null);
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
 
   const isBuildPhase = gameState.phase === 'winter_builds';
   const isRetreatPhase = gameState.phase === 'spring_retreats' || gameState.phase === 'fall_retreats';
@@ -148,16 +149,18 @@ export function OrdersPanel({
     const existingOrder = orders.find(o => o.location === unit.territory);
     if (existingOrder) return;
 
+    const newId = `${unit.territory}-${Date.now()}`;
     setOrders(prev => [
       ...prev,
       {
-        id: `${unit.territory}-${Date.now()}`,
+        id: newId,
         unitType: unit.type,
         location: unit.territory,
         coast: unit.coast,
         type: 'hold',
       },
     ]);
+    setActiveOrderId(newId);
   };
 
   const updateOrder = (id: string, updates: Partial<DraftOrder>) => {
@@ -168,6 +171,7 @@ export function OrdersPanel({
 
   const removeOrder = (id: string) => {
     setOrders(prev => prev.filter(o => o.id !== id));
+    if (activeOrderId === id) setActiveOrderId(null);
   };
 
   const formatPhase = (phase: string, year: number) => {
@@ -224,6 +228,7 @@ export function OrdersPanel({
         const newPhase = formatPhase(result.newState.phase, result.newState.year);
         setTurnResult(`${previousPhase} resolved — advancing to ${newPhase}`);
         setOrders([]);
+        setActiveOrderId(null);
         onOrdersSubmitted(result.newState);
       } else {
         const error = await response.json();
@@ -790,12 +795,22 @@ export function OrdersPanel({
       </div>
 
       {/* Orders List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div
+        className="flex-1 overflow-y-auto p-4 space-y-4"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setActiveOrderId(null);
+        }}
+      >
         {/* Existing Orders */}
         {orders.map(order => (
           <div
             key={order.id}
-            className="bg-gray-50 rounded-lg p-3 border border-gray-200"
+            className={`rounded-lg p-3 border transition-all duration-150 cursor-pointer ${
+              activeOrderId === order.id
+                ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-300/50'
+                : 'bg-gray-50 border-gray-200'
+            }`}
+            onClick={() => setActiveOrderId(order.id)}
           >
             <div className="flex items-center justify-between mb-2">
               <span className="font-semibold">

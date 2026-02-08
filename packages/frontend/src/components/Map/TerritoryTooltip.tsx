@@ -45,7 +45,7 @@ export function TerritoryTooltip({
       <div className="text-gray-300 text-xs">{typeLabel}</div>
       {territory.isSupplyCenter && (
         <div className="flex items-center gap-1 mt-1 text-yellow-400 text-xs">
-          <span>★</span>
+          <span>●</span>
           <span>Supply Center ({ownerName})</span>
         </div>
       )}

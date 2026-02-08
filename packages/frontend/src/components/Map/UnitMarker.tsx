@@ -8,6 +8,8 @@ interface UnitMarkerProps {
   y: number;
   isSelected?: boolean;
   onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 /**
@@ -20,6 +22,8 @@ export function UnitMarker({
   y,
   isSelected = false,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
 }: UnitMarkerProps) {
   const color = CLASSIC_POWER_COLORS[unit.power as PowerId].fill;
   const size = 20;
@@ -33,6 +37,8 @@ export function UnitMarker({
       transform={`translate(${offsetX}, ${offsetY})`}
       className={`unit-marker ${isSelected ? 'unit-selected' : ''}`}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={{ cursor: onClick ? 'pointer' : 'default' }}
     >
       {unit.type === 'army' ? (

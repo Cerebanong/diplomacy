@@ -60,8 +60,8 @@ export interface RetreatOrder {
 
 export interface BuildOrder {
   power: PowerId;
-  /** 'build' to create a unit, 'waive' to skip */
-  action: 'build' | 'waive';
+  /** 'build' to create a unit, 'disband' to remove one, 'waive' to skip */
+  action: 'build' | 'disband' | 'waive';
   unitType?: UnitType;
   location?: string;
   coast?: string;

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef, useState, useEffect, useCallback } from 'react';
 import {
   TransformWrapper,
   TransformComponent,
@@ -47,9 +47,32 @@ function Controls() {
 }
 
 /**
- * Wrapper component providing zoom and pan functionality for the map
+ * Wrapper component providing zoom and pan functionality for the map.
+ * Uses a ResizeObserver to measure the container and set explicit square
+ * content dimensions matching the 1:1 SVG viewBox. This gives the library
+ * correct content-vs-wrapper sizes so limitToBounds works properly.
  */
 export function ZoomPanWrapper({ children }: ZoomPanWrapperProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [mapSize, setMapSize] = useState<number | null>(null);
+
+  const updateSize = useCallback(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    setMapSize(Math.min(el.offsetWidth, el.offsetHeight));
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    updateSize();
+
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [updateSize]);
+
   return (
     <TransformWrapper
       initialScale={1}
@@ -60,19 +83,27 @@ export function ZoomPanWrapper({ children }: ZoomPanWrapperProps) {
       pinch={{ step: 5 }}
       doubleClick={{ disabled: false, mode: 'zoomIn' }}
       panning={{ velocityDisabled: true }}
-      limitToBounds={false}
+      limitToBounds={true}
+      centerZoomedOut={true}
+      alignmentAnimation={{
+        sizeX: 0,
+        sizeY: 0,
+        animationTime: 200,
+        animationType: 'easeOut',
+      }}
     >
-      <div className="relative w-full h-full">
+      <div ref={containerRef} className="relative w-full h-full">
         <Controls />
         <TransformComponent
           wrapperStyle={{
             width: '100%',
             height: '100%',
           }}
-          contentStyle={{
-            width: '100%',
-            height: '100%',
-          }}
+          contentStyle={
+            mapSize != null
+              ? { width: mapSize, height: mapSize }
+              : { width: '100%', height: '100%' }
+          }
         >
           {children}
         </TransformComponent>

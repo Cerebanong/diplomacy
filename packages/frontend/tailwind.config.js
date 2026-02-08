@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         // Power colors
-        england: '#1E3A8A',
+        england: '#F9A8D4',
         france: '#60A5FA',
         germany: '#374151',
         italy: '#22C55E',

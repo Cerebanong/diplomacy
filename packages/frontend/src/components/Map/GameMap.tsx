@@ -67,6 +67,7 @@ function getSupplyCenterOwner(
 export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredTerritory, setHoveredTerritory] = useState<string | null>(null);
+  const [hoveredUnitIdx, setHoveredUnitIdx] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Check if we're in build phase (for supply center pulse animation)
@@ -80,9 +81,14 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
       for (const unit of power.units) {
         const visualData = CLASSIC_TERRITORY_VISUALS[unit.territory];
         if (visualData) {
+          // If territory has a supply center, stack unit above it
+          // Unit bottom (center + 10) touches SC top (center - 11)
+          const pos = visualData.supplyCenterPosition
+            ? { x: visualData.supplyCenterPosition.x, y: visualData.supplyCenterPosition.y - 21 }
+            : visualData.center;
           units.push({
             unit,
-            position: visualData.center,
+            position: pos,
           });
         }
       }
@@ -99,9 +105,11 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
   const { width, height } = CLASSIC_MAP_DATA.viewBox;
 
   return (
+    <div className="w-full h-full p-1">
+    <div className="map-frame w-full h-full">
     <div
       ref={containerRef}
-      className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden relative"
+      className="w-full h-full bg-white overflow-hidden relative"
       onMouseMove={handleMouseMove}
     >
       <ZoomPanWrapper>
@@ -144,6 +152,17 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
               <rect width="6" height="6" fill={NEUTRAL_COLORS.land} />
               <line x1="0" y1="0" x2="0" y2="6" stroke="#B8A88C" strokeWidth="2" />
             </pattern>
+
+            {/* Supply center glossy gradient */}
+            <radialGradient id="scGloss" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="white" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="white" stopOpacity={0} />
+            </radialGradient>
+
+            {/* Supply center drop shadow */}
+            <filter id="scShadow">
+              <feDropShadow dx="1" dy="1" stdDeviation="1.5" floodOpacity="0.3" />
+            </filter>
           </defs>
 
           {/* Background */}
@@ -233,9 +252,12 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
 
           {/* Territory Labels */}
           <g className="territory-labels" pointerEvents="none">
-            {Object.entries(gameState.territories).map(([id]) => {
+            {Object.entries(gameState.territories).map(([id, territory]) => {
               const visualData = CLASSIC_TERRITORY_VISUALS[id];
               if (!visualData) return null;
+
+              const isSea = territory.type === 'sea';
+              const fontSize = visualData.labelFontSize ?? 12;
 
               return (
                 <text
@@ -243,9 +265,10 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
                   x={visualData.labelPosition.x}
                   y={visualData.labelPosition.y}
                   textAnchor="middle"
-                  fontSize="12"
+                  fontSize={fontSize}
                   fontWeight="500"
-                  fill="#333"
+                  fill={isSea ? '#4A6B8A' : '#333'}
+                  fontStyle={isSea ? 'italic' : undefined}
                   className="select-none"
                 >
                   {id.toUpperCase()}
@@ -270,7 +293,6 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
                   y={visualData.supplyCenterPosition.y}
                   owner={owner}
                   isHighlighted={isBuildPhase && isPlayerSC}
-                  size={10}
                 />
               );
             })}
@@ -284,6 +306,8 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
                 unit={unit}
                 x={position.x}
                 y={position.y}
+                onMouseEnter={() => setHoveredUnitIdx(idx)}
+                onMouseLeave={() => setHoveredUnitIdx(null)}
               />
             ))}
           </g>
@@ -319,26 +343,54 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
             <span>Fleet</span>
           </div>
           <div className="flex items-center gap-2">
-            <svg width="12" height="12" viewBox="0 0 12 12">
-              <path
-                d="M6 1 L7.5 4.5 L11 5 L8.5 7.5 L9 11 L6 9.5 L3 11 L3.5 7.5 L1 5 L4.5 4.5 Z"
-                fill="#FFD700"
-                stroke="#B8860B"
-                strokeWidth="0.5"
-              />
+            <svg width="14" height="14" viewBox="0 0 14 14">
+              <circle cx="7" cy="7" r="5" fill="none" stroke="#555" strokeWidth="1.5" />
             </svg>
             <span>Supply Center</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 18 18">
+              <circle cx="9" cy="9" r="7" fill="#4B5563" stroke="#374151" strokeWidth="1" />
+            </svg>
+            <span>Owned SC</span>
           </div>
         </div>
       </div>
 
-      {/* Tooltip */}
-      <TerritoryTooltip
-        territory={hoveredTerritory ? gameState.territories[hoveredTerritory] : null}
-        owner={hoveredTerritory ? getSupplyCenterOwner(hoveredTerritory, gameState.powers) : null}
-        mousePosition={mousePosition}
-        containerRef={containerRef as React.RefObject<HTMLDivElement>}
-      />
+      {/* Territory Tooltip */}
+      {hoveredUnitIdx === null && (
+        <TerritoryTooltip
+          territory={hoveredTerritory ? gameState.territories[hoveredTerritory] : null}
+          owner={hoveredTerritory ? getSupplyCenterOwner(hoveredTerritory, gameState.powers) : null}
+          mousePosition={mousePosition}
+          containerRef={containerRef as React.RefObject<HTMLDivElement>}
+        />
+      )}
+
+      {/* Unit Tooltip */}
+      {hoveredUnitIdx !== null && allUnits[hoveredUnitIdx] && (() => {
+        const { unit } = allUnits[hoveredUnitIdx];
+        const powerName = unit.power.charAt(0).toUpperCase() + unit.power.slice(1);
+        const unitLabel = unit.type === 'army' ? 'Army' : 'Fleet';
+        const territoryName = gameState.territories[unit.territory]?.name ?? unit.territory.toUpperCase();
+        const coastLabel = unit.coast ? ` (${unit.coast.split('_')[1]?.toUpperCase() ?? unit.coast})` : '';
+        const containerRect = containerRef.current?.getBoundingClientRect();
+        if (!containerRect) return null;
+        const tx = mousePosition.x - containerRect.left + 15;
+        const ty = mousePosition.y - containerRect.top - 10;
+
+        return (
+          <div
+            className="absolute pointer-events-none z-20 bg-gray-900/95 text-white px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap"
+            style={{ left: tx, top: ty, transform: 'translateY(-100%)' }}
+          >
+            <div className="font-semibold">{powerName} {unitLabel}</div>
+            <div className="text-gray-300 text-xs">{territoryName}{coastLabel}</div>
+          </div>
+        );
+      })()}
+    </div>
+    </div>
     </div>
   );
 }
