@@ -12,6 +12,7 @@ import { SupplyCenterMarker } from './SupplyCenterMarker';
 import { UnitMarker } from './UnitMarker';
 import { TerritoryTooltip } from './TerritoryTooltip';
 import { ArmyIcon, FleetIcon } from './UnitIcons';
+import { Info } from 'lucide-react';
 
 interface GameMapProps {
   gameState: GameState;
@@ -69,6 +70,7 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
   const [hoveredTerritory, setHoveredTerritory] = useState<string | null>(null);
   const [hoveredUnitIdx, setHoveredUnitIdx] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showLegend, setShowLegend] = useState(false);
 
   // Check if we're in build phase (for supply center pulse animation)
   const isBuildPhase = gameState.phase === 'winter_builds';
@@ -102,7 +104,13 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
-  const { width, height } = CLASSIC_MAP_DATA.viewBox;
+  // Crop viewBox to actual map content bounds (with padding)
+  // Content ranges: x 50-1066, y 90-1079 based on territory positions
+  // Add padding for territory path strokes extending beyond center points
+  const vbX = 10;
+  const vbY = 55;
+  const vbW = 1100;
+  const vbH = 1050;
 
   return (
     <div className="w-full h-full p-1">
@@ -112,9 +120,9 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
       className="w-full h-full bg-white overflow-hidden relative"
       onMouseMove={handleMouseMove}
     >
-      <ZoomPanWrapper>
+      <ZoomPanWrapper aspectRatio={vbW / vbH}>
         <svg
-          viewBox={`0 0 ${width} ${height}`}
+          viewBox={`${vbX} ${vbY} ${vbW} ${vbH}`}
           className="w-full h-full"
           style={{ backgroundColor: NEUTRAL_COLORS.sea }}
         >
@@ -166,7 +174,7 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
           </defs>
 
           {/* Background */}
-          <rect width={width} height={height} fill="url(#seaGrad)" />
+          <rect x={vbX} y={vbY} width={vbW} height={vbH} fill="url(#seaGrad)" />
 
           {/* Impassable territories (Switzerland) - rendered before interactive territories */}
           <path
@@ -312,49 +320,50 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
             ))}
           </g>
 
-          {/* Map title */}
-          <text
-            x={width / 2}
-            y={35}
-            textAnchor="middle"
-            fontSize="28"
-            fontWeight="bold"
-            fill="#333"
-          >
-            Europe, {gameState.year}
-          </text>
         </svg>
       </ZoomPanWrapper>
 
-      {/* Legend */}
-      <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur rounded-lg shadow-lg p-3 text-xs">
-        <div className="font-semibold mb-2">Legend</div>
-        <div className="flex gap-4">
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24">
-              <ArmyIcon color="#333" size={20} />
-            </svg>
-            <span>Army</span>
+      {/* Legend toggle */}
+      <div className="absolute bottom-3 left-3 z-10 flex flex-col items-start gap-1">
+        {showLegend && (
+          <div className="bg-white/95 backdrop-blur rounded-lg shadow-lg p-3 text-xs">
+            <div className="font-semibold mb-2">Legend</div>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                  <ArmyIcon color="#333" size={20} />
+                </svg>
+                <span>Army</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                  <FleetIcon color="#333" size={20} />
+                </svg>
+                <span>Fleet</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14">
+                  <circle cx="7" cy="7" r="5" fill="none" stroke="#555" strokeWidth="1.5" />
+                </svg>
+                <span>Supply Center</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18">
+                  <circle cx="9" cy="9" r="7" fill="#4B5563" stroke="#374151" strokeWidth="1" />
+                </svg>
+                <span>Owned SC</span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24">
-              <FleetIcon color="#333" size={20} />
-            </svg>
-            <span>Fleet</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 14 14">
-              <circle cx="7" cy="7" r="5" fill="none" stroke="#555" strokeWidth="1.5" />
-            </svg>
-            <span>Supply Center</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg width="18" height="18" viewBox="0 0 18 18">
-              <circle cx="9" cy="9" r="7" fill="#4B5563" stroke="#374151" strokeWidth="1" />
-            </svg>
-            <span>Owned SC</span>
-          </div>
-        </div>
+        )}
+        <button
+          onClick={() => setShowLegend(v => !v)}
+          className="p-2 bg-white/90 hover:bg-white rounded shadow-md transition-colors"
+          title={showLegend ? 'Hide Legend' : 'Show Legend'}
+          aria-label={showLegend ? 'Hide Legend' : 'Show Legend'}
+        >
+          <Info size={18} className="text-gray-700" />
+        </button>
       </div>
 
       {/* Territory Tooltip */}

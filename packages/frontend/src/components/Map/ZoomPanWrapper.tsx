@@ -8,6 +8,7 @@ import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
 interface ZoomPanWrapperProps {
   children: ReactNode;
+  aspectRatio?: number;
 }
 
 /**
@@ -52,15 +53,29 @@ function Controls() {
  * content dimensions matching the 1:1 SVG viewBox. This gives the library
  * correct content-vs-wrapper sizes so limitToBounds works properly.
  */
-export function ZoomPanWrapper({ children }: ZoomPanWrapperProps) {
+export function ZoomPanWrapper({ children, aspectRatio }: ZoomPanWrapperProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mapSize, setMapSize] = useState<number | null>(null);
+  const [contentSize, setContentSize] = useState<{ width: number; height: number } | null>(null);
 
   const updateSize = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
-    setMapSize(Math.min(el.offsetWidth, el.offsetHeight));
-  }, []);
+    const cw = el.offsetWidth;
+    const ch = el.offsetHeight;
+    if (aspectRatio) {
+      // Fit content to container while preserving the map's aspect ratio
+      if (cw / ch > aspectRatio) {
+        // Container is wider than content — height-constrained
+        setContentSize({ width: ch * aspectRatio, height: ch });
+      } else {
+        // Container is taller than content — width-constrained
+        setContentSize({ width: cw, height: cw / aspectRatio });
+      }
+    } else {
+      const size = Math.min(cw, ch);
+      setContentSize({ width: size, height: size });
+    }
+  }, [aspectRatio]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -100,8 +115,8 @@ export function ZoomPanWrapper({ children }: ZoomPanWrapperProps) {
             height: '100%',
           }}
           contentStyle={
-            mapSize != null
-              ? { width: mapSize, height: mapSize }
+            contentSize != null
+              ? { width: contentSize.width, height: contentSize.height }
               : { width: '100%', height: '100%' }
           }
         >
