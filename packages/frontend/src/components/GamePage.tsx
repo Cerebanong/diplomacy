@@ -4,14 +4,18 @@ import type { GameState, PowerId } from '@diplomacy/shared';
 import { GameMap } from './Map/GameMap';
 import { NegotiationPanel } from './Chat/NegotiationPanel';
 import { OrdersPanel } from './Orders/OrdersPanel';
+import { HistoryPanel } from './History/HistoryPanel';
 import { GameHeader } from './GameHeader';
 import { apiUrl } from '../config';
+
+type SidebarTab = 'orders' | 'diplomacy' | 'history';
 
 export function GamePage() {
   const { gameId } = useParams<{ gameId: string }>();
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [aiNegotiationsInProgress, setAiNegotiationsInProgress] = useState(false);
-  const [selectedPower, setSelectedPower] = useState<PowerId | null>(null);
+  const [activeTab, setActiveTab] = useState<SidebarTab>('orders');
+  const [selectedPower, setSelectedPower] = useState<PowerId>('england');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -67,7 +71,7 @@ export function GamePage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Header */}
       <GameHeader
         gameState={gameState}
@@ -75,9 +79,9 @@ export function GamePage() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex">
+      <div className="flex-1 flex min-h-0">
         {/* Map Area */}
-        <div className="flex-1 p-4">
+        <div className="flex-1 p-4 min-h-0">
           <GameMap
             gameState={gameState}
             onTerritoryClick={(territoryId) => console.log('Clicked:', territoryId)}
@@ -85,46 +89,46 @@ export function GamePage() {
         </div>
 
         {/* Side Panel */}
-        <div className="w-96 border-l border-gray-300 flex flex-col bg-white/90">
+        <div className="w-96 border-l border-gray-300 flex flex-col bg-white/90 min-h-0">
           {/* Tabs */}
           <div className="flex border-b border-gray-300">
-            <button
-              onClick={() => setSelectedPower(null)}
-              className={`flex-1 py-3 px-4 text-sm font-semibold ${
-                selectedPower === null
-                  ? 'bg-gray-100 border-b-2 border-gray-800'
-                  : 'hover:bg-gray-50'
-              }`}
-            >
-              Orders
-            </button>
-            <button
-              onClick={() => setSelectedPower(selectedPower || 'england')}
-              className={`flex-1 py-3 px-4 text-sm font-semibold ${
-                selectedPower !== null
-                  ? 'bg-gray-100 border-b-2 border-gray-800'
-                  : 'hover:bg-gray-50'
-              }`}
-            >
-              Diplomacy
-            </button>
+            {(['orders', 'diplomacy', 'history'] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 py-3 px-4 text-sm font-semibold ${
+                  activeTab === tab
+                    ? 'bg-gray-100 border-b-2 border-gray-800'
+                    : 'hover:bg-gray-50'
+                }`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
           </div>
 
           {/* Panel Content */}
           <div className="flex-1 overflow-hidden">
-            {selectedPower === null ? (
+            {activeTab === 'orders' && (
               <OrdersPanel
                 gameState={gameState}
                 gameId={gameId!}
                 aiNegotiationsInProgress={aiNegotiationsInProgress}
                 onOrdersSubmitted={(newState) => setGameState(newState)}
               />
-            ) : (
+            )}
+            {activeTab === 'diplomacy' && (
               <NegotiationPanel
                 gameState={gameState}
                 gameId={gameId!}
                 selectedPower={selectedPower}
                 onSelectPower={setSelectedPower}
+              />
+            )}
+            {activeTab === 'history' && (
+              <HistoryPanel
+                gameState={gameState}
+                gameId={gameId!}
               />
             )}
           </div>
