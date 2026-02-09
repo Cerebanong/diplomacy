@@ -17,7 +17,7 @@ import type { PowerId } from '../types/game.js';
 export const CLASSIC_POWER_COLORS: Record<PowerId, { fill: string; stroke: string }> = {
   england: { fill: '#F9A8D4', stroke: '#F472B6' },
   france: { fill: '#60A5FA', stroke: '#3B82F6' },
-  germany: { fill: '#4B5563', stroke: '#374151' },
+  germany: { fill: '#9CA3AF', stroke: '#6B7280' },
   italy: { fill: '#22C55E', stroke: '#16A34A' },
   austria: { fill: '#EF4444', stroke: '#DC2626' },
   russia: { fill: '#A855F7', stroke: '#9333EA' },
