@@ -16,7 +16,7 @@ import {
   generateRandomPersonality,
 } from '@diplomacy/shared';
 import { AiManager } from '../ai/AiManager.js';
-import { resolveOrders, resolveBuilds, resolveRetreats, getAdjustment, getAvailableBuildLocations } from './adjudicator.js';
+import { resolveOrders, resolveBuilds, resolveRetreats } from './adjudicator.js';
 
 interface GameSession {
   state: GameState;
@@ -195,7 +195,9 @@ export class GameManager {
       session.state,
       message,
       session.negotiations.channels[channelId].messages,
-      session.config.aiModel
+      session.config.aiModel,
+      session.turnHistory,
+      session.negotiations,
     );
 
     const aiMessage: Message = {
@@ -249,7 +251,9 @@ export class GameManager {
       const aiOrders = await this.aiManager.generateOrders(
         agent,
         session.state,
-        session.config.aiModel
+        session.config.aiModel,
+        session.turnHistory,
+        session.negotiations,
       );
       allOrders[power as PowerId] = aiOrders.orders;
       session.state.totalApiCost += aiOrders.cost;
@@ -264,9 +268,6 @@ export class GameManager {
 
     // Update AI trust scores based on what happened
     this.updateTrustScores(session, result);
-
-    // Check for victory
-    this.checkVictory(session);
 
     // Auto-advance past non-interactive phases (retreats with no dislodged units,
     // winter builds with no adjustments needed — always true with placeholder adjudicator)
@@ -293,9 +294,16 @@ export class GameManager {
     const allBuilds: Record<PowerId, BuildOrder[]> = {} as Record<PowerId, BuildOrder[]>;
     allBuilds[session.state.playerPower] = playerBuilds;
 
-    // Auto-generate AI builds/disbands
+    // LLM-driven AI builds/disbands with fallback
     for (const powerId of Object.keys(session.aiAgents) as PowerId[]) {
-      allBuilds[powerId] = this.generateAiBuilds(session.state, powerId);
+      const buildResult = await this.aiManager.generateBuilds(
+        session.aiAgents[powerId],
+        session.state,
+        session.config.aiModel,
+        session.turnHistory,
+      );
+      allBuilds[powerId] = buildResult.builds;
+      session.state.totalApiCost += buildResult.cost;
     }
 
     const result = resolveBuilds(session.state, allBuilds);
@@ -326,16 +334,24 @@ export class GameManager {
       power: session.state.playerPower,
     }));
 
-    // Generate AI retreats via heuristic
+    // Collect destinations already claimed by the player to avoid AI clashes
+    const claimedDestinations = new Set<string>();
+    for (const r of allRetreats[session.state.playerPower]) {
+      if (r.destination) claimedDestinations.add(r.destination);
+    }
+
+    // Generate AI retreats via heuristic, avoiding claimed destinations
     for (const powerId of Object.keys(session.aiAgents) as PowerId[]) {
-      allRetreats[powerId] = this.generateAiRetreats(session.state, powerId);
+      const aiRetreats = this.generateAiRetreats(session.state, powerId, claimedDestinations);
+      allRetreats[powerId] = aiRetreats;
+      for (const r of aiRetreats) {
+        if (r.destination) claimedDestinations.add(r.destination);
+      }
     }
 
     const result = resolveRetreats(session.state, allRetreats);
     session.state = result.newState;
     session.turnHistory.push(result);
-
-    this.checkVictory(session);
 
     if (!session.state.isComplete) {
       await this.autoAdvancePhases(session);
@@ -348,7 +364,7 @@ export class GameManager {
     return result;
   }
 
-  private generateAiRetreats(state: GameState, powerId: PowerId): RetreatOrder[] {
+  private generateAiRetreats(state: GameState, powerId: PowerId, claimedDestinations?: Set<string>): RetreatOrder[] {
     if (!state.dislodgedUnits) return [];
     const retreats: RetreatOrder[] = [];
 
@@ -356,15 +372,20 @@ export class GameManager {
       if (du.unit.power !== powerId) continue;
 
       let destination: string | undefined;
-      if (du.validRetreats.length > 0) {
+      // Filter out destinations already claimed by other retreating units
+      const available = claimedDestinations
+        ? du.validRetreats.filter(t => !claimedDestinations.has(t))
+        : du.validRetreats;
+
+      if (available.length > 0) {
         // Prefer: own supply center > any supply center > any valid territory
-        const ownSC = du.validRetreats.find(t =>
+        const ownSC = available.find(t =>
           state.powers[powerId].supplyCenters.includes(t)
         );
-        const anySC = du.validRetreats.find(t =>
+        const anySC = available.find(t =>
           state.territories[t]?.isSupplyCenter
         );
-        destination = ownSC ?? anySC ?? du.validRetreats[0];
+        destination = ownSC ?? anySC ?? available[0];
       }
 
       retreats.push({
@@ -377,43 +398,6 @@ export class GameManager {
     return retreats;
   }
 
-  private generateAiBuilds(state: GameState, powerId: PowerId): BuildOrder[] {
-    const power = state.powers[powerId];
-    if (!power || power.isEliminated) return [];
-
-    const adj = getAdjustment(power);
-    const builds: BuildOrder[] = [];
-
-    if (adj > 0) {
-      // Can build — place armies at available home SCs
-      const locations = getAvailableBuildLocations(powerId, state);
-      for (let i = 0; i < Math.min(adj, locations.length); i++) {
-        const territory = state.territories[locations[i]];
-        // Build fleets at coastal home SCs, armies at inland ones
-        const unitType = territory && territory.type === 'coastal' ? 'fleet' : 'army';
-        builds.push({
-          power: powerId,
-          action: 'build',
-          unitType,
-          location: locations[i],
-        });
-      }
-    } else if (adj < 0) {
-      // Must disband — remove units (last ones in list as simple heuristic)
-      const toDisband = Math.min(-adj, power.units.length);
-      for (let i = 0; i < toDisband; i++) {
-        const unit = power.units[power.units.length - 1 - i];
-        builds.push({
-          power: powerId,
-          action: 'disband',
-          unitType: unit.type,
-          location: unit.territory,
-        });
-      }
-    }
-
-    return builds;
-  }
 
   private async adjudicateOrders(
     state: GameState,
@@ -446,13 +430,103 @@ export class GameManager {
         session.state = skipResult.newState;
         session.turnHistory.push(skipResult);
       }
-      this.checkVictory(session);
     }
   }
 
-  private updateTrustScores(_session: GameSession, _result: TurnResult) {
-    // TODO: Analyze orders and update trust scores based on
-    // whether AI agents followed through on agreements
+  private updateTrustScores(session: GameSession, result: TurnResult) {
+    // Build map of unit locations before resolution from orders
+    const unitOwnership = new Map<string, PowerId>();
+    for (const [powerId, orders] of Object.entries(result.orders)) {
+      for (const order of orders) {
+        unitOwnership.set(order.location, powerId as PowerId);
+      }
+    }
+
+    for (const [agentPowerId, agent] of Object.entries(session.aiAgents)) {
+      const agentPower = agentPowerId as PowerId;
+
+      // Get territories where this agent had units (from its orders)
+      const agentUnitLocations = new Set<string>();
+      const agentOrders = result.orders[agentPower] || [];
+      for (const order of agentOrders) {
+        agentUnitLocations.add(order.location);
+      }
+
+      for (const otherPowerId of Object.keys(session.state.powers) as PowerId[]) {
+        if (otherPowerId === agentPower) continue;
+        if (!agent.trustScores[otherPowerId]) continue;
+
+        let trustDelta = 0;
+        const reasons: string[] = [];
+        const otherOrders = result.orders[otherPowerId] || [];
+
+        // Check attacks: other power moved into agent's territories
+        for (const order of otherOrders) {
+          if (order.type === 'move' && agentUnitLocations.has(order.destination)) {
+            trustDelta -= 0.3;
+            reasons.push(`attacked ${order.destination}`);
+            break; // Only penalize once per power
+          }
+        }
+
+        // Check supports: other power supported agent's units
+        for (const order of otherOrders) {
+          if (order.type === 'support') {
+            const supportedOwner = unitOwnership.get(order.supportedUnit.location);
+            if (supportedOwner === agentPower) {
+              trustDelta += 0.2;
+              reasons.push(`supported our unit at ${order.supportedUnit.location}`);
+              break; // Only reward once per power
+            }
+          }
+        }
+
+        // Cross-reference with negotiations for betrayals
+        const channelId = getChannelId(agentPower, otherPowerId);
+        const channel = session.negotiations.channels[channelId];
+        if (channel) {
+          const recentMsgs = channel.messages.slice(-10);
+          const promisedPeace = recentMsgs.some(m =>
+            m.from === otherPowerId &&
+            /peace|non-aggression|won't attack|alliance|truce|ceasefire/i.test(m.content)
+          );
+          const promisedSupport = recentMsgs.some(m =>
+            m.from === otherPowerId &&
+            /support|help|assist|back you/i.test(m.content)
+          );
+
+          const didAttack = otherOrders.some(o =>
+            o.type === 'move' && agentUnitLocations.has(o.destination)
+          );
+          const didSupportAgent = otherOrders.some(o => {
+            if (o.type !== 'support') return false;
+            return unitOwnership.get(o.supportedUnit.location) === agentPower;
+          });
+
+          if (promisedPeace && didAttack) {
+            trustDelta -= 0.2;
+            reasons.push('broke peace promise');
+          }
+          if (promisedSupport && !didSupportAgent) {
+            trustDelta -= 0.1;
+            reasons.push('failed to deliver promised support');
+          }
+        }
+
+        if (trustDelta !== 0) {
+          const oldScore = agent.trustScores[otherPowerId].score;
+          const newScore = Math.max(-1, Math.min(1, oldScore + trustDelta));
+          agent.trustScores[otherPowerId].score = newScore;
+          agent.trustScores[otherPowerId].history.push({
+            year: result.year,
+            phase: result.phase,
+            previousScore: oldScore,
+            newScore,
+            reason: reasons.join('; '),
+          });
+        }
+      }
+    }
   }
 
   private checkVictory(session: GameSession) {
@@ -473,7 +547,12 @@ export class GameManager {
     session.negotiations.currentAiRound = 0;
 
     // Run up to 3 rounds of AI negotiations
-    this.runAiNegotiationRound(gameId);
+    this.runAiNegotiationRound(gameId).catch(err => {
+      console.error(`AI negotiation error for game ${gameId}:`, err);
+      if (session) {
+        session.negotiations.aiNegotiationsInProgress = false;
+      }
+    });
   }
 
   private async runAiNegotiationRound(gameId: string) {
@@ -490,7 +569,8 @@ export class GameManager {
       session.aiAgents,
       session.state,
       session.negotiations,
-      session.config.aiModel
+      session.config.aiModel,
+      session.turnHistory,
     );
 
     // Record messages (but don't show to player)
@@ -535,6 +615,16 @@ export class GameManager {
     } else {
       session.negotiations.aiNegotiationsInProgress = false;
     }
+  }
+
+  proposeDraw(gameId: string): GameState {
+    const session = this.games.get(gameId);
+    if (!session) throw new Error('Game not found');
+    if (session.state.isComplete) throw new Error('Game is already complete');
+    session.negotiations.aiNegotiationsInProgress = false;
+    session.state.isComplete = true;
+    session.state.isDraw = true;
+    return session.state;
   }
 
   revealAllNegotiations(gameId: string) {
