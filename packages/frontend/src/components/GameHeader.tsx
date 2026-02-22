@@ -1,9 +1,10 @@
 import type { GameState } from '@diplomacy/shared';
-import { Calendar, Crown, Coins, Users } from 'lucide-react';
+import { Calendar, Crown, Coins, Users, Flag } from 'lucide-react';
 
 interface GameHeaderProps {
   gameState: GameState;
   aiNegotiationsInProgress: boolean;
+  onProposeDraw: () => void;
 }
 
 const PHASE_NAMES: Record<string, string> = {
@@ -34,7 +35,7 @@ const POWER_NAMES: Record<string, string> = {
   turkey: 'Turkey',
 };
 
-export function GameHeader({ gameState, aiNegotiationsInProgress }: GameHeaderProps) {
+export function GameHeader({ gameState, aiNegotiationsInProgress, onProposeDraw }: GameHeaderProps) {
   const playerPower = gameState.powers[gameState.playerPower];
 
   return (
@@ -45,9 +46,16 @@ export function GameHeader({ gameState, aiNegotiationsInProgress }: GameHeaderPr
           <Calendar size={20} />
           <span className="text-xl font-semibold">{gameState.year}</span>
         </div>
-        <div className="text-gray-300">
-          {PHASE_NAMES[gameState.phase] || gameState.phase}
-        </div>
+        {gameState.isComplete ? (
+          <div className="flex items-center gap-2 text-amber-400 font-semibold">
+            <Flag size={16} />
+            Game Over
+          </div>
+        ) : (
+          <div className="text-gray-300">
+            {PHASE_NAMES[gameState.phase] || gameState.phase}
+          </div>
+        )}
       </div>
 
       {/* Center: Player Power */}
@@ -65,8 +73,16 @@ export function GameHeader({ gameState, aiNegotiationsInProgress }: GameHeaderPr
         </div>
       </div>
 
-      {/* Right: AI Status and Cost */}
+      {/* Right: Draw button, AI Status and Cost */}
       <div className="flex items-center gap-6">
+        {!gameState.isComplete && (
+          <button
+            onClick={onProposeDraw}
+            className="px-3 py-1.5 text-sm font-medium text-gray-300 border border-gray-500 rounded hover:bg-gray-700 hover:text-white"
+          >
+            Propose Draw
+          </button>
+        )}
         {aiNegotiationsInProgress && (
           <div className="flex items-center gap-2 text-yellow-400 animate-pulse">
             <div className="w-2 h-2 bg-yellow-400 rounded-full" />

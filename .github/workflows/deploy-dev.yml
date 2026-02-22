@@ -51,7 +51,7 @@ jobs:
           app-name: diplomacy-api-dev
           app-settings-json: |
             [
-              { "name": "ANTHROPIC_API_KEY", "value": "${{ secrets.ANTHROPIC_API_KEY }}", "slotSetting": false },
+              { "name": "DEEPSEEK_API_KEY", "value": "${{ secrets.DEEPSEEK_API_KEY }}", "slotSetting": false },
               { "name": "CORS_ORIGINS", "value": "https://devdiplomacy.kevinandpauline.com,https://polite-sky-0e01f781e.4.azurestaticapps.net", "slotSetting": false },
               { "name": "NODE_ENV", "value": "development", "slotSetting": false }
             ]

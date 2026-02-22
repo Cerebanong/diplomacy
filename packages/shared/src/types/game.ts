@@ -68,6 +68,8 @@ export interface GameState {
   isComplete: boolean;
   /** Winner if game is complete */
   winner?: PowerId;
+  /** True if game ended as a draw rather than a solo victory */
+  isDraw?: boolean;
   /** Track API costs */
   totalApiCost: number;
   /** Dislodged units awaiting retreat orders (only present during retreat phases) */
@@ -79,7 +81,7 @@ export interface GameConfig {
   mapStyle: string;
   playerPower: PowerId;
   victoryCondition: number;
-  aiModel: 'haiku' | 'sonnet';
+  aiModel: 'chat' | 'reasoner';
 }
 
 export interface TurnResult {

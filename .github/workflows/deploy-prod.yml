@@ -51,7 +51,7 @@ jobs:
           app-name: diplomacy-api-prod
           app-settings-json: |
             [
-              { "name": "ANTHROPIC_API_KEY", "value": "${{ secrets.ANTHROPIC_API_KEY }}", "slotSetting": false },
+              { "name": "DEEPSEEK_API_KEY", "value": "${{ secrets.DEEPSEEK_API_KEY }}", "slotSetting": false },
               { "name": "CORS_ORIGINS", "value": "https://diplomacy.kevinandpauline.com,https://black-bush-0719d1e1e.1.azurestaticapps.net", "slotSetting": false },
               { "name": "NODE_ENV", "value": "production", "slotSetting": false }
             ]

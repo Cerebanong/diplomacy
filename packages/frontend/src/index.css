@@ -22,7 +22,7 @@ body {
 
 #root {
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Custom scrollbar */
@@ -122,4 +122,237 @@ body {
 
 .unit-selected {
   filter: drop-shadow(0 0 8px rgba(251,191,36,1));
+}
+
+/* Toast slide-in */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* ── Desk Surface ────────────────────────────────────────────── */
+.desk-surface {
+  background:
+    /* Horizontal grain lines */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 11px,
+      rgba(0, 0, 0, 0.03) 11px,
+      rgba(0, 0, 0, 0.03) 12px
+    ),
+    /* Broad color bands */
+    repeating-linear-gradient(
+      0deg,
+      rgba(92, 61, 46, 0.06) 0px,
+      transparent 40px,
+      rgba(72, 48, 34, 0.04) 80px,
+      transparent 120px
+    ),
+    /* Warm vignette */
+    radial-gradient(ellipse at 50% 50%, rgba(120, 80, 50, 0.0) 40%, rgba(40, 22, 12, 0.18) 100%),
+    /* Base color */
+    linear-gradient(180deg, #6b4630 0%, #5c3d2e 40%, #52362a 100%);
+  /* SVG noise for organic texture */
+  background-color: #5c3d2e;
+  position: relative;
+}
+
+.desk-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.desk-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Logbook ─────────────────────────────────────────────────── */
+.logbook {
+  background: #fefdfb;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  box-shadow:
+    4px 6px 16px rgba(0, 0, 0, 0.35),
+    1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Stacked pages beneath */
+.logbook::before,
+.logbook::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  bottom: -3px;
+  left: 3px;
+  right: -3px;
+  border-radius: 0 8px 8px 0;
+  z-index: -1;
+}
+
+.logbook::before {
+  background: #f8f4ed;
+  top: 3px;
+  bottom: -3px;
+  left: 3px;
+  right: -3px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logbook::after {
+  background: #f0ebe0;
+  top: 6px;
+  bottom: -6px;
+  left: 6px;
+  right: -6px;
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Spine bar */
+.logbook-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(90deg, #5a3e28, #7a5a3e 40%, #6b4a32 70%, #4a3020);
+  border-radius: 0;
+  box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3), inset 2px 0 3px rgba(255, 255, 255, 0.1);
+  z-index: 2;
+}
+
+/* ── Logbook Tabs ────────────────────────────────────────────── */
+.logbook-tab {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: #5a4a35;
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, box-shadow 0.15s;
+  border: none;
+  text-align: left;
+}
+
+.logbook-tab.active {
+  background: #fefdfb;
+  box-shadow: 3px 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  font-weight: 600;
+}
+
+.logbook-tab.inactive {
+  background: #f0e8d8;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.logbook-tab.inactive:hover {
+  background: #ede4d0;
+}
+
+/* ── Parchment Scroll ────────────────────────────────────────── */
+.parchment-scroll {
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(3px 5px 10px rgba(0, 0, 0, 0.35));
+}
+
+.scroll-rod {
+  height: 28px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #d4a84c, #b8862e 30%, #a07428 50%, #8a6220 70%, #704e18);
+  border-radius: 14px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Rod end caps */
+.scroll-rod::before,
+.scroll-rod::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 36px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #dab555, #c49a38 30%, #a07428 60%, #8a6220);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-rod::before {
+  left: -8px;
+}
+
+.scroll-rod::after {
+  right: -8px;
+}
+
+.scroll-parchment {
+  flex: 1;
+  min-height: 0;
+  background:
+    /* Mottled aging spots */
+    radial-gradient(ellipse at 20% 30%, rgba(180, 150, 100, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(160, 130, 80, 0.12) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 80%, rgba(170, 140, 90, 0.1) 0%, transparent 45%),
+    /* Base parchment */
+    linear-gradient(180deg, #f4e8c1, #f0e2b8 50%, #ecdcb0);
+  box-shadow:
+    inset 0 8px 12px -4px rgba(100, 70, 30, 0.2),
+    inset 0 -8px 12px -4px rgba(100, 70, 30, 0.2);
+  overflow-y: auto;
+}
+
+/* Parchment scrollbar */
+.scroll-parchment::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-parchment::-webkit-scrollbar-track {
+  background: rgba(200, 175, 130, 0.3);
+}
+
+.scroll-parchment::-webkit-scrollbar-thumb {
+  background: #b8962e;
+  border-radius: 4px;
+}
+
+.scroll-parchment::-webkit-scrollbar-thumb:hover {
+  background: #9a7e24;
+}
+
+/* ── Text Helpers ────────────────────────────────────────────── */
+.parchment-heading {
+  color: #4a3520;
+  font-weight: 600;
+}
+
+.parchment-text {
+  color: #5a4030;
+}
+
+.logbook-heading {
+  color: #2d1f10;
+  font-weight: 600;
+  border-bottom: 1px solid #d4c4a8;
+  padding-bottom: 8px;
 }

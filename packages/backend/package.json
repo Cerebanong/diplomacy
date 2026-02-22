@@ -14,7 +14,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.25.0",
+    "openai": "^4.73.0",
     "@diplomacy/shared": "*",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

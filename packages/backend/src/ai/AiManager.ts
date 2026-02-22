@@ -56,6 +56,65 @@ export class AiManager {
     return (inputTokens * modelCosts.input + outputTokens * modelCosts.output) / 1_000_000;
   }
 
+  /** Build message array, handling reasoner model's system message limitation */
+  private buildChatMessages(
+    systemPrompt: string,
+    userPrompt: string,
+    model: 'chat' | 'reasoner',
+  ): OpenAI.ChatCompletionMessageParam[] {
+    if (model === 'reasoner') {
+      // DeepSeek R1 doesn't reliably support the system role — prepend to user message
+      return [
+        { role: 'user', content: `${systemPrompt}\n\n---\n\n${userPrompt}` },
+      ];
+    }
+    return [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ];
+  }
+
+  /** Extract JSON object from LLM output, handling code fences, <think> tags, and verbose reasoning */
+  private extractJson(content: string): any | null {
+    // 0. Strip <think>...</think> blocks (DeepSeek R1 may embed reasoning in content)
+    content = content.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+
+    // 1. Try markdown code fences first
+    const fenceMatch = content.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+    if (fenceMatch) {
+      try { return JSON.parse(fenceMatch[1].trim()); } catch {}
+    }
+    // 2. Try raw JSON object (greedy)
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      try { return JSON.parse(jsonMatch[0]); } catch {}
+    }
+    return null;
+  }
+
+  /** Extract content from an API response, handling empty content from reasoner models */
+  private extractContentFromResponse(
+    response: OpenAI.ChatCompletion,
+    context: string,
+  ): string | null {
+    const message = response.choices[0].message;
+    const content = message.content;
+
+    if (content && content.trim().length > 0) {
+      return content;
+    }
+
+    // DeepSeek R1 may return reasoning_content separately when content is empty
+    const reasoningContent = (message as any).reasoning_content;
+    if (reasoningContent) {
+      console.warn(`[AI:${context}] content was empty but reasoning_content present (${reasoningContent.length} chars) — reasoning likely exhausted max_tokens`);
+    } else {
+      console.warn(`[AI:${context}] both content and reasoning_content are empty`);
+    }
+
+    return null;
+  }
+
   // ── Board State Helpers ──────────────────────────────────────────────
 
   private getAllUnits(gameState: GameState): Unit[] {
@@ -143,6 +202,62 @@ export class AiManager {
     return lines.join('\n');
   }
 
+  /** Compute valid destinations for a specific set of units (used for retry prompts) */
+  private buildAvailableMovesForUnits(gameState: GameState, power: PowerId, units: Unit[]): string {
+    const allUnits = this.getAllUnits(gameState);
+    const occupiedBy = new Map<string, PowerId>();
+    for (const unit of allUnits) {
+      occupiedBy.set(unit.territory, unit.power);
+    }
+
+    const lines: string[] = ['UNITS NEEDING ORDERS:'];
+
+    for (const unit of units) {
+      const territory = gameState.territories[unit.territory];
+      if (!territory) continue;
+
+      let adjacencies: string[];
+      if (unit.type === 'fleet' && unit.coast && territory.coasts) {
+        const coast = territory.coasts.find(c => c.id === unit.coast);
+        adjacencies = coast ? coast.adjacencies : territory.adjacencies;
+      } else {
+        adjacencies = territory.adjacencies;
+      }
+
+      const validDestinations = adjacencies.filter(adj => {
+        const adjTerritory = gameState.territories[adj];
+        if (!adjTerritory) return false;
+        if (unit.type === 'army') {
+          return adjTerritory.type === 'land' || adjTerritory.type === 'coastal';
+        } else {
+          return adjTerritory.type === 'sea' || adjTerritory.type === 'coastal';
+        }
+      });
+
+      const destStrings = validDestinations.map(dest => {
+        const destTerritory = gameState.territories[dest];
+        let label = dest;
+        if (destTerritory?.isSupplyCenter) label += '*';
+        const occ = occupiedBy.get(dest);
+        if (occ && occ !== power) {
+          label += `[${CLASSIC_POWERS[occ].name}]`;
+        } else if (occ === power) {
+          label += '[own]';
+        }
+        if (unit.type === 'fleet' && destTerritory?.coasts && destTerritory.coasts.length > 0) {
+          const coastIds = destTerritory.coasts.map(c => c.id).join('/');
+          label += `{coast:${coastIds}}`;
+        }
+        return label;
+      });
+
+      const unitLabel = `${unit.type === 'army' ? 'A' : 'F'} ${unit.territory}${unit.coast ? ` (${unit.coast})` : ''}`;
+      lines.push(`${unitLabel} → ${destStrings.join(', ')} (or hold)`);
+    }
+
+    return lines.join('\n');
+  }
+
   /** Supply center ownership summary */
   private buildSupplyCenterMapSection(gameState: GameState): string {
     const lines: string[] = ['SUPPLY CENTER OWNERSHIP:'];
@@ -201,24 +316,6 @@ export class AiManager {
     return `PREVIOUS TURNS:\n${sections.join('\n\n')}`;
   }
 
-  /** Full territory adjacency map (reasoner only) */
-  private buildAdjacencySection(gameState: GameState): string {
-    const lines: string[] = ['TERRITORY MAP:'];
-
-    for (const [tid, territory] of Object.entries(gameState.territories)) {
-      const typeLabel = territory.type === 'sea' ? 'sea' : territory.type === 'land' ? 'land' : 'coast';
-      const scLabel = territory.isSupplyCenter ? ', SC' : '';
-      lines.push(`${tid} (${typeLabel}${scLabel}): ${territory.adjacencies.join(', ')}`);
-      if (territory.coasts) {
-        for (const coast of territory.coasts) {
-          lines.push(`  ${coast.id} (coast): ${coast.adjacencies.join(', ')}`);
-        }
-      }
-    }
-
-    return lines.join('\n');
-  }
-
   /** Static strategic guidance, tiered by model */
   private buildStrategicPrimer(model: 'chat' | 'reasoner'): string {
     const base = `STRATEGIC GUIDE:
@@ -261,7 +358,7 @@ ADVANCED TACTICS:
       const trust = trustScores[otherPower]?.score ?? 0;
 
       // Get last 3 messages in this channel
-      const recentMsgs = channel.messages.slice(-3);
+      const recentMsgs = channel.messages.slice(-2);
       if (recentMsgs.length === 0) continue;
 
       hasContent = true;
@@ -304,17 +401,13 @@ ADVANCED TACTICS:
 
     // 5. Previous turn results
     if (turnHistory && turnHistory.length > 0) {
-      const limit = model === 'reasoner' ? 3 : 1;
+      const limit = model === 'reasoner' ? 2 : 1;
       const prevSection = this.buildPreviousTurnSection(turnHistory, limit);
       if (prevSection) sections.push(prevSection);
     }
 
-    // 6. Territory adjacencies (reasoner only)
-    if (model === 'reasoner') {
-      sections.push(this.buildAdjacencySection(gameState));
-    }
-
-    // 7. Strategic primer
+    // 6. Strategic primer (adjacency map removed — available moves section already
+    //    lists valid destinations per unit, and the full map consumed too many tokens)
     sections.push(this.buildStrategicPrimer(model));
 
     // 8. Negotiation context
@@ -329,7 +422,7 @@ ADVANCED TACTICS:
       .join('\n')}`);
 
     // 10. Memories
-    const memoriesText = agent.memory.slice(-5).map(m => `- ${m.year} ${m.phase}: ${m.description}`).join('\n');
+    const memoriesText = agent.memory.slice(-3).map(m => `- ${m.year} ${m.phase}: ${m.description}`).join('\n');
     sections.push(`MEMORIES:\n${memoriesText || 'No significant memories yet.'}`);
 
     // 11. Rules
@@ -360,24 +453,34 @@ ADVANCED TACTICS:
 
     const systemPrompt = this.buildAgentSystemPrompt(agent, gameState, model, turnHistory, negotiations);
 
-    const messages: OpenAI.ChatCompletionMessageParam[] = [
-      { role: 'system', content: systemPrompt },
-      ...conversationHistory.slice(-10).map(msg => ({
-        role: (msg.from === agent.power ? 'assistant' : 'user') as 'assistant' | 'user',
-        content: msg.from === agent.power
-          ? msg.content
-          : `[Message from ${CLASSIC_POWERS[msg.from].name}]: ${msg.content}`,
-      })),
-    ];
+    const historyMessages = conversationHistory.slice(-10).map(msg => ({
+      role: (msg.from === agent.power ? 'assistant' : 'user') as 'assistant' | 'user',
+      content: msg.from === agent.power
+        ? msg.content
+        : `[Message from ${CLASSIC_POWERS[msg.from].name}]: ${msg.content}`,
+    }));
+
+    const messages: OpenAI.ChatCompletionMessageParam[] = model === 'reasoner'
+      ? [
+          // DeepSeek R1 doesn't reliably support the system role
+          { role: 'user', content: systemPrompt },
+          ...historyMessages,
+        ]
+      : [
+          { role: 'system', content: systemPrompt },
+          ...historyMessages,
+        ];
+
+    const maxTokens = model === 'reasoner' ? 8192 : 500;
 
     try {
       const response = await client.chat.completions.create({
         model: this.getModelId(model),
-        max_tokens: 500,
+        max_tokens: maxTokens,
         messages,
       });
 
-      const content = response.choices[0].message.content || '';
+      const content = this.extractContentFromResponse(response, `${agent.power}:generateResponse`) || '';
 
       const cost = this.estimateCost(
         model,
@@ -430,19 +533,16 @@ IMPORTANT:
 - Coordinate units! Use support orders to make attacks succeed.
 - A supported attack (strength 2) beats an unsupported defender (strength 1).`;
 
-    const maxTokens = model === 'reasoner' ? 2000 : 1000;
+    const maxTokens = model === 'reasoner' ? 8192 : 2000;
 
     try {
       const response = await client.chat.completions.create({
         model: this.getModelId(model),
         max_tokens: maxTokens,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: orderPrompt },
-        ],
+        messages: this.buildChatMessages(systemPrompt, orderPrompt, model),
       });
 
-      const content = response.choices[0].message.content || '{"orders":[]}';
+      const content = this.extractContentFromResponse(response, `${agent.power}:generateOrders`);
 
       const cost = this.estimateCost(
         model,
@@ -450,17 +550,64 @@ IMPORTANT:
         response.usage?.completion_tokens || 0
       );
 
-      // Parse orders from response
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0]);
-        const orders = (parsed.orders || []).map((o: any) => ({
+      if (!content) {
+        if (model === 'reasoner') {
+          // Reasoner exhausted max_tokens on <think> reasoning — retry with chat
+          // model which doesn't have think-token overhead and reliably produces JSON
+          console.warn(`[AI:${agent.power}] Reasoner returned empty content, retrying with chat model`);
+          const retryResult = await this.generateOrders(agent, gameState, 'chat', turnHistory, negotiations);
+          retryResult.cost += cost; // include the failed reasoner call's cost
+          return retryResult;
+        }
+        console.warn(`[AI:${agent.power}] Empty content from ${model} model in generateOrders, falling back to hold`);
+        return {
+          orders: power.units.map(u => ({
+            type: 'hold' as const,
+            power: agent.power,
+            unitType: u.type,
+            location: u.territory,
+            coast: u.coast,
+          })),
+          cost,
+        };
+      }
+
+      // Parse orders from response (handles code fences and verbose reasoner output)
+      const parsed = this.extractJson(content);
+      if (parsed) {
+        const orders: Order[] = (parsed.orders || []).map((o: any) => ({
           ...o,
           power: agent.power,
         }));
+
+        // Validate order completeness — retry for any missing units
+        const orderedLocations = new Set(orders.map(o => o.location));
+        const missingUnits = power.units.filter(u => !orderedLocations.has(u.territory));
+
+        if (missingUnits.length > 0 && orders.length > 0) {
+          console.warn(`[AI:${agent.power}] Got ${orders.length}/${power.units.length} orders, retrying for ${missingUnits.length} missing units`);
+          const retryOrders = await this.retryMissingOrders(agent, gameState, model, missingUnits);
+          orders.push(...retryOrders);
+        }
+
+        // Final backfill: hold for any still-missing units after retry
+        const finalOrderedLocations = new Set(orders.map(o => o.location));
+        for (const unit of power.units) {
+          if (!finalOrderedLocations.has(unit.territory)) {
+            orders.push({
+              type: 'hold' as const,
+              power: agent.power,
+              unitType: unit.type,
+              location: unit.territory,
+              coast: unit.coast,
+            } as Order);
+          }
+        }
+
         return { orders, cost };
       }
 
+      console.warn(`[AI:${agent.power}] Failed to parse orders JSON from ${model} model, falling back to hold`);
       // Fallback: hold all units
       return {
         orders: power.units.map(u => ({
@@ -473,7 +620,7 @@ IMPORTANT:
         cost,
       };
     } catch (error) {
-      console.error('Error generating AI orders:', error);
+      console.error(`[AI:${agent.power}] Error generating orders with ${model} model:`, error);
       // Fallback: hold all units
       return {
         orders: power.units.map(u => ({
@@ -486,6 +633,95 @@ IMPORTANT:
         cost: 0,
       };
     }
+  }
+
+  /** Focused retry for units that were missed in the initial order response */
+  private async retryMissingOrders(
+    agent: AiAgent,
+    gameState: GameState,
+    _model: 'chat' | 'reasoner',
+    missingUnits: Unit[],
+  ): Promise<Order[]> {
+    const client = this.getClient();
+    const powerName = CLASSIC_POWERS[agent.power].name;
+    const movesSection = this.buildAvailableMovesForUnits(gameState, agent.power, missingUnits);
+
+    const prompt = `You are ${powerName} in Diplomacy (${gameState.phase.replace(/_/g, ' ')} ${gameState.year}). You submitted orders but missed some units. Issue orders for ONLY these remaining units:
+
+${movesSection}
+
+RESPOND WITH JSON ONLY:
+{
+  "orders": [
+    { "type": "move", "unitType": "army", "location": "xxx", "destination": "yyy" }
+  ]
+}
+
+Valid order types: move, hold, support, convoy. Use territory IDs. Issue exactly one order per unit listed above.`;
+
+    try {
+      // Always use chat model for retry — faster and avoids reasoner token exhaustion
+      const response = await client.chat.completions.create({
+        model: this.getModelId('chat'),
+        max_tokens: 500,
+        messages: [{ role: 'user', content: prompt }],
+      });
+
+      const content = this.extractContentFromResponse(response, `${agent.power}:retryMissing`);
+      if (!content) return [];
+
+      const parsed = this.extractJson(content);
+      if (!parsed) return [];
+
+      return (parsed.orders || []).map((o: any) => ({ ...o, power: agent.power }));
+    } catch (error) {
+      console.error(`[AI:${agent.power}] Retry for missing orders failed:`, error);
+      return [];
+    }
+  }
+
+  /** Generate orders for all AI powers in parallel */
+  async generateAllOrders(
+    agents: Record<PowerId, AiAgent>,
+    gameState: GameState,
+    model: 'chat' | 'reasoner',
+    turnHistory?: TurnResult[],
+    negotiations?: NegotiationState,
+  ): Promise<{ ordersByPower: Record<PowerId, Order[]>; totalCost: number }> {
+    const entries = Object.entries(agents) as [PowerId, AiAgent][];
+
+    const results = await Promise.allSettled(
+      entries.map(async ([power, agent]) => {
+        const result = await this.generateOrders(agent, gameState, model, turnHistory, negotiations);
+        return { power, result };
+      })
+    );
+
+    const ordersByPower: Record<PowerId, Order[]> = {} as Record<PowerId, Order[]>;
+    let totalCost = 0;
+
+    for (let i = 0; i < results.length; i++) {
+      const settled = results[i];
+      const power = entries[i][0];
+
+      if (settled.status === 'fulfilled') {
+        ordersByPower[settled.value.power] = settled.value.result.orders;
+        totalCost += settled.value.result.cost;
+      } else {
+        // Fallback: hold all units (shouldn't happen since generateOrders has try/catch)
+        console.error(`[AI:${power}] generateOrders promise rejected:`, settled.reason);
+        const powerData = gameState.powers[power];
+        ordersByPower[power] = powerData.units.map(u => ({
+          type: 'hold' as const,
+          power,
+          unitType: u.type,
+          location: u.territory,
+          coast: u.coast,
+        })) as Order[];
+      }
+    }
+
+    return { ordersByPower, totalCost };
   }
 
   async generateBuilds(
@@ -574,26 +810,29 @@ IMPORTANT:
 - Only disband units you actually have.`;
     }
 
+    const maxTokens = model === 'reasoner' ? 8192 : 500;
+
     try {
       const response = await client.chat.completions.create({
         model: this.getModelId(model),
-        max_tokens: 500,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: buildPrompt },
-        ],
+        max_tokens: maxTokens,
+        messages: this.buildChatMessages(systemPrompt, buildPrompt, model),
       });
 
-      const content = response.choices[0].message.content || '{"builds":[]}';
+      const content = this.extractContentFromResponse(response, `${agent.power}:generateBuilds`);
       const cost = this.estimateCost(
         model,
         response.usage?.prompt_tokens || 0,
         response.usage?.completion_tokens || 0
       );
 
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0]);
+      if (!content) {
+        console.warn(`[AI:${agent.power}] Empty content from ${model} model in generateBuilds, using fallback`);
+        return { builds: this.generateFallbackBuilds(gameState, agent.power), cost };
+      }
+
+      const parsed = this.extractJson(content);
+      if (parsed) {
         const builds: BuildOrder[] = (parsed.builds || []).map((b: any) => ({
           ...b,
           power: agent.power,
@@ -601,10 +840,10 @@ IMPORTANT:
         return { builds, cost };
       }
 
-      // Fallback to heuristic
+      console.warn(`[AI:${agent.power}] Failed to parse builds JSON from ${model} model, using fallback`);
       return { builds: this.generateFallbackBuilds(gameState, agent.power), cost };
     } catch (error) {
-      console.error('Error generating AI builds:', error);
+      console.error(`[AI:${agent.power}] Error generating builds with ${model} model:`, error);
       return { builds: this.generateFallbackBuilds(gameState, agent.power), cost: 0 };
     }
   }
@@ -658,12 +897,15 @@ IMPORTANT:
 
     const aiPowers = Object.keys(agents) as PowerId[];
 
-    // Each AI decides who to message this round
+    // Each AI decides who to message this round (including the human player)
     for (const power of aiPowers) {
       const agent = agents[power];
+      // Include all non-eliminated powers (including human player) as potential targets
+      const allPowers = Object.keys(gameState.powers) as PowerId[];
+      const otherPowers = allPowers.filter(p => p !== power && !gameState.powers[p].isEliminated);
       const result = await this.generateNegotiationMessages(
         agent,
-        aiPowers.filter(p => p !== power),
+        otherPowers,
         gameState,
         negotiations,
         model,
@@ -722,17 +964,16 @@ Respond with JSON:
 
 You may send 0-3 messages. Be strategic about who you contact.`;
 
+    const maxTokens = model === 'reasoner' ? 8192 : 800;
+
     try {
       const response = await client.chat.completions.create({
         model: this.getModelId(model),
-        max_tokens: 800,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: negotiationPrompt },
-        ],
+        max_tokens: maxTokens,
+        messages: this.buildChatMessages(systemPrompt, negotiationPrompt, model),
       });
 
-      const content = response.choices[0].message.content || '{"messages":[],"trustUpdates":[]}';
+      const content = this.extractContentFromResponse(response, `${agent.power}:generateNegotiationMessages`);
 
       const cost = this.estimateCost(
         model,
@@ -740,9 +981,13 @@ You may send 0-3 messages. Be strategic about who you contact.`;
         response.usage?.completion_tokens || 0
       );
 
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0]);
+      if (!content) {
+        console.warn(`[AI:${agent.power}] Empty content from ${model} model in generateNegotiationMessages`);
+        return { messages: [], trustUpdates: [], cost };
+      }
+
+      const parsed = this.extractJson(content);
+      if (parsed) {
         return {
           messages: parsed.messages || [],
           trustUpdates: parsed.trustUpdates || [],
@@ -752,7 +997,7 @@ You may send 0-3 messages. Be strategic about who you contact.`;
 
       return { messages: [], trustUpdates: [], cost };
     } catch (error) {
-      console.error('Error generating negotiation messages:', error);
+      console.error(`[AI] Error generating negotiation messages with ${model} model:`, error);
       return { messages: [], trustUpdates: [], cost: 0 };
     }
   }

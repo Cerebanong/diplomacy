@@ -26,7 +26,7 @@ export function UnitMarker({
   onMouseLeave,
 }: UnitMarkerProps) {
   const color = CLASSIC_POWER_COLORS[unit.power as PowerId].fill;
-  const size = 20;
+  const size = 26;
 
   // Offset to center the icon on the position
   const offsetX = x - size / 2;

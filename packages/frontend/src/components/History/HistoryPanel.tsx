@@ -41,9 +41,18 @@ function territoryName(id: string, territories: Record<string, { name: string }>
   return territories[id]?.name ?? id;
 }
 
-function formatOrder(order: Order, territories: Record<string, { name: string }>): string {
+function formatOrder(order: Order | any, territories: Record<string, { name: string }>): string {
   const prefix = order.unitType === 'army' ? 'A' : 'F';
   const loc = territoryName(order.location, territories);
+
+  // Retreat orders have no `type` field — detect them by checking for `destination` without `type`
+  if (!order.type) {
+    if (order.destination) {
+      const dest = territoryName(order.destination, territories);
+      return `${prefix} ${loc} retreats to ${dest}`;
+    }
+    return `${prefix} ${loc} disbanded`;
+  }
 
   switch (order.type) {
     case 'hold':
@@ -66,6 +75,8 @@ function formatOrder(order: Order, territories: Record<string, { name: string }>
       const cDest = territoryName(order.convoyDestination, territories);
       return `${prefix} ${loc} convoys A ${aLoc} \u2192 ${cDest}`;
     }
+    default:
+      return `${prefix} ${loc}`;
   }
 }
 
@@ -164,14 +175,14 @@ export function HistoryPanel({ gameState, gameId }: HistoryPanelProps) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="animate-pulse text-gray-500 text-sm">Loading history...</div>
+        <div className="animate-pulse text-[#8b7355] text-sm">Loading history...</div>
       </div>
     );
   }
 
   if (turnHistory.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-gray-400 gap-2 px-6">
+      <div className="flex flex-col items-center justify-center h-full text-[#8b7355] gap-2 px-6">
         <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -191,11 +202,11 @@ export function HistoryPanel({ gameState, gameId }: HistoryPanelProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Filter Bar */}
-      <div className="p-3 border-b border-gray-200">
+      <div className="p-3 border-b border-amber-900/20">
         <select
           value={filterPower}
           onChange={(e) => setFilterPower(e.target.value as PowerId | 'all')}
-          className="w-full text-sm border border-gray-300 rounded px-2 py-1.5 bg-white"
+          className="w-full text-sm border border-amber-900/20 rounded px-2 py-1.5 bg-[#f4e8c1]/60 text-[#4a3520]"
         >
           <option value="all">All Powers</option>
           {ALL_POWERS.map(p => (
@@ -208,6 +219,7 @@ export function HistoryPanel({ gameState, gameId }: HistoryPanelProps) {
       <div className="flex-1 overflow-y-auto">
         {reversedHistory.map((turn, idx) => {
           const reversedIdx = turnHistory.length - 1 - idx;
+          const prevTurn = reversedIdx > 0 ? turnHistory[reversedIdx - 1] : undefined;
 
           // Collect entries for this turn
           const entries: JSX.Element[] = [];
@@ -258,24 +270,24 @@ export function HistoryPanel({ gameState, gameId }: HistoryPanelProps) {
 
             if (filteredChanges.length > 0) {
               scCard = (
-                <div className="mx-3 my-2 p-2 bg-gray-50 rounded border border-gray-200 text-xs space-y-1">
-                  <div className="font-semibold text-gray-600 mb-1">Supply Center Changes</div>
+                <div className="mx-3 my-2 p-2 bg-[#ede0b8]/50 rounded border border-amber-900/20 text-xs space-y-1">
+                  <div className="font-semibold text-[#4a3520] mb-1">Supply Center Changes</div>
                   {filteredChanges.map(ch => (
                     <div key={ch.power} className="flex items-start gap-1.5">
                       <div className={`w-2.5 h-2.5 rounded-full mt-0.5 flex-shrink-0 ${POWER_COLORS[ch.power]}`} />
                       <div>
-                        <span className="font-medium text-gray-700">{POWER_NAMES[ch.power]}</span>
+                        <span className="font-medium text-[#4a3520]">{POWER_NAMES[ch.power]}</span>
                         {ch.gains.length > 0 && (
-                          <span className="text-green-600 ml-1">
+                          <span className="text-green-700 ml-1">
                             {ch.gains.map(g => `+${territoryName(g, gameState.territories)}`).join(', ')}
                           </span>
                         )}
                         {ch.losses.length > 0 && (
-                          <span className="text-red-500 ml-1">
+                          <span className="text-red-700 ml-1">
                             {ch.losses.map(l => `\u2212${territoryName(l, gameState.territories)}`).join(', ')}
                           </span>
                         )}
-                        <span className="text-gray-400 ml-1">({ch.total} SC)</span>
+                        <span className="text-[#8b7355] ml-1">({ch.total} SC)</span>
                       </div>
                     </div>
                   ))}
@@ -284,19 +296,61 @@ export function HistoryPanel({ gameState, gameId }: HistoryPanelProps) {
             }
           }
 
+          // Elimination cards
+          const eliminationCards: JSX.Element[] = [];
+          for (const powerId of ALL_POWERS) {
+            if (filterPower !== 'all' && powerId !== filterPower) continue;
+            const wasEliminated = prevTurn?.newState.powers[powerId]?.isEliminated ?? false;
+            const isEliminated = turn.newState.powers[powerId]?.isEliminated ?? false;
+            if (!wasEliminated && isEliminated) {
+              eliminationCards.push(
+                <div key={`elim-${powerId}`} className="mx-3 my-2 p-2 bg-[#e8c0a0]/40 rounded border border-[#a07040]/30 text-xs flex items-center gap-2">
+                  <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${POWER_COLORS[powerId]}`} />
+                  <span className="font-semibold text-[#8b3a1a]">{POWER_NAMES[powerId]} eliminated</span>
+                </div>
+              );
+            }
+          }
+
+          // Game end card
+          let gameEndCard: JSX.Element | null = null;
+          if (turn.newState.isComplete) {
+            const isDraw = turn.newState.isDraw;
+            const winner = turn.newState.winner;
+            const survivors = ALL_POWERS.filter(p => !turn.newState.powers[p].isEliminated);
+            gameEndCard = (
+              <div className="mx-3 my-2 p-3 bg-[#e8d9a8]/60 rounded border border-amber-900/30 text-sm text-center">
+                {isDraw ? (
+                  <span className="font-bold text-[#6b4a20]">
+                    Draw among {survivors.map(p => POWER_NAMES[p]).join(', ')}
+                  </span>
+                ) : (
+                  <span className="font-bold text-[#6b4a20]">
+                    Victory! {POWER_NAMES[winner!]} wins
+                  </span>
+                )}
+                <div className="text-xs text-[#8b7355] mt-1">
+                  Game ended in {turn.newState.year}
+                </div>
+              </div>
+            );
+          }
+
           // Skip section if filter hides everything
-          if (entries.length === 0 && !scCard) return null;
+          if (entries.length === 0 && !scCard && eliminationCards.length === 0 && !gameEndCard) return null;
 
           return (
             <div key={`${turn.year}-${turn.phase}-${reversedIdx}`}>
               {/* Section Header */}
-              <div className="sticky top-0 bg-gray-50 border-b border-gray-200 px-3 py-2 text-xs font-semibold text-gray-600 z-10">
+              <div className="sticky top-0 bg-[#e8d9a8]/80 border-b border-amber-900/20 px-3 py-2 text-xs font-semibold text-[#4a3520] z-10">
                 {PHASE_NAMES[turn.phase] ?? turn.phase} {turn.year}
               </div>
               <div className="py-1">
                 {entries}
               </div>
               {scCard}
+              {eliminationCards}
+              {gameEndCard}
             </div>
           );
         })}
@@ -316,16 +370,16 @@ function OrderEntry({
   const text = formatOrder(order, territories);
 
   return (
-    <div className={`flex items-start gap-2 px-3 py-1 text-sm ${success ? 'text-gray-700' : 'text-gray-400 line-through'}`}>
+    <div className={`flex items-start gap-2 px-3 py-1 text-sm ${success ? 'text-[#3d2b1a]' : 'text-[#8b7355] line-through'}`}>
       <div className={`w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0 ${POWER_COLORS[order.power]}`} />
       <div className="flex-1 min-w-0">
         <span>{text}</span>
       </div>
       <div className="flex-shrink-0">
         {success ? (
-          <span className="text-green-600">{'\u2713'}</span>
+          <span className="text-green-700">{'\u2713'}</span>
         ) : (
-          <span className="text-red-500" title={reason}>{'\u2717'}</span>
+          <span className="text-red-700" title={reason}>{'\u2717'}</span>
         )}
       </div>
     </div>
@@ -344,7 +398,7 @@ function BuildEntry({
   const text = formatBuild(build, territories);
 
   return (
-    <div className="flex items-start gap-2 px-3 py-1 text-sm text-gray-700">
+    <div className="flex items-start gap-2 px-3 py-1 text-sm text-[#3d2b1a]">
       <div className={`w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0 ${POWER_COLORS[power]}`} />
       <div className="flex-1 min-w-0">
         <span>{text}</span>

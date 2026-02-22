@@ -80,7 +80,14 @@ function isValidMove(
       return fromAdjacencies.includes(toCoast);
     }
     // Check if the destination (or its base) is in adjacencies
-    return fromAdjacencies.includes(to) || fromAdjacencies.includes(destBase);
+    if (fromAdjacencies.includes(to) || fromAdjacencies.includes(destBase)) {
+      return true;
+    }
+    // For multi-coast destinations, check if any coast is adjacent (needed for support validation)
+    if (destTerritory.coasts) {
+      return destTerritory.coasts.some(coast => fromAdjacencies.includes(coast.id));
+    }
+    return false;
   }
 
   // Army — use the base territory's adjacency list
@@ -88,9 +95,14 @@ function isValidMove(
   const fromTerritory = territories[fromBase];
   if (!fromTerritory) return false;
 
-  // Armies use the base territory adjacency list.
-  // For multi-coast destinations, armies move to the base territory id.
-  return fromTerritory.adjacencies.includes(destBase) || fromTerritory.adjacencies.includes(to);
+  if (fromTerritory.adjacencies.includes(destBase) || fromTerritory.adjacencies.includes(to)) {
+    return true;
+  }
+  // For multi-coast destinations, check if any coast of the destination is adjacent
+  if (destTerritory.coasts) {
+    return destTerritory.coasts.some(coast => fromTerritory.adjacencies.includes(coast.id));
+  }
+  return false;
 }
 
 /**
@@ -479,6 +491,16 @@ export function resolveOrders(
       const move = moves[0];
       // Single move — beats defender if strictly greater strength
       if (move.strength > effectiveDefenderStrength) {
+        // Self-dislodgement check: cannot dislodge own unit
+        const defender = findUnit(newState.powers, dest);
+        if (effectiveDefenderStrength > 0 && defender && defender.power === move.order.power) {
+          resolutions.push({
+            order: move.order,
+            success: false,
+            reason: 'Cannot dislodge own unit',
+          });
+          continue;
+        }
         successfulMoves.add(move);
         if (effectiveDefenderStrength > 0) {
           dislodgedTerritories.set(dest, move.from);
@@ -525,7 +547,21 @@ export function resolveOrders(
           });
         }
       } else {
-        // Clear winner
+        // Clear winner — check self-dislodgement
+        const defenderUnit = findUnit(newState.powers, dest);
+        if (effectiveDefenderStrength > 0 && defenderUnit && defenderUnit.power === winners[0].order.power) {
+          // Cannot dislodge own unit — winner bounces too
+          for (const move of moves) {
+            resolutions.push({
+              order: move.order,
+              success: false,
+              reason: move === winners[0]
+                ? 'Cannot dislodge own unit'
+                : `Bounced: strength ${move.strength} vs winner strength ${maxStrength}`,
+            });
+          }
+          continue;
+        }
         successfulMoves.add(winners[0]);
         if (effectiveDefenderStrength > 0) {
           dislodgedTerritories.set(dest, winners[0].from);
@@ -544,25 +580,83 @@ export function resolveOrders(
     }
   }
 
-  // ── Step 3b: Handle "swap" moves (A→B and B→A both succeed — not allowed without convoy) ──
-  const successList = [...successfulMoves];
-  for (const move of successList) {
-    const reverseMove = successList.find(
+  // ── Step 3b: Resolve head-to-head battles (A→B and B→A) ──
+  const processed = new Set<MoveIntent>();
+  for (const move of [...successfulMoves]) {
+    if (processed.has(move)) continue;
+
+    const reverseMove = [...successfulMoves].find(
       m => m !== move && m.from === move.to && m.to === move.from,
     );
-    if (reverseMove && !move.order.viaConvoy && !reverseMove.order.viaConvoy) {
-      // Both units trying to swap without convoy — both fail
+    if (!reverseMove) continue;
+
+    processed.add(move);
+    processed.add(reverseMove);
+
+    // Convoy swaps are legal per Diplomacy rules
+    if (move.order.viaConvoy || reverseMove.order.viaConvoy) continue;
+
+    if (move.strength > reverseMove.strength) {
+      // move wins, reverseMove is dislodged
+      successfulMoves.delete(reverseMove);
+      // Self-dislodgement check
+      if (move.order.power === reverseMove.order.power) {
+        successfulMoves.delete(move);
+        resolutions.push({
+          order: move.order,
+          success: false,
+          reason: 'Cannot dislodge own unit',
+        });
+        resolutions.push({
+          order: reverseMove.order,
+          success: false,
+          reason: 'Bounced: lost head-to-head but saved by friendly unit',
+        });
+      } else {
+        dislodgedTerritories.set(reverseMove.from, move.from);
+        resolutions.push({
+          order: reverseMove.order,
+          success: false,
+          reason: `Bounced: lost head-to-head (strength ${reverseMove.strength} vs ${move.strength})`,
+        });
+      }
+    } else if (reverseMove.strength > move.strength) {
+      // reverseMove wins, move is dislodged
+      successfulMoves.delete(move);
+      // Self-dislodgement check
+      if (reverseMove.order.power === move.order.power) {
+        successfulMoves.delete(reverseMove);
+        resolutions.push({
+          order: reverseMove.order,
+          success: false,
+          reason: 'Cannot dislodge own unit',
+        });
+        resolutions.push({
+          order: move.order,
+          success: false,
+          reason: 'Bounced: lost head-to-head but saved by friendly unit',
+        });
+      } else {
+        dislodgedTerritories.set(move.from, reverseMove.from);
+        resolutions.push({
+          order: move.order,
+          success: false,
+          reason: `Bounced: lost head-to-head (strength ${move.strength} vs ${reverseMove.strength})`,
+        });
+      }
+    } else {
+      // Equal strength — both bounce (the "no swap" rule)
       successfulMoves.delete(move);
       successfulMoves.delete(reverseMove);
       resolutions.push({
         order: move.order,
         success: false,
-        reason: 'Bounced: cannot swap positions without convoy',
+        reason: 'Bounced: head-to-head standoff',
       });
       resolutions.push({
         order: reverseMove.order,
         success: false,
-        reason: 'Bounced: cannot swap positions without convoy',
+        reason: 'Bounced: head-to-head standoff',
       });
     }
   }
@@ -582,9 +676,21 @@ export function resolveOrders(
       if (!stayingUnit) continue;
 
       // The occupant is still there — check if we can dislodge
-      // A bounced unit defends with base strength 1
-      const defenderStr = holdStrengths.get(move.to)?.strength ?? 1;
+      // A bounced unit defends with base strength 1 only
+      // (hold-support doesn't apply to a unit that was ordered to move)
+      const defenderStr = 1;
       if (move.strength > defenderStr) {
+        // Self-dislodgement check
+        if (stayingUnit.order.power === move.order.power) {
+          successfulMoves.delete(move);
+          resolutions.push({
+            order: move.order,
+            success: false,
+            reason: 'Cannot dislodge own unit',
+          });
+          verifyChanged = true;
+          continue;
+        }
         // Strong enough to dislodge the staying unit
         dislodgedTerritories.set(move.to, move.from);
       } else {
@@ -637,20 +743,27 @@ export function resolveOrders(
     }
   }
 
-  // Apply successful moves: update unit territories
+  // Snapshot original positions before applying moves
+  const originalTerritories = new Map<Unit, string>();
+  for (const power of Object.values(newState.powers)) {
+    for (const unit of power.units) {
+      originalTerritories.set(unit, unit.territory);
+    }
+  }
+
+  // Apply successful moves using snapshot for lookup (avoids wrong-unit pickup when
+  // a prior iteration already mutated a unit's territory to the same fromBase)
   for (const move of successfulMoves) {
     const fromBase = baseTerritory(move.order.location);
     for (const power of Object.values(newState.powers)) {
-      const unit = power.units.find(u => baseTerritory(u.territory) === fromBase);
-      if (unit && unit.power === move.order.power) {
-        const destBase = baseTerritory(move.order.destination);
-        unit.territory = destBase;
-        // Update coast for fleet on multi-coast territory
-        if (move.order.destinationCoast) {
-          unit.coast = move.order.destinationCoast;
-        } else {
-          unit.coast = undefined;
-        }
+      const unit = power.units.find(
+        u => baseTerritory(originalTerritories.get(u)!) === fromBase
+          && u.power === move.order.power
+          && u.type === move.order.unitType
+      );
+      if (unit) {
+        unit.territory = baseTerritory(move.order.destination);
+        unit.coast = move.order.destinationCoast || undefined;
         break;
       }
     }
@@ -677,46 +790,10 @@ export function resolveOrders(
   }
   newState.dislodgedUnits = dislodgedUnits.length > 0 ? dislodgedUnits : undefined;
 
-  // ── Step 5: Update supply centers (after fall moves only) ──
-  if (state.phase === 'fall_orders') {
-    for (const territory of Object.values(newState.territories)) {
-      if (!territory.isSupplyCenter) continue;
+  // Supply center ownership is updated after fall retreats (in resolveRetreats),
+  // not here, so that units retreating to SCs can capture them.
 
-      const tBase = baseTerritory(territory.id);
-      // Find if any unit is on this territory
-      let occupyingPower: PowerId | undefined;
-      for (const [powerId, power] of Object.entries(newState.powers)) {
-        if (power.units.some(u => baseTerritory(u.territory) === tBase)) {
-          occupyingPower = powerId as PowerId;
-          break;
-        }
-      }
-
-      if (occupyingPower) {
-        // Transfer ownership
-        for (const power of Object.values(newState.powers)) {
-          const idx = power.supplyCenters.indexOf(territory.id);
-          if (idx >= 0 && power.id !== occupyingPower) {
-            power.supplyCenters.splice(idx, 1);
-          }
-        }
-        const ownerPower = newState.powers[occupyingPower];
-        if (!ownerPower.supplyCenters.includes(territory.id)) {
-          ownerPower.supplyCenters.push(territory.id);
-        }
-      }
-      // If no unit is present, ownership doesn't change
-    }
-
-    // Mark eliminated powers (no supply centers AND no units)
-    for (const power of Object.values(newState.powers)) {
-      if (power.supplyCenters.length === 0 && power.units.length === 0) {
-        power.isEliminated = true;
-      }
-    }
-  }
-
-  // ── Step 6: Advance phase ──
+  // ── Step 5: Advance phase ──
   const result: TurnResult = {
     year: state.year,
     phase: state.phase,
@@ -795,14 +872,21 @@ export function resolveBuilds(
     const power = newState.powers[powerId as PowerId];
     if (!power) continue;
 
+    const adj = power.supplyCenters.length - power.units.length;
+    let buildsApplied = 0;
+
     for (const build of builds) {
       if (build.action === 'build' && build.unitType && build.location) {
-        power.units.push({
-          type: build.unitType,
-          territory: build.location,
-          coast: build.coast,
-          power: powerId as PowerId,
-        });
+        // Only allow builds if power has room, capped at adjustment
+        if (adj > 0 && buildsApplied < adj) {
+          power.units.push({
+            type: build.unitType,
+            territory: build.location,
+            coast: build.coast,
+            power: powerId as PowerId,
+          });
+          buildsApplied++;
+        }
       } else if (build.action === 'disband' && build.location) {
         const idx = power.units.findIndex(
           u => baseTerritory(u.territory) === baseTerritory(build.location!),
@@ -811,6 +895,11 @@ export function resolveBuilds(
           power.units.splice(idx, 1);
         }
       }
+    }
+
+    // Enforce: auto-disband excess units if disbands were missed or invalid
+    while (power.units.length > power.supplyCenters.length) {
+      power.units.pop();
     }
 
     // Mark eliminated powers
@@ -912,11 +1001,23 @@ export function resolveRetreats(
       // Successful retreat — add unit back to the power's units at new location
       const power = newState.powers[retreat.power];
       if (power) {
+        // Determine coast for multi-coast territories
+        const destTerritory = newState.territories[dest];
+        let coast: string | undefined;
+        if (retreat.unitType === 'fleet' && destTerritory?.coasts?.length) {
+          // If retreat destination was a coast id (e.g. "stp_nc"), use it
+          if (retreat.destination && retreat.destination !== dest) {
+            coast = retreat.destination;
+          } else {
+            // Default to first coast
+            coast = destTerritory.coasts[0].id;
+          }
+        }
         power.units.push({
           type: retreat.unitType,
           territory: dest,
           power: retreat.power,
-          coast: undefined,
+          coast,
         });
         resolutions.push({ order: retreat as any, success: true });
       }
@@ -925,6 +1026,43 @@ export function resolveRetreats(
 
   // Clear dislodged units
   newState.dislodgedUnits = undefined;
+
+  // Update supply center ownership after fall retreats
+  // (SC ownership is determined after ALL fall movement, including retreats)
+  if (state.phase === 'fall_retreats') {
+    for (const territory of Object.values(newState.territories)) {
+      if (!territory.isSupplyCenter) continue;
+
+      const tBase = baseTerritory(territory.id);
+      let occupyingPower: PowerId | undefined;
+      for (const [powerId, power] of Object.entries(newState.powers)) {
+        if (power.units.some(u => baseTerritory(u.territory) === tBase)) {
+          occupyingPower = powerId as PowerId;
+          break;
+        }
+      }
+
+      if (occupyingPower) {
+        for (const power of Object.values(newState.powers)) {
+          const idx = power.supplyCenters.indexOf(territory.id);
+          if (idx >= 0 && power.id !== occupyingPower) {
+            power.supplyCenters.splice(idx, 1);
+          }
+        }
+        const ownerPower = newState.powers[occupyingPower];
+        if (!ownerPower.supplyCenters.includes(territory.id)) {
+          ownerPower.supplyCenters.push(territory.id);
+        }
+      }
+    }
+
+    // Mark eliminated powers (no supply centers AND no units)
+    for (const power of Object.values(newState.powers)) {
+      if (power.supplyCenters.length === 0 && power.units.length === 0) {
+        power.isEliminated = true;
+      }
+    }
+  }
 
   // Advance phase
   switch (state.phase) {

@@ -1,0 +1,12 @@
+node_modules
+packages/*/node_modules
+packages/shared/dist
+packages/frontend/dist
+packages/frontend
+.git
+*.md
+scripts
+nul
+*.jpg
+*.png
+*.json.bak

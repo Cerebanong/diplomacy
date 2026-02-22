@@ -4,12 +4,13 @@ import { dirname, resolve } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-dotenv.config({ path: resolve(__dirname, '../../../.env') });
+dotenv.config({ path: resolve(__dirname, '../../../.env'), override: true });
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { gameRouter } from './routes/game.js';
-import { negotiationRouter } from './routes/negotiation.js';
+import { createGameRouter } from './routes/game.js';
+import { createNegotiationRouter } from './routes/negotiation.js';
+import { GameManager } from './game/GameManager.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,9 +28,12 @@ app.get('/health', (_, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Shared game manager (single instance for both routers)
+const gameManager = new GameManager();
+
 // Routes
-app.use('/api/game', gameRouter);
-app.use('/api/negotiation', negotiationRouter);
+app.use('/api/game', createGameRouter(gameManager));
+app.use('/api/negotiation', createNegotiationRouter(gameManager));
 
 // Error handler
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {

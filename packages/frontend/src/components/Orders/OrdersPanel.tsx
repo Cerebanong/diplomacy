@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { GameState, Order, Unit } from '@diplomacy/shared';
-import { Play, Trash2, Plus, Minus } from 'lucide-react';
+import { Play, Trash2, Plus, Minus, Trophy, HeartHandshake } from 'lucide-react';
 import { apiUrl } from '../../config';
 import {
   baseTerritory,
@@ -275,7 +275,7 @@ export function OrdersPanel({
     return (
       <>
         {showConvoyToggle && (
-          <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm text-[#4a3a28] cursor-pointer">
             <input
               type="checkbox"
               checked={!!order.viaConvoy}
@@ -286,14 +286,14 @@ export function OrdersPanel({
                   destinationCoast: undefined,
                 });
               }}
-              className="rounded border-gray-300"
+              className="rounded border-[#c4b08a]"
             />
             Via Convoy
           </label>
         )}
 
         <div>
-          <label className="text-xs text-gray-500 mb-1 block">Destination</label>
+          <label className="text-xs text-[#6b5a42] mb-1 block">Destination</label>
           <select
             value={order.destination || ''}
             onChange={e => {
@@ -308,7 +308,7 @@ export function OrdersPanel({
                 destinationCoast: autoCoast,
               });
             }}
-            className="w-full p-2 border border-gray-300 rounded text-sm"
+            className="w-full p-2 border border-[#c4b08a] rounded text-sm"
           >
             <option value="">— Select destination —</option>
             {destinations.map(d => (
@@ -319,11 +319,11 @@ export function OrdersPanel({
 
         {coasts && coasts.length > 1 && (
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">Coast</label>
+            <label className="text-xs text-[#6b5a42] mb-1 block">Coast</label>
             <select
               value={order.destinationCoast || ''}
               onChange={e => updateOrder(order.id, { destinationCoast: e.target.value || undefined })}
-              className="w-full p-2 border border-gray-300 rounded text-sm"
+              className="w-full p-2 border border-[#c4b08a] rounded text-sm"
             >
               <option value="">— Select coast —</option>
               {coasts.map(c => (
@@ -348,13 +348,13 @@ export function OrdersPanel({
     }
 
     const supportDests = selectedUnit
-      ? getSupportDestinations(order.unitType, order.location, order.coast, selectedUnit, territories)
+      ? getSupportDestinations(order.unitType, order.location, order.coast, selectedUnit, territories, allUnits)
       : [];
 
     return (
       <>
         <div>
-          <label className="text-xs text-gray-500 mb-1 block">Support unit</label>
+          <label className="text-xs text-[#6b5a42] mb-1 block">Support unit</label>
           <select
             value={order.supportedUnit ? `${order.supportedUnit.type}|${order.supportedUnit.location}` : ''}
             onChange={e => {
@@ -373,7 +373,7 @@ export function OrdersPanel({
                 supportIsHold: undefined,
               });
             }}
-            className="w-full p-2 border border-gray-300 rounded text-sm"
+            className="w-full p-2 border border-[#c4b08a] rounded text-sm"
           >
             <option value="">— Select unit to support —</option>
             {supportable.map(s => (
@@ -386,7 +386,7 @@ export function OrdersPanel({
 
         {order.supportedUnit && (
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">To</label>
+            <label className="text-xs text-[#6b5a42] mb-1 block">To</label>
             <select
               value={
                 order.supportIsHold
@@ -407,7 +407,7 @@ export function OrdersPanel({
                   updateOrder(order.id, { supportDestination: dest, supportIsHold: false });
                 }
               }}
-              className="w-full p-2 border border-gray-300 rounded text-sm"
+              className="w-full p-2 border border-[#c4b08a] rounded text-sm"
             >
               <option value="">— Select destination —</option>
               {supportDests.map(d => (
@@ -427,18 +427,20 @@ export function OrdersPanel({
 
   const renderConvoyFields = (order: DraftOrder) => {
     const convoyableArmies = getConvoyableArmies(order.location, order.coast, allUnits, territories);
-    const convoyDests = getConvoyDestinations(order.location, territories);
+    const convoyDests = order.convoyedArmy
+      ? getConvoyDestinations(order.convoyedArmy.location, gameState.playerPower, allUnits, territories)
+      : [];
 
     if (convoyableArmies.length === 0) {
       return (
-        <p className="text-xs text-gray-400 italic">No armies adjacent to convoy</p>
+        <p className="text-xs text-[#8b7a60] italic">No armies adjacent to convoy</p>
       );
     }
 
     return (
       <>
         <div>
-          <label className="text-xs text-gray-500 mb-1 block">Convoy army</label>
+          <label className="text-xs text-[#6b5a42] mb-1 block">Convoy army</label>
           <select
             value={order.convoyedArmy?.location || ''}
             onChange={e => {
@@ -447,7 +449,7 @@ export function OrdersPanel({
                 convoyDestination: undefined,
               });
             }}
-            className="w-full p-2 border border-gray-300 rounded text-sm"
+            className="w-full p-2 border border-[#c4b08a] rounded text-sm"
           >
             <option value="">— Select army —</option>
             {convoyableArmies.map(a => (
@@ -460,11 +462,11 @@ export function OrdersPanel({
 
         {order.convoyedArmy && (
           <div>
-            <label className="text-xs text-gray-500 mb-1 block">To</label>
+            <label className="text-xs text-[#6b5a42] mb-1 block">To</label>
             <select
               value={order.convoyDestination || ''}
               onChange={e => updateOrder(order.id, { convoyDestination: e.target.value || undefined })}
-              className="w-full p-2 border border-gray-300 rounded text-sm"
+              className="w-full p-2 border border-[#c4b08a] rounded text-sm"
             >
               <option value="">— Select destination —</option>
               {convoyDests.map(d => (
@@ -477,6 +479,33 @@ export function OrdersPanel({
     );
   };
 
+  // ── Game Over ──────────────────────────────────────────────────────────────
+  if (gameState.isComplete) {
+    const POWER_NAMES: Record<string, string> = {
+      england: 'England', france: 'France', germany: 'Germany', italy: 'Italy',
+      austria: 'Austria-Hungary', russia: 'Russia', turkey: 'Turkey',
+    };
+
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-[#6b5a42] gap-3 px-6">
+        {gameState.isDraw ? (
+          <>
+            <HeartHandshake size={40} className="text-amber-500" />
+            <span className="font-semibold text-lg text-[#2d1f10]">Game ended in a draw</span>
+          </>
+        ) : (
+          <>
+            <Trophy size={40} className="text-yellow-500" />
+            <span className="font-semibold text-lg text-[#2d1f10]">
+              {POWER_NAMES[gameState.winner!]} wins!
+            </span>
+          </>
+        )}
+        <span className="text-sm text-[#8b7a60]">Orders are no longer accepted</span>
+      </div>
+    );
+  }
+
   // ── Winter builds UI ──────────────────────────────────────────────────────
   if (isBuildPhase) {
     const canSubmitBuilds = adjustment === 0
@@ -486,9 +515,9 @@ export function OrdersPanel({
     return (
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="font-semibold text-gray-800">WINTER BUILDS</h3>
-          <div className="mt-1 text-sm text-gray-500">
+        <div className="p-4 border-b border-[#d4c4a8]">
+          <h3 className="logbook-heading text-sm uppercase">WINTER BUILDS</h3>
+          <div className="mt-1 text-sm text-[#6b5a42]">
             <span>Supply Centers: {playerPower.supplyCenters.length}</span>
             <span className="mx-2">|</span>
             <span>Units: {playerPower.units.length}</span>
@@ -504,7 +533,7 @@ export function OrdersPanel({
             </p>
           )}
           {adjustment === 0 && (
-            <p className="mt-1 text-sm text-gray-500">No adjustments needed</p>
+            <p className="mt-1 text-sm text-[#6b5a42]">No adjustments needed</p>
           )}
         </div>
 
@@ -513,7 +542,7 @@ export function OrdersPanel({
           {/* Pending builds/disbands */}
           {draftBuilds.length > 0 && (
             <div className="space-y-2">
-              <p className="text-xs text-gray-500 font-medium uppercase">Pending adjustments</p>
+              <p className="text-xs text-[#6b5a42] font-medium uppercase">Pending adjustments</p>
               {draftBuilds.map(b => (
                 <div
                   key={b.location}
@@ -529,7 +558,7 @@ export function OrdersPanel({
                   </span>
                   <button
                     onClick={() => removeDraftBuild(b.location)}
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-[#8b7a60] hover:text-red-500"
                   >
                     <Trash2 size={16} />
                   </button>
@@ -541,11 +570,11 @@ export function OrdersPanel({
           {/* Available build locations */}
           {adjustment > 0 && currentBuilds.length < buildCount && (
             <div>
-              <p className="text-xs text-gray-500 font-medium uppercase mb-2">
+              <p className="text-xs text-[#6b5a42] font-medium uppercase mb-2">
                 Build locations ({currentBuilds.length}/{buildCount})
               </p>
               {availableBuildLocations.length === 0 ? (
-                <p className="text-sm text-gray-400 italic">No available home supply centers</p>
+                <p className="text-sm text-[#8b7a60] italic">No available home supply centers</p>
               ) : (
                 <div className="space-y-2">
                   {availableBuildLocations.map(loc => {
@@ -555,14 +584,14 @@ export function OrdersPanel({
                     return (
                       <div
                         key={loc}
-                        className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg"
+                        className="flex items-center justify-between p-3 bg-[#fefdfb] border border-[#d4c4a8] rounded-lg"
                       >
                         <span className="text-sm font-medium">{territory?.name ?? loc.toUpperCase()}</span>
                         <div className="flex gap-2">
                           {canArmy && (
                             <button
                               onClick={() => addBuild(loc, 'army')}
-                              className="px-3 py-1 text-xs font-medium bg-gray-100 hover:bg-gray-200 rounded border border-gray-300"
+                              className="px-3 py-1 text-xs font-medium bg-[#f0ebe0] hover:bg-[#e8e0d0] rounded border border-[#c4b08a]"
                             >
                               Army
                             </button>
@@ -587,7 +616,7 @@ export function OrdersPanel({
           {/* Units available to disband */}
           {adjustment < 0 && currentDisbands.length < disbandCount && (
             <div>
-              <p className="text-xs text-gray-500 font-medium uppercase mb-2">
+              <p className="text-xs text-[#6b5a42] font-medium uppercase mb-2">
                 Select units to disband ({currentDisbands.length}/{disbandCount})
               </p>
               <div className="space-y-2">
@@ -597,7 +626,7 @@ export function OrdersPanel({
                     <button
                       key={unit.territory}
                       onClick={() => addDisband(unit)}
-                      className="w-full flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg hover:bg-red-50"
+                      className="w-full flex items-center justify-between p-3 bg-[#fefdfb] border border-[#d4c4a8] rounded-lg hover:bg-red-50"
                     >
                       <span className="text-sm">
                         {unit.type === 'army' ? 'A' : 'F'} {unit.territory.toUpperCase()}
@@ -621,8 +650,8 @@ export function OrdersPanel({
               disabled={isSubmitting || !canSubmitBuilds}
               className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
                 isSubmitting || !canSubmitBuilds
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-gray-800 text-white hover:bg-gray-700'
+                  ? 'bg-[#c4b8a0] text-[#8b7a60] cursor-not-allowed'
+                  : 'bg-[#5a4a35] text-white hover:bg-[#4a3a28]'
               }`}
             >
               <Play size={20} />
@@ -689,9 +718,9 @@ export function OrdersPanel({
     return (
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="font-semibold text-gray-800">RETREATS</h3>
-          <p className="mt-1 text-sm text-gray-500">
+        <div className="p-4 border-b border-[#d4c4a8]">
+          <h3 className="logbook-heading text-sm uppercase">RETREATS</h3>
+          <p className="mt-1 text-sm text-[#6b5a42]">
             {gameState.dislodgedUnits.length} unit{gameState.dislodgedUnits.length > 1 ? 's' : ''} dislodged
           </p>
         </div>
@@ -700,13 +729,13 @@ export function OrdersPanel({
           {/* Player dislodged units */}
           {playerDislodged.length > 0 && (
             <div className="space-y-3">
-              <p className="text-xs text-gray-500 font-medium uppercase">Your dislodged units</p>
+              <p className="text-xs text-[#6b5a42] font-medium uppercase">Your dislodged units</p>
               {playerDislodged.map(du => (
                 <div
                   key={du.dislodgedFrom}
                   className={`p-3 rounded-lg border ${
                     du.validRetreats.length === 0
-                      ? 'bg-gray-100 border-gray-300'
+                      ? 'bg-[#f0ebe0] border-[#c4b08a]'
                       : 'bg-orange-50 border-orange-200'
                   }`}
                 >
@@ -714,7 +743,7 @@ export function OrdersPanel({
                     {du.unit.type === 'army' ? 'A' : 'F'} {du.dislodgedFrom.toUpperCase()}
                   </div>
                   {du.validRetreats.length === 0 ? (
-                    <p className="text-sm text-gray-500 italic">Must disband — no valid retreats</p>
+                    <p className="text-sm text-[#6b5a42] italic">Must disband — no valid retreats</p>
                   ) : (
                     <select
                       value={draftRetreats[du.dislodgedFrom] ?? ''}
@@ -722,7 +751,7 @@ export function OrdersPanel({
                         ...prev,
                         [du.dislodgedFrom]: e.target.value || undefined,
                       }))}
-                      className="w-full p-2 border border-gray-300 rounded text-sm"
+                      className="w-full p-2 border border-[#c4b08a] rounded text-sm"
                     >
                       <option value="">— Select retreat —</option>
                       {du.validRetreats.map(t => (
@@ -741,11 +770,11 @@ export function OrdersPanel({
           {/* AI dislodged units (read-only) */}
           {aiDislodged.length > 0 && (
             <div className="space-y-2">
-              <p className="text-xs text-gray-500 font-medium uppercase">Other dislodged units</p>
+              <p className="text-xs text-[#6b5a42] font-medium uppercase">Other dislodged units</p>
               {aiDislodged.map(du => (
                 <div
                   key={du.dislodgedFrom}
-                  className="p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-600"
+                  className="p-3 bg-[#faf7f2] border border-[#d4c4a8] rounded-lg text-sm text-[#6b5a42]"
                 >
                   {du.unit.type === 'army' ? 'A' : 'F'} {du.dislodgedFrom.toUpperCase()}
                   {du.validRetreats.length === 0
@@ -768,8 +797,8 @@ export function OrdersPanel({
               disabled={isSubmitting || (playerDislodged.length > 0 && !allPlayerRetreatsReady)}
               className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
                 isSubmitting || (playerDislodged.length > 0 && !allPlayerRetreatsReady)
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-gray-800 text-white hover:bg-gray-700'
+                  ? 'bg-[#c4b8a0] text-[#8b7a60] cursor-not-allowed'
+                  : 'bg-[#5a4a35] text-white hover:bg-[#4a3a28]'
               }`}
             >
               <Play size={20} />
@@ -785,11 +814,11 @@ export function OrdersPanel({
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200">
-        <h3 className="font-semibold text-gray-800">
+      <div className="p-4 border-b border-[#d4c4a8]">
+        <h3 className="logbook-heading text-sm uppercase">
           {gameState.phase.replace('_', ' ').toUpperCase()}
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-[#6b5a42]">
           {orders.length} of {units.length} units have orders
         </p>
       </div>
@@ -808,7 +837,7 @@ export function OrdersPanel({
             className={`rounded-lg p-3 border transition-all duration-150 cursor-pointer ${
               activeOrderId === order.id
                 ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-300/50'
-                : 'bg-gray-50 border-gray-200'
+                : 'bg-[#faf7f2] border-[#d4c4a8]'
             }`}
             onClick={() => setActiveOrderId(order.id)}
           >
@@ -829,7 +858,7 @@ export function OrdersPanel({
               <select
                 value={order.type}
                 onChange={e => handleTypeChange(order.id, e.target.value as OrderType)}
-                className="w-full p-2 border border-gray-300 rounded text-sm"
+                className="w-full p-2 border border-[#c4b08a] rounded text-sm"
               >
                 <option value="hold">Hold</option>
                 <option value="move">Move</option>
@@ -846,19 +875,19 @@ export function OrdersPanel({
 
         {/* Unordered Units */}
         {unorderedUnits.length > 0 && (
-          <div className="border-t border-gray-200 pt-4">
-            <p className="text-sm text-gray-500 mb-2">Units without orders:</p>
+          <div className="border-t border-[#d4c4a8] pt-4">
+            <p className="text-sm text-[#6b5a42] mb-2">Units without orders:</p>
             <div className="space-y-2">
               {unorderedUnits.map(unit => (
                 <button
                   key={unit.territory}
                   onClick={() => addOrder(unit)}
-                  className="w-full flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+                  className="w-full flex items-center justify-between p-3 bg-[#fefdfb] border border-[#d4c4a8] rounded-lg hover:bg-[#f5f0e8]"
                 >
                   <span>
                     {unit.type === 'army' ? 'A' : 'F'} {unit.territory.toUpperCase()}
                   </span>
-                  <Plus size={16} className="text-gray-400" />
+                  <Plus size={16} className="text-[#8b7a60]" />
                 </button>
               ))}
             </div>
@@ -882,8 +911,8 @@ export function OrdersPanel({
             disabled={isSubmitting}
             className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 ${
               isSubmitting
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-gray-800 text-white hover:bg-gray-700'
+                ? 'bg-[#c4b8a0] text-[#8b7a60] cursor-not-allowed'
+                : 'bg-[#5a4a35] text-white hover:bg-[#4a3a28]'
             }`}
           >
             <Play size={20} />

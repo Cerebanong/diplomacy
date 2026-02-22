@@ -86,15 +86,15 @@ export function NegotiationPanel({
   return (
     <div className="flex flex-col h-full">
       {/* Power Tabs */}
-      <div className="flex gap-1 p-2 border-b border-gray-200 overflow-x-auto">
+      <div className="flex gap-1 p-2 border-b border-[#d4c4a8] overflow-x-auto">
         {otherPowers.map(power => (
           <button
             key={power.id}
             onClick={() => onSelectPower(power.id)}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap ${
               selectedPower === power.id
-                ? 'bg-gray-200 font-semibold'
-                : 'hover:bg-gray-100'
+                ? 'bg-[#ede7db] font-semibold'
+                : 'hover:bg-[#f5f0e8]'
             }`}
           >
             <div className={`w-3 h-3 rounded-full ${power.color}`} />
@@ -106,7 +106,7 @@ export function NegotiationPanel({
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
-          <div className="text-center text-gray-500 py-8">
+          <div className="text-center text-[#6b5a42] py-8">
             <p>No messages with {selectedPowerInfo?.name} yet.</p>
             <p className="text-sm mt-2">Start a conversation to negotiate!</p>
           </div>
@@ -121,11 +121,11 @@ export function NegotiationPanel({
               <div
                 className={`p-3 rounded-lg ${
                   message.isHuman
-                    ? 'bg-gray-800 text-white ml-auto'
-                    : 'bg-gray-100 text-gray-800'
+                    ? 'bg-[#5a4a35] text-white ml-auto'
+                    : 'bg-[#f5f0e8] text-[#2d1f10]'
                 }`}
               >
-                <div className="text-xs text-gray-500 mb-1">
+                <div className="text-xs text-[#8b7a60] mb-1">
                   {message.isHuman ? 'You' : selectedPowerInfo?.name}
                 </div>
                 <p className="text-sm">{message.content}</p>
@@ -137,7 +137,7 @@ export function NegotiationPanel({
       </div>
 
       {/* Input */}
-      <div className="border-t border-gray-200 p-4">
+      <div className="border-t border-[#d4c4a8] p-4">
         <div className="flex gap-2">
           <input
             type="text"
@@ -145,7 +145,7 @@ export function NegotiationPanel({
             onChange={e => setNewMessage(e.target.value)}
             onKeyPress={e => e.key === 'Enter' && handleSend()}
             placeholder={`Message ${selectedPowerInfo?.name}...`}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 border border-[#c4b08a] rounded-lg focus:ring-2 focus:ring-[#8b7355] focus:border-transparent"
             disabled={isSending}
           />
           <button
@@ -153,8 +153,8 @@ export function NegotiationPanel({
             disabled={!newMessage.trim() || isSending}
             className={`px-4 py-2 rounded-lg ${
               newMessage.trim() && !isSending
-                ? 'bg-gray-800 text-white hover:bg-gray-700'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                ? 'bg-[#5a4a35] text-white hover:bg-[#4a3a28]'
+                : 'bg-[#d4c4a8] text-[#8b7355] cursor-not-allowed'
             }`}
           >
             <Send size={20} />

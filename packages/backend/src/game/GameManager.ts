@@ -247,17 +247,18 @@ export class GameManager {
       power: session.state.playerPower,
     })) as Order[];
 
-    for (const [power, agent] of Object.entries(session.aiAgents)) {
-      const aiOrders = await this.aiManager.generateOrders(
-        agent,
-        session.state,
-        session.config.aiModel,
-        session.turnHistory,
-        session.negotiations,
-      );
-      allOrders[power as PowerId] = aiOrders.orders;
-      session.state.totalApiCost += aiOrders.cost;
+    // Generate all AI orders in parallel for speed and resilience
+    const aiResults = await this.aiManager.generateAllOrders(
+      session.aiAgents,
+      session.state,
+      session.config.aiModel,
+      session.turnHistory,
+      session.negotiations,
+    );
+    for (const [power, orders] of Object.entries(aiResults.ordersByPower)) {
+      allOrders[power as PowerId] = orders;
     }
+    session.state.totalApiCost += aiResults.totalCost;
 
     // Adjudicate orders
     const result = await this.adjudicateOrders(session.state, allOrders);

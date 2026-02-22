@@ -39,5 +39,11 @@ coverage/
 *.zip
 *.tar.gz
 
+# Windows artifacts
+nul
+
+# Temp files
+*tmp_response.json
+
 # Claude Code local settings
 .claude/

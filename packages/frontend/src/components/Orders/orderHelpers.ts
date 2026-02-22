@@ -225,10 +225,24 @@ export function getSupportDestinations(
   supporterCoast: string | undefined,
   supportedUnit: Unit,
   territories: Record<string, Territory>,
+  allUnits?: Unit[],
 ): SupportDestOption[] {
   const supporterReach = getReachableSet(supporterType, supporterLoc, supporterCoast, territories);
   const supportedBase = baseTerritory(supportedUnit.territory);
   const supportedReach = getReachableSet(supportedUnit.type, supportedUnit.territory, supportedUnit.coast, territories);
+
+  // For armies, also include convoy-reachable destinations in their reach
+  if (supportedUnit.type === 'army' && allUnits) {
+    const convoyDests = getConvoyReachableDestinations(
+      supportedUnit.territory,
+      supportedUnit.power,
+      allUnits,
+      territories,
+    );
+    for (const dest of convoyDests) {
+      supportedReach.add(dest.id);
+    }
+  }
 
   const results: SupportDestOption[] = [];
 
@@ -374,32 +388,15 @@ export function getConvoyReachableDestinations(
 }
 
 /**
- * Get valid convoy destinations for a fleet (coastal territories adjacent to the fleet).
+ * Get valid convoy destinations for a convoy order.
+ * Computes all coastal territories reachable by the army via chains of friendly fleets.
+ * In a multi-fleet convoy, each fleet must specify the army's FINAL destination.
  */
 export function getConvoyDestinations(
-  fleetLoc: string,
+  armyLocation: string,
+  playerPower: PowerId,
+  allUnits: Unit[],
   territories: Record<string, Territory>,
 ): DestOption[] {
-  const fleetBase = baseTerritory(fleetLoc);
-  const fleetTerritory = territories[fleetBase];
-  if (!fleetTerritory || fleetTerritory.type !== 'sea') return [];
-
-  const seen = new Set<string>();
-  const results: DestOption[] = [];
-
-  for (const adj of fleetTerritory.adjacencies) {
-    const adjBase = baseTerritory(adj);
-    if (seen.has(adjBase)) continue;
-    seen.add(adjBase);
-
-    const dest = territories[adjBase];
-    if (!dest) continue;
-    // Convoy destinations must be coastal (armies can land there)
-    if (dest.type !== 'coastal') continue;
-
-    results.push({ id: adjBase, name: dest.name });
-  }
-
-  results.sort((a, b) => a.name.localeCompare(b.name));
-  return results;
+  return getConvoyReachableDestinations(armyLocation, playerPower, allUnits, territories);
 }

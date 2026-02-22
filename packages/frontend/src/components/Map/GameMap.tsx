@@ -1,7 +1,6 @@
 import { useState, useRef, useMemo } from 'react';
 import type { GameState, PowerId, Territory } from '@diplomacy/shared';
 import {
-  CLASSIC_MAP_DATA,
   CLASSIC_TERRITORY_VISUALS,
   CLASSIC_POWER_COLORS,
   NEUTRAL_COLORS,
@@ -83,11 +82,31 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
       for (const unit of power.units) {
         const visualData = CLASSIC_TERRITORY_VISUALS[unit.territory];
         if (visualData) {
-          // If territory has a supply center, stack unit above it
-          // Unit bottom (center + 10) touches SC top (center - 11)
-          const pos = visualData.supplyCenterPosition
-            ? { x: visualData.supplyCenterPosition.x, y: visualData.supplyCenterPosition.y - 21 }
-            : visualData.center;
+          // Determine unit position with priority:
+          // 1. Fleet on a specific coast -> position above coast label
+          // 2. Territory has supply center -> stack above it
+          // 3. Fallback -> place near territory label
+          let pos: { x: number; y: number };
+
+          const coastMatch = unit.type === 'fleet' && unit.coast && visualData.coastPaths
+            ? visualData.coastPaths.find(c => c.id === unit.coast)
+            : null;
+
+          if (coastMatch) {
+            pos = { x: coastMatch.labelPosition.x, y: coastMatch.labelPosition.y - 14 };
+          } else if (visualData.supplyCenterPosition) {
+            // Stack unit above supply center marker
+            pos = { x: visualData.supplyCenterPosition.x, y: visualData.supplyCenterPosition.y - 24 };
+          } else {
+            // No supply center: place unit just to the right of the territory label
+            const labelPos = visualData.labelPosition;
+            const labelText = unit.territory.toUpperCase();
+            const fontSize = visualData.labelFontSize ?? 12;
+            const labelHalfWidth = labelText.length * 3.5;
+            const gap = labelText.length > 3 ? 18 : 12;
+            const largeTextNudge = fontSize > 10 ? 6 : 0;
+            pos = { x: labelPos.x + labelHalfWidth + gap + largeTextNudge, y: labelPos.y - 4 };
+          }
           units.push({
             unit,
             position: pos,
@@ -330,14 +349,14 @@ export function GameMap({ gameState, onTerritoryClick }: GameMapProps) {
             <div className="font-semibold mb-2">Legend</div>
             <div className="flex gap-4">
               <div className="flex items-center gap-2">
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                  <ArmyIcon color="#333" size={20} />
+                <svg width="18" height="22" viewBox="0 0 24 28">
+                  <ArmyIcon color="#333" size={28} />
                 </svg>
                 <span>Army</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                  <FleetIcon color="#333" size={20} />
+                <svg width="18" height="22" viewBox="0 0 24 28">
+                  <FleetIcon color="#333" size={28} />
                 </svg>
                 <span>Fleet</span>
               </div>
