@@ -23,38 +23,43 @@ jobs:
       - name: Build shared
         run: npm run build:shared
 
-      - name: Build backend
-        run: npm run build:backend
-
-      - name: Prepare deployment package
+      - name: Bundle backend with esbuild
         run: |
-          cd packages/backend
-          cp -r ../../node_modules ./node_modules
-          rm -rf ./node_modules/@diplomacy/shared
-          cp -r ../shared ./node_modules/@diplomacy/shared
-          zip -r ../../backend.zip dist node_modules package.json
+          npx esbuild packages/backend/src/index.ts \
+            --bundle --platform=node --target=node20 \
+            --outfile=packages/backend/dist/index.js \
+            --format=esm \
+            --external:express --external:cors --external:helmet \
+            --external:zod --external:dotenv --external:uuid --external:openai \
+            --resolve-extensions=.ts,.js
 
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: diplomacy-api-prod
-          package: backend.zip
+      - name: Build and push to ACR
+        run: |
+          az acr build --registry macroqualityacr \
+            --image diplomacy-api:${{ github.sha }} \
+            --file Dockerfile .
 
-      - name: Configure App Settings
-        uses: azure/appservice-settings@v1
-        with:
-          app-name: diplomacy-api-prod
-          app-settings-json: |
-            [
-              { "name": "DEEPSEEK_API_KEY", "value": "${{ secrets.DEEPSEEK_API_KEY }}", "slotSetting": false },
-              { "name": "CORS_ORIGINS", "value": "https://diplomacy.kevinandpauline.com,https://black-bush-0719d1e1e.1.azurestaticapps.net", "slotSetting": false },
-              { "name": "NODE_ENV", "value": "production", "slotSetting": false }
-            ]
+      - name: Deploy to Container App
+        run: |
+          az containerapp update \
+            -n diplomacy-api-prod \
+            -g personal-apps-rg \
+            --image macroqualityacr.azurecr.io/diplomacy-api:${{ github.sha }}
+
+      - name: Update environment variables
+        run: |
+          az containerapp update \
+            -n diplomacy-api-prod \
+            -g personal-apps-rg \
+            --set-env-vars \
+              "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" \
+              "CORS_ORIGINS=https://diplomacy.kevinandpauline.com,https://black-bush-0719d1e1e.1.azurestaticapps.net" \
+              "NODE_ENV=production"
 
   deploy-frontend:
     runs-on: ubuntu-latest
@@ -77,7 +82,7 @@ jobs:
       - name: Build frontend
         run: npm run build:frontend
         env:
-          VITE_API_URL: https://diplomacy-api-prod.azurewebsites.net
+          VITE_API_URL: https://diplomacy-api-prod.purplemushroom-6e6a3ac6.westus2.azurecontainerapps.io
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
